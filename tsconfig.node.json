@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "outDir": "build/node",
+    "sourceMap": false,
+    "noEmit": false
+  },
+  "include": [
+    "sandbox/**/*.ts",
+    "lib/graveyard/**/*.ts",
+    "lib/diff/**/*.ts",
+    "lib/ghost-memory/**/*.ts"
+  ],
+  "exclude": ["node_modules", "build", "graveyard/node_modules", "**/*.test.ts"]
+}

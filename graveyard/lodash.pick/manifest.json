@@ -1,0 +1,131 @@
+{
+  "name": "lodash.pick",
+  "version": "4.4.0",
+  "monorepo": true,
+  "exportsUnderTest": [
+    {
+      "name": "default",
+      "arity": 2
+    }
+  ],
+  "generator": {
+    "argSpecs": [
+      {
+        "kind": "object"
+      },
+      {
+        "kind": "path"
+      }
+    ],
+    "seed": 4400,
+    "edgeCases": [
+      [
+        {
+          "a": 1,
+          "b": 2
+        },
+        "__proto__"
+      ],
+      [
+        {
+          "a": 1
+        },
+        "constructor.prototype"
+      ],
+      [
+        {
+          "a": [
+            1,
+            2
+          ]
+        },
+        "a[0]"
+      ],
+      [
+        {
+          "a": [
+            1,
+            2
+          ]
+        },
+        "a.0"
+      ],
+      [
+        {
+          "a": {
+            "b": 1
+          }
+        },
+        "a.b"
+      ],
+      [
+        null,
+        "a"
+      ],
+      [
+        {
+          "a": 1
+        },
+        [
+          "a",
+          "b"
+        ]
+      ]
+    ]
+  },
+  "classFeatures": [
+    {
+      "feature": "pathShape",
+      "allowed": [
+        "dot",
+        "bracket-index",
+        "mixed",
+        "empty",
+        "proto-path"
+      ]
+    },
+    {
+      "feature": "targetType",
+      "allowed": [
+        "plain-object",
+        "array",
+        "primitive",
+        "null-or-undefined"
+      ]
+    },
+    {
+      "feature": "outcome",
+      "allowed": [
+        "returned",
+        "threw:TypeError",
+        "threw:other",
+        "timeout",
+        "prototype-pollution"
+      ]
+    }
+  ],
+  "graveyardCriteria": {
+    "unmaintained": {
+      "evidence": "Last publish 2016-08-13, over 24 months ago; deprecated on npm (\"Use destructuring assignment syntax instead.\"). OSV lists GHSA-p6mc-m468-83gw (CVE-2020-8203) against 4.4.0. Repo is the lodash monorepo, which is still active; deadness is judged from last publish date.",
+      "checkedAt": "2026-11-17"
+    },
+    "permissiveLicense": {
+      "evidence": "MIT (npm registry license field of the pinned version)",
+      "checkedAt": "2026-11-17"
+    },
+    "weeklyDownloads": {
+      "evidence": "About 2.2M downloads in the last week (npm downloads API)",
+      "checkedAt": "2026-11-17"
+    },
+    "pureFunction": {
+      "judgment": "human",
+      "note": "Single exported function pick(object, ...paths), declared with two parameters; the paths are rest arguments (function.length is 0). No I/O, timers, randomness or network.",
+      "reviewedBy": "Revenant maintainers"
+    }
+  },
+  "resurrection": "full",
+  "originalTestSuite": {
+    "label": "not available",
+    "detail": "The published 4.4.0 tarball contains no test files. Tests live in the lodash monorepo and are not adapted here."
+  }
+}

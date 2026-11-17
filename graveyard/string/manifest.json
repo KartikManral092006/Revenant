@@ -1,0 +1,122 @@
+{
+  "name": "string",
+  "version": "3.3.3",
+  "exportsUnderTest": [
+    {
+      "name": "camelize",
+      "arity": 1
+    },
+    {
+      "name": "dasherize",
+      "arity": 1
+    },
+    {
+      "name": "slugify",
+      "arity": 1
+    },
+    {
+      "name": "humanize",
+      "arity": 1
+    },
+    {
+      "name": "between",
+      "arity": 3
+    },
+    {
+      "name": "truncate",
+      "arity": 3
+    }
+  ],
+  "generator": {
+    "argSpecs": [
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "any"
+      }
+    ],
+    "seed": 3303,
+    "edgeCases": [
+      [
+        "__proto__"
+      ],
+      [
+        "constructor.prototype"
+      ],
+      [
+        "a[0]"
+      ],
+      [
+        "a.0"
+      ],
+      [
+        ""
+      ],
+      [
+        "  spaced  out  "
+      ],
+      [
+        "a-b_c d"
+      ],
+      [
+        "<b>x</b>",
+        "<b>",
+        "</b>"
+      ],
+      [
+        "abcdef",
+        "c",
+        null
+      ]
+    ]
+  },
+  "classFeatures": [
+    {
+      "feature": "inputShape",
+      "allowed": [
+        "empty",
+        "ascii",
+        "whitespace",
+        "symbols",
+        "long"
+      ]
+    },
+    {
+      "feature": "outcome",
+      "allowed": [
+        "returned",
+        "threw:TypeError",
+        "threw:other",
+        "timeout"
+      ]
+    }
+  ],
+  "graveyardCriteria": {
+    "unmaintained": {
+      "evidence": "Last publish 2016-10-11, over 24 months ago. OSV lists GHSA-g36h-6r4f-3mqp (CVE-2017-16116, ReDoS) against 3.3.3. Repository archive status is checked live by Autopsy.",
+      "checkedAt": "2026-11-17"
+    },
+    "permissiveLicense": {
+      "evidence": "MIT (npm registry license field of the pinned version)",
+      "checkedAt": "2026-11-17"
+    },
+    "weeklyDownloads": {
+      "evidence": "About 80K downloads in the last week (npm downloads API)",
+      "checkedAt": "2026-11-17"
+    },
+    "pureFunction": {
+      "judgment": "human",
+      "note": "The tested methods (camelize, dasherize, slugify, humanize, between, truncate) are pure string transforms on the wrapped value. Methods that parse CSV or touch the DOM-like helpers are not tested. Arity counts the receiver string as the first argument.",
+      "reviewedBy": "Revenant maintainers"
+    }
+  },
+  "resurrection": "autopsy-and-ghost-memory",
+  "originalTestSuite": {
+    "label": "not available",
+    "detail": "The published 3.3.3 tarball contains no test files."
+  }
+}

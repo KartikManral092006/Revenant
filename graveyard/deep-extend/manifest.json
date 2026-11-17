@@ -1,0 +1,145 @@
+{
+  "name": "deep-extend",
+  "version": "0.6.0",
+  "exportsUnderTest": [
+    {
+      "name": "default",
+      "arity": 2
+    }
+  ],
+  "generator": {
+    "argSpecs": [
+      {
+        "kind": "object"
+      },
+      {
+        "kind": "object"
+      }
+    ],
+    "seed": 600,
+    "edgeCases": [
+      [
+        {},
+        {
+          "__proto__": {
+            "polluted": 1
+          }
+        }
+      ],
+      [
+        {},
+        {
+          "constructor": {
+            "prototype": {
+              "polluted": 1
+            }
+          }
+        }
+      ],
+      [
+        {
+          "a": [
+            1,
+            2
+          ]
+        },
+        {
+          "a": [
+            3
+          ]
+        }
+      ],
+      [
+        {
+          "a": {
+            "b": 1
+          }
+        },
+        {
+          "a": {
+            "c": 2
+          }
+        }
+      ],
+      [
+        {
+          "a.0": 1
+        },
+        {
+          "a[0]": 2
+        }
+      ],
+      [
+        {},
+        null
+      ],
+      [
+        {
+          "a": 1
+        }
+      ],
+      [
+        {
+          "k": "__proto__"
+        },
+        {
+          "k": "constructor.prototype"
+        }
+      ],
+      [
+        {
+          "path": "a[0]"
+        },
+        {
+          "path": "a.0"
+        }
+      ]
+    ]
+  },
+  "classFeatures": [
+    {
+      "feature": "argShape",
+      "allowed": [
+        "single",
+        "two-plain",
+        "nested",
+        "arrays",
+        "null-or-primitive"
+      ]
+    },
+    {
+      "feature": "outcome",
+      "allowed": [
+        "returned",
+        "returned-false",
+        "threw:TypeError",
+        "threw:other",
+        "timeout"
+      ]
+    }
+  ],
+  "graveyardCriteria": {
+    "unmaintained": {
+      "evidence": "Last publish 2018-05-22, over 24 months ago. OSV lists no vulnerability affecting 0.6.0 (CVE-2018-3750 does not affect it).",
+      "checkedAt": "2026-11-17"
+    },
+    "permissiveLicense": {
+      "evidence": "MIT (npm registry license field of the pinned version)",
+      "checkedAt": "2026-11-17"
+    },
+    "weeklyDownloads": {
+      "evidence": "About 60M downloads in the last week (npm downloads API)",
+      "checkedAt": "2026-11-17"
+    },
+    "pureFunction": {
+      "judgment": "human",
+      "note": "Single exported variadic function deepExtend(target, ...sources) that merges plain objects, arrays and buffers. No I/O, timers, randomness or network. It mutates its first argument, which differential tests compare.",
+      "reviewedBy": "Revenant maintainers"
+    }
+  },
+  "resurrection": "autopsy-and-ghost-memory",
+  "originalTestSuite": {
+    "label": "not available",
+    "detail": "The published 0.6.0 tarball contains no test files."
+  }
+}

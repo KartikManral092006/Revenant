@@ -1,0 +1,150 @@
+{
+  "name": "lodash.set",
+  "version": "4.3.2",
+  "monorepo": true,
+  "exportsUnderTest": [
+    {
+      "name": "default",
+      "arity": 3
+    }
+  ],
+  "generator": {
+    "argSpecs": [
+      {
+        "kind": "object"
+      },
+      {
+        "kind": "path"
+      },
+      {
+        "kind": "any"
+      }
+    ],
+    "seed": 4302,
+    "edgeCases": [
+      [
+        {},
+        "__proto__.polluted",
+        "yes"
+      ],
+      [
+        {},
+        "constructor.prototype.polluted",
+        "yes"
+      ],
+      [
+        {},
+        "a[0]",
+        1
+      ],
+      [
+        {},
+        "a.0",
+        1
+      ],
+      [
+        {},
+        "a[0].b",
+        1
+      ],
+      [
+        [],
+        "0",
+        1
+      ],
+      [
+        {},
+        "",
+        1
+      ],
+      [
+        null,
+        "a",
+        1
+      ],
+      [
+        {},
+        [
+          "a",
+          "b"
+        ],
+        1
+      ],
+      [
+        {
+          "$t": "obj",
+          "v": {
+            "$t": "x"
+          }
+        },
+        "a.b",
+        1
+      ],
+      [
+        {},
+        "__proto__",
+        1
+      ],
+      [
+        {},
+        "constructor.prototype",
+        1
+      ]
+    ]
+  },
+  "classFeatures": [
+    {
+      "feature": "pathShape",
+      "allowed": [
+        "dot",
+        "bracket-index",
+        "mixed",
+        "empty",
+        "proto-path"
+      ]
+    },
+    {
+      "feature": "targetType",
+      "allowed": [
+        "plain-object",
+        "array",
+        "primitive",
+        "null-or-undefined"
+      ]
+    },
+    {
+      "feature": "outcome",
+      "allowed": [
+        "returned",
+        "threw:TypeError",
+        "threw:other",
+        "timeout",
+        "prototype-pollution"
+      ]
+    }
+  ],
+  "graveyardCriteria": {
+    "unmaintained": {
+      "evidence": "Last publish 2016-08-13, over 24 months ago; no newer version. OSV lists GHSA-p6mc-m468-83gw (CVE-2020-8203) against 4.3.2. Repo is the lodash monorepo, which is still active; deadness is judged from last publish date.",
+      "checkedAt": "2026-11-17"
+    },
+    "permissiveLicense": {
+      "evidence": "MIT (npm registry license field of the pinned version)",
+      "checkedAt": "2026-11-17"
+    },
+    "weeklyDownloads": {
+      "evidence": "About 2.0M downloads in the last week (npm downloads API)",
+      "checkedAt": "2026-11-17"
+    },
+    "pureFunction": {
+      "judgment": "human",
+      "note": "Single exported function set(object, path, value). No I/O, timers, randomness or network. It mutates its first argument, which differential tests compare.",
+      "reviewedBy": "Revenant maintainers"
+    }
+  },
+  "resurrection": "full",
+  "originalTestSuite": {
+    "label": "not available",
+    "detail": "The published 4.3.2 tarball contains no test files. Tests live in the lodash monorepo and are not adapted here."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "revenant-graveyard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned original (dead) npm packages used by Revenant. Installed at build time with --ignore-scripts; never at runtime.",
+  "dependencies": {
+    "deep-extend": "0.6.0",
+    "lodash.pick": "4.4.0",
+    "lodash.set": "4.3.2",
+    "string": "3.3.3"
+  }
+}

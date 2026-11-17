@@ -1,0 +1,940 @@
+{
+  "pbtResults": {
+    "8.7 Write property test for the limiter": {
+      "status": "passed",
+      "lastRunTimestamp": 1794911870883
+    },
+    "4.6 Write property test for prototype change detection": {
+      "status": "passed",
+      "lastRunTimestamp": 1794911877420
+    },
+    "3.3 Write property test for manifest validation": {
+      "status": "passed",
+      "lastRunTimestamp": 1794911880277
+    },
+    "4.2 Write property test for tagged serialization": {
+      "status": "passed",
+      "lastRunTimestamp": 1794912005892
+    }
+  },
+  "executionHistory": {
+    "1.1 Create the Next.js App Router project with TypeScript strict mode, Tailwind CSS, Vitest and fast-check": [
+      {
+        "executionId": "b9e66b2b-96b0-46cd-b267-726b50e49b03",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794909024730
+      },
+      {
+        "executionId": "b9e66b2b-96b0-46cd-b267-726b50e49b03",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794909273844
+      }
+    ],
+    "1.2 Add `tsconfig.node.json`, the build scripts and the import guard": [
+      {
+        "executionId": "b9e66b2b-96b0-46cd-b267-726b50e49b03",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794909273958
+      },
+      {
+        "executionId": "b9e66b2b-96b0-46cd-b267-726b50e49b03",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794910790105
+      }
+    ],
+    "1. Scaffold the project": [
+      {
+        "executionId": "b9e66b2b-96b0-46cd-b267-726b50e49b03",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794910790169
+      }
+    ],
+    "2.1 Build the minimal spike routes": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064460
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911075316
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911186924
+      }
+    ],
+    "2.2 Record the spike results in design.md open items 2, 3, 10, 16, 17": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064565
+      }
+    ],
+    "2.3 Remove the spike routes from the application": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064600
+      }
+    ],
+    "3.1 Create `graveyard/package.json` with exact pins and a committed lockfile": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064635
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911075376
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911187019
+      }
+    ],
+    "3.2 Implement the manifest types and validator in `lib/graveyard/manifest-schema.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064684
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911075511
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911187118
+      }
+    ],
+    "3.3 Write property test for manifest validation": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064719
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911761483
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794912017223
+      }
+    ],
+    "3.4 Implement `lib/graveyard/check-pins.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064749
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911559821
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911625316
+      }
+    ],
+    "3.5 Write property test for the pin validator": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064785
+      }
+    ],
+    "3.6 Implement the allowlist loader in `lib/graveyard/`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064821
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911559886
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911624656
+      }
+    ],
+    "3.7 Write property test for the allowlist loader": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064859
+      }
+    ],
+    "3.8 Write the four manifests": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064926
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911630383
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911753930
+      }
+    ],
+    "3.9 Checkpoint after task 3": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911064957
+      }
+    ],
+    "4.1 Implement `sandbox/protocol.ts` and `sandbox/serialize.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065000
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911075936
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911187494
+      }
+    ],
+    "4.2 Write property test for tagged serialization": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065034
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911761552
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794912016576
+      }
+    ],
+    "4.3 Implement size limit checks in `sandbox/limits.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065084
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911560029
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911623262
+      }
+    ],
+    "4.4 Write property test for size limits": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065121
+      }
+    ],
+    "4.5 Implement `sandbox/pollution.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065152
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911076238
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911187913
+      }
+    ],
+    "4.6 Write property test for prototype change detection": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065186
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911761640
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794912018190
+      }
+    ],
+    "4.7 Implement `sandbox/stubs.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065228
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911197355
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911461578
+      }
+    ],
+    "4.8 Implement the child entry `sandbox/child.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065259
+      }
+    ],
+    "4.9 Implement the parent runner `lib/ghost-memory/sandbox-runner.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065358
+      }
+    ],
+    "4.10 Write property test for timeout alignment": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065453
+      }
+    ],
+    "5.1 Implement `lib/diff/comparator.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065492
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911560661
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911625737
+      }
+    ],
+    "5.2 Write property test for the comparator": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065532
+      }
+    ],
+    "5.3 Implement `lib/diff/rules.ts` and the per-package rule files": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065591
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911630550
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911752933
+      }
+    ],
+    "5.4 Write property test for rule evaluation order": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065637
+      }
+    ],
+    "5.5 Implement `lib/diff/scoring.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065677
+      }
+    ],
+    "5.6 Write property test for score arithmetic": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065727
+      }
+    ],
+    "5.7 Implement `lib/diff/runner.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065777
+      }
+    ],
+    "5.8 Implement the Resurrection CLI `lib/diff/cli.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065837
+      }
+    ],
+    "5.9 Write property test for the CLI exit code": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065871
+      }
+    ],
+    "5.10 Create the `resurrect-lodash-set` hook with the `createHook` tool": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065907
+      }
+    ],
+    "5.11 Create the `resurrect-lodash-pick` hook with the `createHook` tool": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065945
+      }
+    ],
+    "5.13 Checkpoint after task 5": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911065996
+      }
+    ],
+    "6.1 Implement `lib/ghost-memory/evidence-id.ts` and the Evidence and Recording types": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066077
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911561248
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911624002
+      }
+    ],
+    "6.2 Write property test for Evidence IDs": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066123
+      }
+    ],
+    "6.3 Implement generators in `lib/ghost-memory/generators/<package>.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066158
+      }
+    ],
+    "6.4 Write property test for input list reproducibility": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066188
+      }
+    ],
+    "6.5 Implement `lib/ghost-memory/recorder.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066216
+      }
+    ],
+    "6.6 Write property test for the stored JSON round trip": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066244
+      }
+    ],
+    "6.7 Implement behavior classes in `lib/ghost-memory/features/` and `classes.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066276
+      }
+    ],
+    "6.8 Write property test for the class partition": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066309
+      }
+    ],
+    "6.9 Implement the offline coverage pass `lib/ghost-memory/coverage.ts` (Option A)": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066352
+      }
+    ],
+    "6.10 Write property test for the coverage summary": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066441
+      }
+    ],
+    "6.11 Implement the live Ghost Memory route `app/api/ghost-memory/[package]`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066757
+      }
+    ],
+    "6.12 Wire the generators into the Resurrection CLI and the differential runner": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911066901
+      }
+    ],
+    "6.13 Create the offline recording script and commit the stored data": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067157
+      }
+    ],
+    "6.14 Author the intentional-difference rules for `lodash.set` and `lodash.pick`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067252
+      }
+    ],
+    "7.1 Implement `lib/autopsy/http.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067306
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911211606
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911461682
+      }
+    ],
+    "7.2 Implement `lib/autopsy/npm.ts` and `lib/autopsy/downloads.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067348
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911631235
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911754905
+      }
+    ],
+    "7.3 Implement `lib/autopsy/osv.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067458
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911632037
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911752273
+      }
+    ],
+    "7.4 Implement `lib/autopsy/github.ts` with the cache": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067493
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911632296
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911755255
+      }
+    ],
+    "7.5 Write property test for the GitHub cache": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067528
+      }
+    ],
+    "7.6 Implement `lib/autopsy/certificate.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067563
+      }
+    ],
+    "7.7 Write property test for certificate completeness": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067607
+      }
+    ],
+    "7.8 Write property test for the Inactive classification": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067650
+      }
+    ],
+    "7.9 Implement the Autopsy route and the stored snapshots": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067690
+      }
+    ],
+    "8.1 Implement `lib/reverse-spec/prompt.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067741
+      }
+    ],
+    "8.2 Write property test for the prompt builder": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067802
+      }
+    ],
+    "8.3 Implement `lib/reverse-spec/citations.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067855
+      }
+    ],
+    "8.4 Write property test for citation resolution": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067890
+      }
+    ],
+    "8.5 Write property test for the traceability count": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067923
+      }
+    ],
+    "8.6 Implement `lib/reverse-spec/rate-limit.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067956
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911230970
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911461283
+      }
+    ],
+    "8.7 Write property test for the limiter": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911067990
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911761933
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794912023198
+      }
+    ],
+    "8.8 Implement `lib/reverse-spec/groq-client.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068022
+      }
+    ],
+    "8.9 Implement the bundle assembler `lib/reverse-spec/bundle.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068085
+      }
+    ],
+    "8.10 Implement the Reverse Spec route `app/api/reverse-spec/[package]`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068172
+      }
+    ],
+    "8.11 Add the cached-bundle generation script and commit the bundles": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068208
+      }
+    ],
+    "9.1 Implement `lib/report/assemble.ts` and `lib/report/format.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068237
+      }
+    ],
+    "9.2 Add the vulnerabilities-removed basis": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068265
+      }
+    ],
+    "9.3 Write property test for report completeness": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068300
+      }
+    ],
+    "9.4 Implement `lib/report/language-guard.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068333
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911231163
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911461494
+      }
+    ],
+    "9.5 Write property test for forbidden words": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068365
+      }
+    ],
+    "9.6 Apply the language guard to the bundle assembler": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068394
+      }
+    ],
+    "9.7 Add the string scan test for UI and app text": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068425
+      }
+    ],
+    "9.8 Checkpoint after task 9": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068464
+      }
+    ],
+    "10.1 Define the theme tokens and global styles": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068495
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911231214
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911460885
+      }
+    ],
+    "10.3 Build the root layout and the Graveyard page `/`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068524
+      }
+    ],
+    "10.4 Build the package page and the Death Certificate section": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068555
+      }
+    ],
+    "10.5 Build the Ghost Memory section": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068583
+      }
+    ],
+    "10.6 Build the Reverse Spec section": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068615
+      }
+    ],
+    "10.7 Implement the differential stream and route": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068649
+      }
+    ],
+    "10.8 Build the Rebirth Report section": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068686
+      }
+    ],
+    "11.1 Implement the store-only ZIP writer `lib/reverse-spec/zip.ts`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068719
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911461757
+      },
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911553946
+      }
+    ],
+    "11.3 Implement `app/api/spec-bundle/[package]`": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068749
+      }
+    ],
+    "11.4 Add the \"Download Kiro spec bundle\" action to the package page": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068782
+      }
+    ],
+    "12.1 Create the `resurrected/lodash.set` skeleton": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068813
+      }
+    ],
+    "12.2 Create the `resurrected/lodash.pick` skeleton": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068850
+      }
+    ],
+    "13.1 Add the Render configuration": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068884
+      }
+    ],
+    "13.2 Write the README": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068914
+      }
+    ],
+    "13.3 Add a repository checks test": [
+      {
+        "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794911068948
+      }
+    ]
+  }
+}
