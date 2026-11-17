@@ -57,7 +57,7 @@ Conventions used in this list:
     - Keep `spike/README.md` only if it is marked as historical
     - _Requirements: 4.1_
 
-- [ ] 3. Graveyard
+- [x] 3. Graveyard
   - [x] 3.1 Create `graveyard/package.json` with exact pins and a committed lockfile
     - Pins: `lodash.set@4.3.2`, `lodash.pick@4.4.0`, `string@3.3.3`, `deep-extend@0.6.0`, no range operators
     - Run `npm install --ignore-scripts --prefix graveyard` once to create `graveyard/package-lock.json` and commit it
@@ -100,10 +100,10 @@ Conventions used in this list:
     - Run the validator over all four manifests in a test
     - _Requirements: 1.1, 1.4, 1.5, 12.1, 12.2, 12.3_
 
-  - [~] 3.9 Checkpoint after task 3
+  - [x] 3.9 Checkpoint after task 3
     - Run all tests; stop and ask me if anything fails.
 
-- [ ] 4. Sandbox
+- [x] 4. Sandbox
   - [x] 4.1 Implement `sandbox/protocol.ts` and `sandbox/serialize.ts`
     - Define `ParentMsg`, `ChildMsg`, `Outcome`, `Limits`, `Tagged` and `PollutionReport` from design.md
     - Tagged serializer and deserializer for `undefined`, `NaN`, `Infinity`, `-Infinity`, `-0`, functions (descriptor), errors (`name` and `message` only), circular references, objects with own `$t` keys, and own `__proto__` keys (rebuilt with `Object.defineProperty`)
@@ -149,7 +149,7 @@ Conventions used in this list:
     - Record thrown errors by `name` and `message`
     - _Requirements: 4.1, 4.5, 4.8, 4.9, 4.10, 4.11_
 
-  - [~] 4.9 Implement the parent runner `lib/ghost-memory/sandbox-runner.ts`
+  - [x] 4.9 Implement the parent runner `lib/ghost-memory/sandbox-runner.ts`
     - Start the child with `process.execPath`, an empty environment, `--permission`, `--allow-fs-read` for `build/node/sandbox` and the package directory under test only, and `--max-old-space-size`; no write, child-process, worker, addon or wasi grants
     - Per-call timer: kill with `SIGKILL`, record a `timeout` result, respawn, continue
     - Per-run wall-clock timer: kill the child and return partial results
@@ -157,7 +157,7 @@ Conventions used in this list:
     - Interface as in design.md (`runBatch` with `inputs`, `limits`, `signal`, `onResult`)
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.11_
 
-  - [~] 4.10 Write property test for timeout alignment
+  - [x] 4.10 Write property test for timeout alignment
     - **Property 12: Timeouts keep results aligned with inputs**
     - Create fixture packages under `tests/fixtures/` (never Graveyard packages), including a function that hangs on marked inputs
     - Use fast-check with `numRuns >= 100`; if child-process runs make 100 too slow, lower the batch size per run, not the run count
