@@ -95,7 +95,7 @@ flowchart LR
 
 ### Process model and build output
 
-- `sandbox/` and the CLI in `lib/diff/cli.ts` are plain Node programs. They are compiled with `tsc` (already in the stack) into `sandbox/dist/` and `lib/diff/dist/` at build time. The server starts the child with `process.execPath` and an absolute path to `sandbox/dist/child.js`, resolved at runtime so the Next.js bundler does not trace or bundle it. Verify that `next build` leaves these paths untouched on Render.
+- `sandbox/` and the CLI in `lib/diff/cli.ts` are plain Node programs. They are compiled with `tsc` (already in the stack) by one `tsconfig.node.json` into a single `outDir`, `build/node/`, which mirrors the source tree (`build/node/sandbox/...`, `build/node/lib/graveyard/...`, `build/node/lib/diff/...`, `build/node/lib/ghost-memory/...`). `build/` is git-ignored output. The server starts the child with `process.execPath` and an absolute path to `build/node/sandbox/child.js`, resolved at runtime so the Next.js bundler does not trace or bundle it. Verify that `next build` leaves these paths untouched on Render.
 - The child is started with an empty environment (`env: {}` plus nothing else), so `GROQ_API_KEY` and `GITHUB_TOKEN` are not reachable from package code.
 
 ### Graveyard packages are subjects under test, not app dependencies
@@ -152,7 +152,7 @@ tech.md allows Next.js, React, TypeScript, Tailwind CSS, `groq-sdk`, `fast-check
 | Rate limiting | 5 per IP per day, 50 total | In-memory `Map`; Redis; a rate-limit package | In-memory `Map`. No dependency. Counters reset on restart (verify whether that is acceptable, or persist to a JSON file on disk) |
 | Schema validation | Manifest, rules, recordings | zod; hand-written validators | Hand-written validators in `lib/graveyard/`, because the schemas are small and fixed. No dependency. Revisit if validators grow (verify) |
 | Zip archive for the spec bundle | "Download Kiro spec bundle" | `archiver`, `jszip`, `tar` package, or a minimal writer | Write a store-only (no compression) ZIP writer, about 60 lines in `lib/reverse-spec/zip.ts`, using `zlib.crc32` from Node (`zlib.crc32` exists on Node v22.23.1, verified 2026-11-17 by the user, so no CRC table is needed). A small test reader checks the output. No dependency |
-| TypeScript execution for scripts | Run CLI and offline scripts | Compile with `tsc` to `dist/`; Node native type stripping; `tsx` | Compile with `tsc` to `dist/`. No runtime dependency. Verify whether Node's native type stripping on the pinned version is simpler |
+| TypeScript execution for scripts | Run CLI and offline scripts | Compile with `tsc` to `build/node/`; Node native type stripping; `tsx` | Compile with `tsc` (one `tsconfig.node.json`) to `build/node/`. No runtime dependency. Verify whether Node's native type stripping on the pinned version is simpler |
 | V8 coverage summarizer | Option A coverage numbers | `c8`; own summarizer | Own summarizer over V8 JSON, offline only. No runtime dependency |
 | Markdown rendering for specs in the UI | Show generated spec text | `react-markdown`; render as preformatted text | Preformatted text for the MVP. No dependency |
 | Fonts and icons | Halloween theme | `next/font` (part of Next.js); icon libraries | `next/font` and inline SVG. No dependency |
@@ -181,6 +181,7 @@ app/api/                        autopsy, ghost-memory, reverse-spec, diff, spec-
 components/                     Graveyard, DeathCertificate, SeanceProgress, EvidenceTable, SpecView, RebirthReport, GroqBudget
 data/<package>/                 autopsy.json, ghost-memory.json, classes.json, coverage.json, reverse-spec.json, diff-run.json
 tests/
+build/node/                     tsc output of tsconfig.node.json, mirrors the source tree, git-ignored
 ```
 
 `lib/autopsy/http.ts` holds only the shared timeout wrapper. Each external API has its own module, and no `fetch` appears in UI code.
@@ -193,14 +194,14 @@ One child process runs one batch of inputs. The parent (`lib/ghost-memory/sandbo
 
 ```
 node --permission
-     --allow-fs-read=<repo>/sandbox/dist
+     --allow-fs-read=<repo>/build/node/sandbox
      --allow-fs-read=<repo>/graveyard/node_modules/<package>      (original)
      --allow-fs-read=<repo>/resurrected/<package>                  (rebuild runs)
      --max-old-space-size=<MB>
-     sandbox/dist/child.js
+     build/node/sandbox/child.js
 ```
 
-No `--allow-fs-write`, `--allow-child-process`, `--allow-worker`, `--allow-addons` or `--allow-wasi`. Flag names are verified for Node v22.23.1 (notes section 6). Verified on Node v22.23.1 (2026-11-17, by the user): the package loads with only the two read grants (`sandbox/dist` and the package directory under test), with no extra read access needed. Not verified: whether Render's Node version matches v22.23.1. Verify by running the sandbox test suite on Render with the pinned version. `--experimental-permission` is the fallback spelling for older Node.
+No `--allow-fs-write`, `--allow-child-process`, `--allow-worker`, `--allow-addons` or `--allow-wasi`. Flag names are verified for Node v22.23.1 (notes section 6). Verified on Node v22.23.1 (2026-11-17, by the user): the package loads with only the two read grants (`build/node/sandbox` and the package directory under test), with no extra read access needed. Not verified: whether Render's Node version matches v22.23.1. Verify by running the sandbox test suite on Render with the pinned version. `--experimental-permission` is the fallback spelling for older Node.
 
 | Limit | Proposed value | Status |
 |---|---|---|
@@ -291,8 +292,8 @@ interface SandboxRunner {
 - `resolvePackageDir(name)` returns an absolute path only if `name` is in the manifest list; otherwise it throws (Req 1.3).
 - `checkPins()` reads `graveyard/package.json` and every manifest. A version is exact if it matches `^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$` with no range operators, tags or URLs, and the manifest version equals the version in `graveyard/package.json`. Any failure exits non-zero. The build runs in this order, so a failed check stops the build (Req 1.6):
 
-1. `tsc` compiles `lib/graveyard`, `lib/diff` and `sandbox` into their `dist/` folders. This must come first because `check-pins.js` is compiled output.
-2. `node lib/graveyard/dist/check-pins.js` validates the pins.
+1. `tsc -p tsconfig.node.json` compiles `sandbox/`, `lib/graveyard`, `lib/diff` and `lib/ghost-memory` (and anything they import) into `build/node/`. This must come first because `check-pins.js` is compiled output.
+2. `node build/node/lib/graveyard/check-pins.js` validates the pins.
 3. `npm ci --ignore-scripts --prefix graveyard` installs the Graveyard packages.
 4. `next build`.
 
@@ -300,13 +301,15 @@ interface SandboxRunner {
 {
   "scripts": {
     "build:node": "tsc -p tsconfig.node.json",
-    "build": "npm run build:node && node lib/graveyard/dist/check-pins.js && npm ci --ignore-scripts --prefix graveyard && next build",
-    "resurrect": "node lib/diff/dist/cli.js"
+    "build": "npm run build:node && node build/node/lib/graveyard/check-pins.js && npm ci --ignore-scripts --prefix graveyard && next build",
+    "resurrect": "node build/node/lib/diff/cli.js"
   }
 }
 ```
 
-`tsconfig.node.json` includes only `lib/graveyard`, `lib/diff` and `sandbox`, with `outDir` set per folder to its `dist/`. The script and config names are a proposal for the implementation.
+`tsconfig.node.json` includes `sandbox/`, `lib/graveyard`, `lib/diff` and `lib/ghost-memory` (plus whatever they import), with one `outDir` of `build/node/` and `rootDir` set to the repo root so the output mirrors the source tree. The `build/` folder is git-ignored. The script names are a proposal for the implementation; the config name `tsconfig.node.json` is fixed.
+
+**Import rule:** Node-run code (everything compiled by `tsconfig.node.json`) uses relative imports only and no path aliases, because `tsc` does not rewrite aliases in emitted JavaScript. Relative imports in ESM output need explicit file extensions as the module settings require (verify against the chosen `module` setting).
 
 `graveyard/package-lock.json` must be committed. It makes the build-time install reproducible, and it is what gives exact-pin checking meaning: `npm ci` fails if the lockfile and `graveyard/package.json` disagree. `check-pins.js` also verifies that the lockfile exists and that each Graveyard package's locked version equals its manifest version.
 
@@ -498,7 +501,7 @@ The denominator excludes only cases explained by a declared rule. Timeouts and o
 
 ### Resurrection CLI and Kiro hook (Req 13)
 
-- npm script: `"resurrect": "node lib/diff/dist/cli.js"`, used as `npm run resurrect -- <package>`.
+- npm script: `"resurrect": "node build/node/lib/diff/cli.js"`, used as `npm run resurrect -- <package>`.
 - Arguments: one required package name from the allowlist. Optional `--n <int>` and `--seed <int>`. A missing or unknown package prints usage to stderr and exits 2.
 - Exit codes: `0` when X = 0 (no mismatches, or only mismatches explained by rules). `1` when X > 0. `2` for usage errors. `3` for sandbox or infrastructure failures (so a crash is not read as a pass).
 - Output: the score line in the same "M / S inputs matched" form, the seed, and the first few mismatches.
@@ -867,7 +870,7 @@ The network tests must show that the stubs, not the permission model, stop the c
 | 17 | NDJSON streaming not buffered by Render's proxy | verify |
 | 18 | `zlib.crc32` availability on the pinned Node version | verified on Node v22.23.1 (2026-11-17, by the user) |
 | 19 | Hook v1 schema (the original text was "Hook stdin JSON field names for the `--from-hook` flag"; stdin is no longer used) | verified (2026-11-17, by the user): the v1 hook schema was confirmed from Kiro's extension code, not from Node |
-| 20 | `next build` leaves `sandbox/dist` and CLI output untouched | verify |
+| 20 | `next build` leaves `build/node/` (sandbox and CLI output) untouched | verify |
 | 21 | ESLint is available as a dev tool in the project template | verify |
 | 22 | OSV shape for "vulnerabilities removed" basis, and how `lodash.pick` shows the pollution issue | verify |
 | 23 | WCAG contrast of the final palette with an independent checker | verify |
@@ -879,5 +882,5 @@ The network tests must show that the stubs, not the permission model, stop the c
 - **Option A coverage, Req 3.3 and 3.5 (reflected in requirements.md):** requirements.md now states that API_Surface_Coverage is shown from the stored recording's offline coverage pass, labelled with its measurement timestamp, and that live sandboxed runs do not report coverage (new Req 3.5). This is no longer a deviation. What the offline pass measures (exported-function percentage plus V8 branch coverage) is specified in this design, in "Coverage decision" and "Offline coverage", because Req 3.3 no longer states it.
 - **Req 5.6 and notes section 1:** reconciled as described under "Traceability". X counts only citations that resolve.
 - **Req 7.3 and 7.8 (match rule, reflected in requirements.md):** requirements.md now states that the match rule includes post-call argument equality and an equal global-prototype-pollution flag, that both sides timing out counts as a match, and that a one-sided timeout is a mismatch (new Req 7.8). This is no longer a deviation.
-- **Notes section 3 read grant:** `graveyard/node_modules/<package>/` replaces `node_modules/<package>/` because Graveyard packages live in a separate package root so the app cannot import them. The grants also include `sandbox/dist` and, for rebuild runs, `resurrected/<package>/`.
+- **Notes section 3 read grant:** `graveyard/node_modules/<package>/` replaces `node_modules/<package>/` because Graveyard packages live in a separate package root so the app cannot import them. The grants also include `build/node/sandbox` and, for rebuild runs, `resurrected/<package>/`.
 - **Req 12.3 phrasing:** the requirements say array-index paths must be among the edge cases for string or object inputs. The design applies that to every package with such inputs, including ones where paths are not an input, which is stricter than necessary for `deep-extend`.
