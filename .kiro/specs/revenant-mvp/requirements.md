@@ -74,8 +74,9 @@ This document specifies the MVP scope for the Kiroween 2026 hackathon. It covers
 
 1. WHEN Ghost Memory is invoked for a Graveyard_Package, THE Ghost_Memory SHALL run the original package on inputs produced by fast-check Generators inside the Sandbox.
 2. THE Ghost_Memory SHALL record each input to output or thrown-error pair as Evidence and assign it an Evidence_ID.
-3. THE Ghost_Memory SHALL display the API_Surface_Coverage achieved for the recorded package, measured as the percentage of exported functions exercised plus branch coverage of the original package measured with V8 coverage.
+3. THE Ghost_Memory SHALL display the API_Surface_Coverage from the stored recording's offline coverage pass, labelled with the measurement timestamp of that pass.
 4. THE Ghost_Memory SHALL store recordings as JSON in the repository and serve them from there by default.
+5. WHEN a live sandboxed run executes, THE Ghost_Memory SHALL omit API_Surface_Coverage from the live run results.
 
 ### Requirement 4: Sandbox Isolation for Untrusted Package Code
 
@@ -128,11 +129,12 @@ This document specifies the MVP scope for the Kiroween 2026 hackathon. It covers
 
 1. WHEN differential testing runs, THE Differential_Testing SHALL run the same fast-check seed and Generators against the original Graveyard_Package and the Resurrected_Package.
 2. THE Differential_Testing SHALL record the fast-check seed so that runs reproduce.
-3. THE Differential_Testing SHALL count a result as a match when both the original and the rebuild return deep-equal values or both throw the same error type.
+3. WHEN the original and the rebuild both return deep-equal values, both throw an error with the same name, or both time out, AND the post-call arguments are deep-equal on both sides, AND the global prototype pollution flag is the same on both sides, THE Differential_Testing SHALL count the result as a match.
 4. WHILE comparing results, THE Differential_Testing SHALL compare mutated input arguments in addition to return values.
 5. THE Revenant SHALL fully resurrect at least 2 Graveyard_Packages and commit each Resurrected_Package to the repository.
 6. WHEN a fully Resurrected_Package is viewed, THE Revenant SHALL run old versus new differential tests on the server inside the Sandbox and SHALL stream progress and results to the browser; the browser SHALL display the streamed progress and results and SHALL not execute the tests.
 7. WHEN a live differential run with N=1000 inputs exceeds 60 seconds, THE Revenant SHALL report partial results.
+8. IF a call times out on only one of the original and the rebuild, THEN THE Differential_Testing SHALL count the result as a mismatch.
 
 ### Requirement 8: Intentional Differences and Security Fixes
 
