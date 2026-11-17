@@ -1,6 +1,8 @@
-# Render spike (temporary)
+# Render spike (historical)
 
-Temporary routes that answer design.md open items 2, 3, 10, 16 and 17. They are removed in task 2.3.
+> **Historical.** The spike routes (`app/api/spike/`), `spike/child.mjs` and the `SPIKE_TOKEN` variable were removed in task 2.3. The measured results are recorded in design.md, "Known Risks and Open Items" (items 2, 3, 10, 16, 17). The steps below are kept for reference only and no longer work.
+
+These routes answered design.md open items 2, 3, 10, 16 and 17.
 
 All routes return 404 unless the request has header `x-spike-token` equal to the `SPIKE_TOKEN` environment variable. If `SPIKE_TOKEN` is unset, every route returns 404.
 

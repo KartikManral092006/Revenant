@@ -37,7 +37,7 @@ Conventions used in this list:
     - Test that no file under `app/`, `lib/` or `components/` imports a Graveyard package name
     - _Requirements: 1.3, 5.9_
 
-- [ ] 2. Render spike (early, small)
+- [x] 2. Render spike (early, small)
   - [x] 2.1 Build the minimal spike routes
     - Every spike route requires a secret token, read from the `SPIKE_TOKEN` environment variable and compared with the `x-spike-token` request header, and returns 404 when the token is missing or wrong (or when `SPIKE_TOKEN` is unset). The token is set in Render's environment settings and is never committed; add `SPIKE_TOKEN` to `.env.example` without a value
     - Add a temporary route that spawns a child with `--permission`, `--allow-fs-read=<spike dir>` and `--max-old-space-size=<MB>`, and returns the Node version, the flags that worked, the child's memory limit result and whether fs write is denied
@@ -47,12 +47,12 @@ Conventions used in this list:
     - Add a short `spike/README.md` with the steps for the user to deploy to Render and read the results
     - _Requirements: 4.5, 4.6, 7.6_
 
-  - [~] 2.2 Record the spike results in design.md open items 2, 3, 10, 16, 17
+  - [x] 2.2 Record the spike results in design.md open items 2, 3, 10, 16, 17
     - The user deploys the spike to Render and supplies the output. Then update only the Status column of items 2 (Render Node version, memory, CPU), 3 (`--permission` and `--max-old-space-size` allowed), 10 (N=1000 fits in 60 s, synthetic timing only; real timing is checked in task 13), 16 (client IP derivation) and 17 (NDJSON not buffered) in the "Known Risks and Open Items" table
     - Write the measured values and the date next to each item
     - _Requirements: 4.5, 4.6, 6.1, 7.6, 7.7_
 
-  - [~] 2.3 Remove the spike routes from the application
+  - [x] 2.3 Remove the spike routes from the application
     - Delete the temporary spike routes so no public debug endpoint ships
     - Keep `spike/README.md` only if it is marked as historical
     - _Requirements: 4.1_
@@ -78,7 +78,7 @@ Conventions used in this list:
     - Exit non-zero on any failure so the build stops
     - _Requirements: 1.2, 1.6_
 
-  - [~] 3.5 Write property test for the pin validator
+  - [x] 3.5 Write property test for the pin validator
     - **Property 1: Pin validator accepts exactly pinned versions**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 1.2, 1.6**
@@ -88,7 +88,7 @@ Conventions used in this list:
     - Add `listGraveyard()` that returns the 3 to 5 manifests
     - _Requirements: 1.1, 1.3_
 
-  - [~] 3.7 Write property test for the allowlist loader
+  - [x] 3.7 Write property test for the allowlist loader
     - **Property 2: Only allowlisted packages resolve**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 1.3**
@@ -121,7 +121,7 @@ Conventions used in this list:
     - Use the proposed defaults from design.md (64 KiB in, 256 KiB out) as configurable values
     - _Requirements: 4.5_
 
-  - [~] 4.4 Write property test for size limits
+  - [x] 4.4 Write property test for size limits
     - **Property 10: Size limits are enforced**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 4.5**
@@ -142,7 +142,7 @@ Conventions used in this list:
     - Apply through a `Module._load` wrapper plus overwriting the global properties, before the package loads
     - _Requirements: 4.7_
 
-  - [~] 4.8 Implement the child entry `sandbox/child.ts`
+  - [x] 4.8 Implement the child entry `sandbox/child.ts`
     - Handle `init`, `call` and `shutdown` messages over `process.send`
     - Install stubs, take the pollution snapshot, load the package by absolute path, deserialize a fresh copy of the arguments per call, call the export, serialize the outcome and the post-call arguments, apply size limits, discard console output
     - On pollution, send the result and then exit
@@ -174,7 +174,7 @@ Conventions used in this list:
     - A timeout on only one side is a mismatch
     - _Requirements: 7.3, 7.4, 7.8_
 
-  - [~] 5.2 Write property test for the comparator
+  - [x] 5.2 Write property test for the comparator
     - **Property 19: Comparator follows the match rule**
     - Use fast-check with `numRuns >= 100`; include symmetry and single-perturbation cases
     - **Validates: Requirements 7.3, 7.4, 7.8**
@@ -190,7 +190,7 @@ Conventions used in this list:
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 8.2**
 
-  - [~] 5.5 Implement `lib/diff/scoring.ts`
+  - [x] 5.5 Implement `lib/diff/scoring.ts`
     - Counts T, M, I, X and S = T - I; score text `M / S inputs matched` with thousands separators; per-rule counts; partial flag; `0 / 0 inputs matched` when S is 0
     - _Requirements: 8.2, 9.4_
 
@@ -247,7 +247,7 @@ Conventions used in this list:
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 3.2**
 
-  - [~] 6.3 Implement generators in `lib/ghost-memory/generators/<package>.ts`
+  - [x] 6.3 Implement generators in `lib/ghost-memory/generators/<package>.ts`
     - Build fast-check generators for the four packages from the manifest generator config, mixing in the hand-picked edge cases; produce N serialized inputs from a seed
     - Limit generators to the serializable domain; check per package that this is enough for the exports under test
     - _Requirements: 3.1, 7.1, 12.3_
@@ -335,7 +335,7 @@ Conventions used in this list:
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 2.6**
 
-  - [~] 7.6 Implement `lib/autopsy/certificate.ts`
+  - [x] 7.6 Implement `lib/autopsy/certificate.ts`
     - Assemble the `DeathCertificate`: every required field present, failed sources become `unknown` with a reason, no fabricated values
     - Inactive flag when the latest publish is more than 24 calendar months ago; set `repo.note` to "source repo is the lodash monorepo" when the manifest has `monorepo: true`
     - _Requirements: 2.2, 2.4, 2.7_
@@ -466,7 +466,7 @@ Conventions used in this list:
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 11.4**
 
-  - [~] 10.3 Build the root layout and the Graveyard page `/`
+  - [x] 10.3 Build the root layout and the Graveyard page `/`
     - Tombstone cards for each package with status and stage links, using the allowlist loader; no login
     - Load fonts with `next/font` and use inline SVG icons
     - _Requirements: 1.1, 11.1, 11.2_

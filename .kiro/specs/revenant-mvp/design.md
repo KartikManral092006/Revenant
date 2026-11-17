@@ -852,22 +852,22 @@ The network tests must show that the stubs, not the permission model, stop the c
 | # | Item | Status |
 |---|---|---|
 | 1 | Response field names for npm registry, downloads, OSV and GitHub used by the Death Certificate | verify against live responses |
-| 2 | Render's Node version, memory and CPU limits | verify |
-| 3 | Render allows `--permission` and per-process `--max-old-space-size` | verify |
+| 2 | Render's Node version, memory and CPU limits | partly verified (2026-11-17, spike at https://revenant-gtnc.onrender.com): Node v22.23.5. Render instance type (RAM/CPU) not recorded; user to confirm in dashboard |
+| 3 | Render allows `--permission` and per-process `--max-old-space-size` | verified (2026-11-17, spike on Render, Node v22.23.5): `--permission`, `--allow-fs-read=<spike dir>` and `--max-old-space-size=64` ran with exit 0. Child reported permissionEnabled true, heapSizeLimitMB 67, fs write denied (ERR_ACCESS_DENIED), child process denied. With the 64 MB cap, the memory test child aborted with SIGABRT (GC out of memory), so the memory limit is enforced |
 | 4 | Whether the child needs additional read grants to load packages | verified on Node v22.23.1 (2026-11-17, by the user): the package loads with only the two read grants |
 | 5 | IPC (`process.send`) works under `--permission` | verified on Node v22.23.1 (2026-11-17, by the user); the fd 3 fallback is dropped |
 | 6 | fast-check seed reproducibility across versions and generator changes | verify; recording stores inputs or hashes as a hedge |
 | 7 | Exact exports and generator and edge-case config per package | verify |
 | 8 | Original test-suite availability per package | verify |
 | 9 | Groq model name, rate limits, context size | verify |
-| 10 | N=1000 differential run fits in 60 s on Render | verify |
+| 10 | N=1000 differential run fits in 60 s on Render | synthetic timing measured (2026-11-17, spike on Render): 10 spawns x 100 calls = 1000 synthetic calls in 3,209 ms total; spawn mean 321 ms, median 304 ms, max 391 ms. Fits well inside 60 s. Synthetic only; real package timing is checked in task 13. Render CPU/memory dashboard graphs not supplied |
 | 11 | Respawn time after timeouts, especially for `string@3.3.3` | verify |
 | 12 | Offline V8 coverage works for each package | verify |
 | 13 | Autopsy timeout value (proposed 10 s) and GitHub cache TTL (proposed 1 h) | verify |
 | 14 | Sandbox limit values (1,000 ms per call, 30 s per Ghost Memory run, 256 MB, 64 KiB, 256 KiB) | verify |
 | 15 | In-memory Groq counters reset on restart; need for persistence | verify |
-| 16 | Client IP derivation behind Render's proxy (`X-Forwarded-For`) | verify |
-| 17 | NDJSON streaming not buffered by Render's proxy | verify |
+| 16 | Client IP derivation behind Render's proxy (`X-Forwarded-For`) | measured (2026-11-17, spike on Render). Plain request: `x-forwarded-for` "49.43.155.220, 104.23.160.198, 10.196.96.2"; `cf-connecting-ip` and `true-client-ip` both 49.43.155.220 (the user's real IP); `x-real-ip` and `forwarded` null. With a client-sent `X-Forwarded-For: 1.2.3.4` the header became "1.2.3.4,49.43.155.220, 104.23.160.112, 10.197.188.141", so client entries are prepended on the left and the leftmost entry is spoofable. Socket address is unavailable in route handlers. Recommended derivation: use `cf-connecting-ip` if present, else the `X-Forwarded-For` entry 3rd from the right (real IP, Cloudflare edge IP, internal IP); never the leftmost. Not yet tested whether a client can spoof `cf-connecting-ip` itself |
+| 17 | NDJSON streaming not buffered by Render's proxy | verified (2026-11-17, spike on Render): 10 lines arrived one per second (serverElapsedMs 0, 1000, 2002, ... 9008) and the user saw them arrive live, so the proxy does not buffer the stream |
 | 18 | `zlib.crc32` availability on the pinned Node version | verified on Node v22.23.1 (2026-11-17, by the user) |
 | 19 | Hook v1 schema (the original text was "Hook stdin JSON field names for the `--from-hook` flag"; stdin is no longer used) | verified (2026-11-17, by the user): the v1 hook schema was confirmed from Kiro's extension code, not from Node |
 | 20 | `next build` leaves `build/node/` (sandbox and CLI output) untouched | verify |

@@ -15,6 +15,22 @@
     "4.2 Write property test for tagged serialization": {
       "status": "passed",
       "lastRunTimestamp": 1794912005892
+    },
+    "4.4 Write property test for size limits": {
+      "status": "passed",
+      "lastRunTimestamp": 1794926799334
+    },
+    "3.5 Write property test for the pin validator": {
+      "status": "passed",
+      "lastRunTimestamp": 1794926853793
+    },
+    "3.7 Write property test for the allowlist loader": {
+      "status": "passed",
+      "lastRunTimestamp": 1794926982450
+    },
+    "5.2 Write property test for the comparator": {
+      "status": "passed",
+      "lastRunTimestamp": 1794927065081
     }
   },
   "executionHistory": {
@@ -71,6 +87,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911064565
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794923316360
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794923357020
       }
     ],
     "2.3 Remove the spike routes from the application": [
@@ -78,6 +104,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911064600
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794923363647
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925251210
       }
     ],
     "3.1 Create `graveyard/package.json` with exact pins and a committed lockfile": [
@@ -153,6 +189,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911064785
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925257196
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794927081379
       }
     ],
     "3.6 Implement the allowlist loader in `lib/graveyard/`": [
@@ -177,6 +223,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911064859
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925257326
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794927081489
       }
     ],
     "3.8 Write the four manifests": [
@@ -259,6 +315,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911065121
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925257481
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794927083960
       }
     ],
     "4.5 Implement `sandbox/pollution.ts`": [
@@ -317,6 +383,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911065259
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794923363767
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925251440
       }
     ],
     "4.9 Implement the parent runner `lib/ghost-memory/sandbox-runner.ts`": [
@@ -355,6 +431,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911065532
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925257839
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794927081606
       }
     ],
     "5.3 Implement `lib/diff/rules.ts` and the per-package rule files": [
@@ -386,6 +472,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911065677
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794923363831
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925251502
       }
     ],
     "5.6 Write property test for score arithmetic": [
@@ -466,6 +562,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911066158
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794923363921
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925251578
       }
     ],
     "6.4 Write property test for input list reproducibility": [
@@ -625,6 +731,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911067563
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794923364186
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925251678
       }
     ],
     "7.7 Write property test for certificate completeness": [
@@ -833,6 +949,16 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911068524
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925258628
+      },
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794927083890
       }
     ],
     "10.4 Build the package page and the Death Certificate section": [
@@ -934,6 +1060,13 @@
         "executionId": "d527c8bf-42e5-48b0-8306-4d0fd1549e94",
         "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
         "timestamp": 1794911068948
+      }
+    ],
+    "2. Render spike (early, small)": [
+      {
+        "executionId": "2049ef83-217a-48d5-914a-ca196c621bed",
+        "chatSessionId": "sess_ea253f10-7ba3-48d6-8988-8b11a4a34c5d",
+        "timestamp": 1794925251366
       }
     ]
   }
