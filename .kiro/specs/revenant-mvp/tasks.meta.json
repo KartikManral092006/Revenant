@@ -95,6 +95,14 @@
     "9.5 Write property test for forbidden words": {
       "status": "passed",
       "lastRunTimestamp": 1794941828946
+    },
+    "10.2 Write property test for contrast ratios": {
+      "status": "passed",
+      "lastRunTimestamp": 1794979785304
+    },
+    "11.2 Write property test for the ZIP writer": {
+      "status": "passed",
+      "lastRunTimestamp": 1794979799863
     }
   },
   "executionHistory": {
@@ -1643,6 +1651,16 @@
         "executionId": "28548cb7-1865-4f7f-89be-0b74e6984c3f",
         "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
         "timestamp": 1794937825117
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979212441
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979682268
       }
     ],
     "13.1 Add the Render configuration": [
@@ -1834,6 +1852,90 @@
         "executionId": "e6ec5f40-1a98-4521-9f8d-8fd5cdd6d905",
         "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
         "timestamp": 1794976928550
+      }
+    ],
+    "7.10 Write unit tests for the Autopsy clients with a mocked `fetch`": [
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979682471
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979866808
+      }
+    ],
+    "10.2 Write property test for contrast ratios": [
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979682745
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979869514
+      }
+    ],
+    "11.2 Write property test for the ZIP writer": [
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979683072
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979867636
+      }
+    ],
+    "11.5 Write route tests for the spec bundle": [
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979683420
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979866918
+      }
+    ],
+    "12.3 Write a test for the skeleton files": [
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979684099
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979868691
+      }
+    ],
+    "8.12 Write tests for Reverse Spec with a mocked Groq client": [
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979870335
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794980306888
+      }
+    ],
+    "10.9 Write component tests": [
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794979870871
+      },
+      {
+        "executionId": "52035375-93f6-47f4-95c9-ac1fddd3d2ee",
+        "chatSessionId": "sess_0d700f9e-ac47-448d-8c4d-9e69c03ba97a",
+        "timestamp": 1794980306269
       }
     ]
   }

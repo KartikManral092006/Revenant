@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-18T05:26:10.123Z",
+  "package": "lodash.pick",
+  "export": "default",
+  "seed": 4400,
+  "n": 1000,
+  "summary": {
+    "total": 1000,
+    "matched": 1000,
+    "intentional": 0,
+    "mismatches": 0,
+    "scored": 1000,
+    "perRule": {},
+    "partial": false,
+    "scoreText": "1,000 / 1,000 inputs matched"
+  },
+  "partial": false,
+  "samples": []
+}

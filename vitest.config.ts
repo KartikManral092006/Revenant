@@ -4,6 +4,6 @@ export default defineConfig({
   test: {
     environment: "node",
     passWithNoTests: true,
-    include: ["tests/**/*.test.ts", "lib/**/*.test.ts", "sandbox/**/*.test.ts"],
+    include: ["tests/**/*.test.{ts,tsx}", "lib/**/*.test.ts", "sandbox/**/*.test.ts"],
   },
 });

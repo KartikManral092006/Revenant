@@ -2,6 +2,7 @@
   "name": "lodash.pick",
   "version": "0.0.0",
   "description": "Resurrected rebuild of lodash.pick (the lodash method `_.pick` as a standalone module). Rebuild pending.",
+  "main": "src/index.js",
   "license": "MIT",
   "author": "John-David Dalton <john.david.dalton@gmail.com> (http://allyoucanleet.com/)",
   "contributors": [

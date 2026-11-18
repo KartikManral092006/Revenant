@@ -355,7 +355,7 @@ Conventions used in this list:
     - Add a script that writes `data/<package>/autopsy.json` with `source: 'snapshot'` and `fetchedAt`; commit the four snapshots
     - _Requirements: 2.1, 2.2, 2.4_
 
-  - [ ]* 7.10 Write unit tests for the Autopsy clients with a mocked `fetch`
+  - [x]* 7.10 Write unit tests for the Autopsy clients with a mocked `fetch`
     - Success, timeout, HTTP 500 and malformed body for each client; token header present only when `GITHUB_TOKEN` is set
     - _Requirements: 2.3, 2.4, 2.5_
 
@@ -415,7 +415,7 @@ Conventions used in this list:
     - The user runs it with their own `GROQ_API_KEY`; commit the four cached bundles
     - _Requirements: 5.1, 5.7_
 
-  - [ ]* 8.12 Write tests for Reverse Spec with a mocked Groq client
+  - [x]* 8.12 Write tests for Reverse Spec with a mocked Groq client
     - All four document kinds produced; the cap-reached path returns the cached bundle and message; `GROQ_API_KEY` never appears in a response body
     - _Requirements: 5.1, 5.8, 5.9_
 
@@ -461,7 +461,7 @@ Conventions used in this list:
     - Wrap animations in `@media (prefers-reduced-motion: no-preference)`; with reduced motion, show static progress
     - _Requirements: 11.1, 11.3, 11.4_
 
-  - [ ]* 10.2 Write property test for contrast ratios
+  - [x]* 10.2 Write property test for contrast ratios
     - **Property 25: Contrast ratios meet AA**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 11.4**
@@ -494,7 +494,7 @@ Conventions used in this list:
     - "Run live" streams the differential run in séance progress and shows partial results when the budget expires; packages that are not resurrected show "not resurrected"
     - _Requirements: 7.6, 7.7, 9.1, 9.2, 9.4, 9.5, 9.6, 11.1_
 
-  - [ ]* 10.9 Write component tests
+  - [x]* 10.9 Write component tests
     - `DeathCertificate` (unknown fields, monorepo note), `RebirthReport` (score text, separate intentional differences, the three label values), `GroqBudget`
     - _Requirements: 2.4, 6.2, 9.2, 9.5_
 
@@ -503,7 +503,7 @@ Conventions used in this list:
     - Local file headers, stored data (method 0), central directory and end record, with CRC-32 from `zlib.crc32`
     - _Requirements: 10.2_
 
-  - [ ]* 11.2 Write property test for the ZIP writer
+  - [x]* 11.2 Write property test for the ZIP writer
     - **Property 24: ZIP writer round trip**
     - Use a small test reader; fast-check with `numRuns >= 100`
     - **Validates: Requirements 10.2**
@@ -517,7 +517,7 @@ Conventions used in this list:
     - Show it for every Graveyard package
     - _Requirements: 10.1_
 
-  - [ ]* 11.5 Write route tests for the spec bundle
+  - [x]* 11.5 Write route tests for the spec bundle
     - 200 with the ZIP content type for each allowlisted package; 404 otherwise
     - _Requirements: 10.1, 10.2_
 
@@ -532,7 +532,7 @@ Conventions used in this list:
     - Do NOT write the rebuild code; the user will rebuild it in a separate spec
     - _Requirements: 7.5_
 
-  - [ ]* 12.3 Write a test for the skeleton files
+  - [x]* 12.3 Write a test for the skeleton files
     - Each skeleton has `package.json`, a `LICENSE` equal to the original text, and a README that names the original author
     - _Requirements: 7.5_
 
