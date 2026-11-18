@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-18T05:17:18.208Z",
+  "package": "lodash.set",
+  "export": "default",
+  "seed": 4302,
+  "n": 1000,
+  "summary": {
+    "total": 1000,
+    "matched": 942,
+    "intentional": 58,
+    "mismatches": 0,
+    "scored": 942,
+    "perRule": {
+      "lodash.set-prototype-pollution": 58
+    },
+    "partial": false,
+    "scoreText": "942 / 942 inputs matched"
+  },
+  "partial": false,
+  "samples": []
+}
