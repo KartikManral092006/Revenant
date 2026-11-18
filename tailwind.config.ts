@@ -7,7 +7,11 @@ const config: Config = {
     extend: {
       colors: { ...colorTokens },
       fontFamily: {
-        display: ["Georgia", "Palatino", "serif"],
+        display: ["var(--font-display)", "Georgia", "Palatino", "serif"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
+      },
+      maxWidth: {
+        page: "72rem",
       },
     },
   },

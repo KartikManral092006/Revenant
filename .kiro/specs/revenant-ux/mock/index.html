@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revenant (mock): Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mock.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="mockbar"><strong>Design mock, not the live app.</strong> Real data from the repo. Built pages: Home, lodash.set (rebuilt), string (not rebuilt). Other cards are not mocked.</div>
+
+<header class="site">
+  <a class="brand" href="index.html" aria-label="Revenant home">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#b79cff" stroke-width="1.5" aria-hidden="true" class="drift"><path d="M5 21V10a7 7 0 0 1 14 0v11l-2.5-2-2 2-2.5-2-2.5 2-2-2L5 21Z"/><circle cx="9.5" cy="10" r="1" fill="#b79cff"/><circle cx="14.5" cy="10" r="1" fill="#b79cff"/></svg>
+    <span class="flick">Revenant</span>
+  </a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#graveyard">The Graveyard</a></li>
+      <li><a href="#faq">Questions</a></li>
+      <li><a href="https://github.com/KartikManral092006/Revenant">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main" class="wrap" style="padding-top:0">
+
+  <section class="hero" aria-labelledby="hero-h">
+    <p class="eyebrow">For JavaScript and TypeScript developers</p>
+    <h1 id="hero-h">Replace a dead npm package, and see how closely the replacement behaves like the original.</h1>
+    <p class="lead">Many projects still install packages that nobody maintains. They get no security fixes, and some have known vulnerabilities. Revenant records what a dead package actually does, builds a replacement from that record, then runs both on the same inputs and shows you the result.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="package-lodash-set.html">See a full example: lodash.set →</a>
+      <a class="btn btn-quiet" href="#graveyard">Browse the four packages</a>
+    </div>
+    <p class="small muted" style="margin-top:1rem">No login. Revenant reports evidence, not proof: a match score tells you how many tested inputs agreed, not that every input would.</p>
+  </section>
+
+  <section class="block" aria-labelledby="why-h" style="margin-top:1rem">
+    <h2 id="why-h">Why this exists</h2>
+    <p class="intro">If a dependency is dead, a developer has three options today. Each one has a catch.</p>
+    <div class="grid2">
+      <div class="panel bad">
+        <h3>Without Revenant</h3>
+        <ul>
+          <li><strong>Keep it</strong> and live with unfixed security bugs.</li>
+          <li><strong>Rewrite it by hand</strong>: slow, and easy to get subtly wrong.</li>
+          <li><strong>Ask an AI to rewrite it</strong>, with nothing to show the new code behaves like the old.</li>
+        </ul>
+      </div>
+      <div class="panel good">
+        <h3>With Revenant</h3>
+        <ul>
+          <li>The old package's behavior is <strong>recorded as evidence</strong>.</li>
+          <li>The evidence becomes a <strong>spec</strong> your AI coding tool can build from.</li>
+          <li>The rebuild is <strong>compared with the original</strong> on 1,000 inputs. Deliberate security fixes are listed, not hidden.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how" aria-labelledby="how-h">
+    <h2 id="how-h">How it works: five steps</h2>
+    <p class="intro">Each package page walks through these steps in order. Steps 1, 2, 3 and 5 run in your browser. Step 4 happens in Kiro, the AI coding tool used to do the rebuild.</p>
+    <ol class="steps">
+      <li><span class="n" aria-hidden="true">1</span><h3>Autopsy</h3><p>Check the package's health: last release, known vulnerabilities, downloads.</p><span class="where web">In your browser</span></li>
+      <li><span class="n" aria-hidden="true">2</span><h3><button type="button" class="term">Ghost Memory<span class="tip" role="tooltip">Our name for the recording step: run the original package on many generated inputs and write down what each one returned or threw.</span></button></h3><p>Run the original on 1,000 generated inputs and record what it does.</p><span class="where web">In your browser</span></li>
+      <li><span class="n" aria-hidden="true">3</span><h3>Reverse Spec</h3><p>Turn that record into a written spec. Each requirement points to the recorded evidence behind it.</p><span class="where web">In your browser</span></li>
+      <li><span class="n" aria-hidden="true">4</span><h3>Resurrection</h3><p>Rebuild the package from the spec. A hook re-runs the comparison on every save.</p><span class="where">In Kiro</span></li>
+      <li><span class="n" aria-hidden="true">5</span><h3>Rebirth Report</h3><p>Compare old and new on the same inputs: match score, security fixes, differences.</p><span class="where web">In your browser</span></li>
+    </ol>
+  </section>
+
+  <section class="block" id="graveyard" aria-labelledby="gy-h">
+    <h2 id="gy-h">The Graveyard</h2>
+    <p class="intro">Four real, unmaintained packages. Only these four can be run on this site; it never installs code you type in. Not sure where to begin? Open <strong>lodash.set</strong>, the most complete example.</p>
+    <ul class="cards">
+
+      <li class="card start">
+        <span class="startflag">Start here · most complete example</span>
+        <h3><svg viewBox="0 0 24 32" width="26" height="34" fill="none" stroke="#b3adc7" stroke-width="1.5" aria-hidden="true"><path d="M4 30V11a8 8 0 0 1 16 0v19H4Z"/><path d="M12 9v9M8.5 12.5h7"/><path d="M2 30h20"/></svg> lodash.set <span class="muted small">v4.3.2</span></h3>
+        <p class="small muted">Sets a value deep inside an object, for example <code>set(obj, "a.b", 1)</code>. About 2.0 million downloads a week.</p>
+        <ul class="chips" aria-label="Status of lodash.set">
+          <li class="chip dead">Dead since Aug 2016</li>
+          <li class="chip warn">1 known vulnerability</li>
+          <li class="chip ok">Rebuilt</li>
+        </ul>
+        <p class="verdict small">The rebuild matched the original on <strong>942 / 942</strong> scored inputs. The vulnerability is removed in the rebuild; 58 inputs that exercise it are listed separately.</p>
+        <div class="foot"><a class="btn btn-primary" href="package-lodash-set.html">Open lodash.set<span class="sr-only"> report</span> →</a></div>
+      </li>
+
+      <li class="card">
+        <h3><svg viewBox="0 0 24 32" width="26" height="34" fill="none" stroke="#b3adc7" stroke-width="1.5" aria-hidden="true"><path d="M4 30V11a8 8 0 0 1 16 0v19H4Z"/><path d="M12 9v9M8.5 12.5h7"/><path d="M2 30h20"/></svg> lodash.pick <span class="muted small">v4.4.0</span></h3>
+        <p class="small muted">Copies only the listed keys from an object. About 2.2 million downloads a week.</p>
+        <ul class="chips" aria-label="Status of lodash.pick">
+          <li class="chip dead">Dead since Aug 2016</li>
+          <li class="chip warn">Deprecated on npm</li>
+          <li class="chip warn">1 known vulnerability</li>
+          <li class="chip ok">Rebuilt</li>
+        </ul>
+        <p class="verdict small">The rebuild matched the original on <strong>1,000 / 1,000</strong> inputs. No deliberate differences.</p>
+        <div class="foot"><a class="btn btn-quiet" href="#" aria-disabled="true">Open lodash.pick →</a><span class="small muted">(page not mocked; same layout as lodash.set)</span></div>
+      </li>
+
+      <li class="card">
+        <h3><svg viewBox="0 0 24 32" width="26" height="34" fill="none" stroke="#b3adc7" stroke-width="1.5" aria-hidden="true"><path d="M4 30V11a8 8 0 0 1 16 0v19H4Z"/><path d="M12 9v9M8.5 12.5h7"/><path d="M2 30h20"/></svg> string <span class="muted small">v3.3.3</span></h3>
+        <p class="small muted">Text helpers such as <code>camelize</code>, <code>slugify</code> and <code>truncate</code>. About 80 thousand downloads a week.</p>
+        <ul class="chips" aria-label="Status of string">
+          <li class="chip dead">Dead since Oct 2016</li>
+          <li class="chip dead">Repository archived</li>
+          <li class="chip warn">1 known vulnerability</li>
+          <li class="chip info">Not rebuilt yet</li>
+        </ul>
+        <p class="verdict small">Behavior is recorded and a spec is ready to download. A rebuild has not been made, so there is no match score.</p>
+        <div class="foot"><a class="btn btn-quiet" href="package-string.html">Open string →</a></div>
+      </li>
+
+      <li class="card">
+        <h3><svg viewBox="0 0 24 32" width="26" height="34" fill="none" stroke="#b3adc7" stroke-width="1.5" aria-hidden="true"><path d="M4 30V11a8 8 0 0 1 16 0v19H4Z"/><path d="M12 9v9M8.5 12.5h7"/><path d="M2 30h20"/></svg> deep-extend <span class="muted small">v0.6.0</span></h3>
+        <p class="small muted">Merges objects and arrays into one. About 60.8 million downloads a week.</p>
+        <ul class="chips" aria-label="Status of deep-extend">
+          <li class="chip dead">Last release May 2018</li>
+          <li class="chip ok">No known vulnerability</li>
+          <li class="chip info">Not rebuilt yet</li>
+        </ul>
+        <p class="verdict small">Behavior is recorded and a spec is ready to download. A rebuild has not been made, so there is no match score.</p>
+        <div class="foot"><a class="btn btn-quiet" href="#" aria-disabled="true">Open deep-extend →</a><span class="small muted">(page not mocked)</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="who-h">
+    <h2 id="who-h">Who this is for</h2>
+    <div class="grid2">
+      <div class="panel"><h3>You will get the most from it if</h3><ul><li>You depend on a small utility package that nobody maintains.</li><li>You want a modern replacement you can read, not a black box.</li><li>You want to see what changed, and why, before you switch.</li></ul></div>
+      <div class="panel"><h3>What you can do here</h3><ul><li>Read the health check of each package.</li><li>Download a Kiro spec bundle and rebuild it yourself.</li><li>Inspect the rebuild and its match score.</li></ul></div>
+    </div>
+  </section>
+
+  <section class="block" id="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Questions</h2>
+    <details><summary><span class="t"><strong>Does a high match score mean the rebuild is safe to use?</strong></span></summary><div class="body"><p>It is evidence, not proof. The score counts how many of the generated inputs gave the same result. Inputs that were not generated are not covered, so read the coverage figures next to it.</p></div></details>
+    <details><summary><span class="t"><strong>Can I try my own package?</strong></span></summary><div class="body"><p>Not on this site. It only runs the four packages above, inside an isolated sandbox. To use the method on your own package, download a spec bundle and follow the repository README.</p></div></details>
+    <details><summary><span class="t"><strong>Do I need an account?</strong></span></summary><div class="body"><p>No. Everything on this site works without logging in.</p></div></details>
+    <details><summary><span class="t"><strong>What does "dead" mean here?</strong></span></summary><div class="body"><p>No new release for more than two years, or the package is deprecated, or its repository is archived. Each package page shows which applies.</p></div></details>
+  </section>
+
+  <footer class="footer">
+    Revenant is open source (MIT). Original packages keep their own licenses and credit. <a href="https://github.com/KartikManral092006/Revenant">Source on GitHub</a>.
+  </footer>
+</main>
+<script src="mock.js"></script>
+</body>
+</html>

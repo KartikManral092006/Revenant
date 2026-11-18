@@ -1,90 +1,310 @@
+import { ArrowRight, Check, HeartPulse, Skull, X } from "lucide-react";
+import Link from "next/link";
+import { HeroBackdrop } from "../components/home/HeroBackdrop";
+import { HowItWorks } from "../components/home/HowItWorks";
+import { PackageCard, type PackageCardData } from "../components/home/PackageCard";
+import { Collapsible } from "../components/ui/Collapsible";
+import { NumberTicker } from "../components/ui/NumberTicker";
+import { Reveal } from "../components/ui/Reveal";
+import { SpotlightCard } from "../components/ui/SpotlightCard";
 import { listGraveyard } from "../lib/graveyard/loader";
+import { isResurrected, loadCertificate, loadReport } from "./_lib/data";
+import { packageCopy, START_HERE } from "./_lib/package-copy";
+import { buildSummary } from "./_lib/summary";
 
 export const dynamic = "force-static";
 
-const headingFont = { fontFamily: "var(--font-display), Georgia, serif" } as const;
+// Fixed reference date for the static home page: only month-year phrases are shown here, so nothing
+// goes stale between builds. Relative phrases appear only on the dynamic package page.
+const BUILD_NOW = new Date();
 
-const STAGES = [
-  { slug: "autopsy", label: "Autopsy" },
-  { slug: "ghost-memory", label: "Ghost Memory" },
-  { slug: "reverse-spec", label: "Reverse Spec" },
-  { slug: "rebirth-report", label: "Rebirth Report" },
-] as const;
-
-function GhostIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" className="animate-drift text-wisp">
-      <path d="M5 21V10a7 7 0 0 1 14 0v11l-2.5-2-2 2-2.5-2-2.5 2-2-2L5 21Z" />
-      <circle cx="9.5" cy="10" r="1" fill="currentColor" />
-      <circle cx="14.5" cy="10" r="1" fill="currentColor" />
-    </svg>
-  );
-}
-
-function TombstoneIcon() {
-  return (
-    <svg viewBox="0 0 24 32" width="32" height="42" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" className="text-ash">
-      <path d="M4 30V11a8 8 0 0 1 16 0v19H4Z" />
-      <path d="M12 9v9M8.5 12.5h7" />
-      <path d="M2 30h20" />
-    </svg>
-  );
-}
+const FAQ = [
+  {
+    q: "Does a high match score mean the rebuild is safe to use?",
+    a: "It is evidence, not proof. The score counts how many of the generated inputs gave the same result in the original and the rebuild. Inputs that were never generated are not covered, so read the coverage figures next to the score.",
+  },
+  {
+    q: "Can I try my own package?",
+    a: "Not on this site. It only runs the packages in the Graveyard, inside an isolated sandbox, and never installs code you type in. To use the method on your own package, download a spec bundle and follow the repository README.",
+  },
+  {
+    q: "Do I need an account?",
+    a: "No. Everything on this site works without logging in.",
+  },
+  {
+    q: "What does “dead” mean here?",
+    a: "No new release for more than two years, or the package is deprecated on npm, or its repository is archived. Each package page shows which of these apply.",
+  },
+];
 
 export default function Home() {
-  const packages = listGraveyard();
+  const manifests = listGraveyard();
+  const cards: (PackageCardData & { downloads: number; matched: number; mismatches: number; result: string })[] = manifests.map((m) => {
+    const cert = loadCertificate(m.name);
+    const report = loadReport(m);
+    const summary = buildSummary({ name: m.name, cert, report, resurrected: isResurrected(m.name), now: BUILD_NOW });
+    const copy = packageCopy(m.name);
+    const dl = cert && "value" in cert.weeklyDownloads ? cert.weeklyDownloads.value : 0;
+    return {
+      name: m.name,
+      version: m.version,
+      oneLiner: copy.oneLiner,
+      example: copy.example,
+      chips: summary.chips,
+      verdict: summary.cardVerdict,
+      result: summary.result,
+      rebuilt: summary.rebuilt,
+      startHere: m.name === START_HERE,
+      downloads: dl,
+      matched: summary.rebuilt && report ? report.score?.matched ?? 0 : 0,
+      mismatches: summary.rebuilt && report ? report.score?.mismatches ?? 0 : 0,
+    };
+  });
+  // Start-here card first, then rebuilt packages, then the rest.
+  cards.sort((a, b) => Number(b.startHere) - Number(a.startHere) || Number(b.rebuilt) - Number(a.rebuilt) || a.name.localeCompare(b.name));
+
+  const totalDownloadsMillions = Math.round(cards.reduce((s, c) => s + c.downloads, 0) / 1_000_000);
+  const rebuiltCount = cards.filter((c) => c.rebuilt).length;
+  const mismatches = cards.reduce((s, c) => s + c.mismatches, 0);
+  const example = cards.find((c) => c.startHere);
 
   return (
-    <main id="main" className="mx-auto max-w-5xl p-6 sm:p-10">
-      <header className="mb-10">
-        <div className="flex items-center gap-3">
-          <GhostIcon />
-          <h1 className="text-4xl text-pumpkin animate-flicker" style={headingFont}>
-            Revenant
-          </h1>
-        </div>
-        <p className="mt-3 max-w-2xl text-ash">
-          Dead npm packages, brought back to life. Each rebuild comes with evidence about how closely it behaves like
-          the original. No login needed.
-        </p>
-      </header>
+    <main id="main">
+      {/* Hero */}
+      <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden">
+        <HeroBackdrop />
+        <div className="relative mx-auto grid min-h-[78vh] max-w-page items-center px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_1fr]">
+          <Reveal>
+            <p className="kicker">For JavaScript and TypeScript developers</p>
+            <h1 id="hero-heading" className="mt-4 text-4xl leading-tight text-bone sm:text-6xl">
+              Bring dead npm packages back, <span className="text-pumpkin">with evidence.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-bone">
+              Many projects still install packages that nobody maintains. They get no security fixes, and some have known
+              vulnerabilities. Revenant records what a dead package actually does, builds a replacement from that record,
+              then runs both on the same inputs and shows you how closely they agree.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href={`/package/${encodeURIComponent(START_HERE)}`} className="btn-primary shimmer">
+                See a full example: {START_HERE}
+                <ArrowRight aria-hidden="true" className="h-4 w-4" />
+              </Link>
+              <a href="#graveyard" className="btn-ghost">
+                Browse the {cards.length} packages
+              </a>
+            </div>
+            <p className="mt-6 max-w-xl text-sm text-ash">
+              No login. Revenant reports evidence, not proof: a match score tells you how many tested inputs agreed, not
+              that every input would.
+            </p>
+          </Reveal>
 
-      <section aria-labelledby="graveyard-heading">
-        <h2 id="graveyard-heading" className="mb-4 text-2xl text-bone" style={headingFont}>
-          The Graveyard
-        </h2>
-        <ul className="grid gap-5 sm:grid-cols-2">
-          {packages.map((pkg) => {
-            const resurrected = pkg.resurrection === "full";
-            return (
-              <li key={pkg.name} className="rounded-t-[3rem] rounded-b-md border border-mist bg-tomb p-5">
-                <div className="flex items-start gap-4">
-                  <TombstoneIcon />
-                  <div className="min-w-0">
-                    <h3 className="break-words text-xl text-bone" style={headingFont}>
-                      {pkg.name}
-                    </h3>
-                    <p className="text-sm text-ash">v{pkg.version}</p>
-                    <p className={`mt-2 text-sm ${resurrected ? "text-ectoplasm" : "text-candle"}`}>
-                      {resurrected ? "Resurrection: full rebuild" : "Autopsy and Ghost Memory only"}
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-page px-4 sm:px-6">
+        {/* At a glance */}
+        <section aria-label="At a glance" className="-mt-8 relative z-10">
+          <dl className="card grid grid-cols-2 divide-mist p-2 sm:grid-cols-4 sm:divide-x">
+            {[
+              { n: cards.length, label: "dead packages in the Graveyard" },
+              { n: totalDownloadsMillions, label: "million downloads a week between them", prefix: "~" },
+              { n: rebuiltCount, label: "rebuilt and compared so far" },
+              { n: mismatches, label: "unexplained mismatches in those rebuilds" },
+            ].map((s) => (
+              <div key={s.label} className="p-4 text-center">
+                <dt className="sr-only">{s.label}</dt>
+                <dd>
+                  <span className="block font-display text-3xl text-pumpkin sm:text-4xl">
+                    {s.prefix}
+                    <NumberTicker value={s.n} />
+                  </span>
+                  <span aria-hidden="true" className="mt-1 block text-xs text-ash sm:text-sm">
+                    {s.label}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        {/* Example result: before and after, for the most complete package */}
+        {example && (
+          <section aria-labelledby="example-heading" className="pt-16">
+            <Reveal>
+              <div className="card grid gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr] lg:items-center">
+                <div>
+                  <p className="kicker">Example result</p>
+                  <h2 id="example-heading" className="mt-2 text-3xl text-bone">
+                    {example.name}, before and after
+                  </h2>
+                  <p className="mt-2 text-sm text-ash">{example.oneLiner}</p>
+                  <Link
+                    href={`/package/${encodeURIComponent(example.name)}`}
+                    className="mt-4 inline-flex items-center gap-1 text-sm font-semibold"
+                  >
+                    See how each number was produced <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                  </Link>
+                </div>
+                <div className="grid gap-3 text-sm sm:grid-cols-2">
+                  <div className="rounded-xl border border-blood/30 bg-crypt p-4">
+                    <p className="flex items-center gap-1.5 font-semibold text-blood">
+                      <Skull aria-hidden="true" className="h-4 w-4" /> Before
                     </p>
+                    <ul className="mt-2 space-y-1 text-bone">
+                      {example.chips
+                        .filter((c) => c.tone === "dead" || c.tone === "warn")
+                        .map((c) => (
+                          <li key={c.text}>{c.text}</li>
+                        ))}
+                    </ul>
+                  </div>
+                  <div className="rounded-xl border border-ectoplasm/30 bg-crypt p-4">
+                    <p className="flex items-center gap-1.5 font-semibold text-ectoplasm">
+                      <HeartPulse aria-hidden="true" className="h-4 w-4" /> After
+                    </p>
+                    <p className="mt-2 text-bone">{example.result}</p>
                   </div>
                 </div>
-                <nav aria-label={`${pkg.name} stages`} className="mt-4">
-                  <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                    {STAGES.filter((s) => resurrected || s.slug !== "rebirth-report").map((s) => (
-                      <li key={s.slug}>
-                        <a href={`/package/${encodeURIComponent(pkg.name)}#${s.slug}`}>{s.label}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </li>
-            );
-          })}
-        </ul>
-        {packages.length === 0 && <p className="text-candle">The Graveyard is empty: no manifests found.</p>}
-      </section>
+              </div>
+            </Reveal>
+          </section>
+        )}
+
+        {/* Why */}
+        <section aria-labelledby="why-heading" className="py-20">
+          <Reveal>
+            <p className="kicker">Why this exists</p>
+            <h2 id="why-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+              When a dependency dies, every option has a catch
+            </h2>
+          </Reveal>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <Reveal>
+              <SpotlightCard className="h-full p-6" glow="255 122 122">
+                <h3 className="text-xl text-blood">Without Revenant</h3>
+                <ul className="mt-4 space-y-3 text-bone">
+                  {[
+                    ["Keep it", "and live with unfixed security bugs."],
+                    ["Rewrite it by hand:", "slow, and easy to get subtly wrong."],
+                    ["Ask an AI to rewrite it,", "with nothing to show the new code behaves like the old."],
+                  ].map(([b, rest]) => (
+                    <li key={b} className="flex gap-3">
+                      <X aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-blood" />
+                      <span>
+                        <strong>{b}</strong> {rest}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </SpotlightCard>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <SpotlightCard className="h-full p-6" glow="123 224 164">
+                <h3 className="text-xl text-ectoplasm">With Revenant</h3>
+                <ul className="mt-4 space-y-3 text-bone">
+                  {[
+                    ["The old package's behavior is recorded", "as evidence, input by input."],
+                    ["The evidence becomes a spec", "an AI coding tool can build from."],
+                    ["The rebuild is compared with the original", "on 1,000 inputs. Deliberate security fixes are listed, not hidden."],
+                  ].map(([b, rest]) => (
+                    <li key={b} className="flex gap-3">
+                      <Check aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-ectoplasm" />
+                      <span>
+                        <strong>{b}</strong> {rest}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </SpotlightCard>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section id="how-it-works" aria-labelledby="how-heading" className="scroll-mt-20 py-12">
+          <Reveal>
+            <p className="kicker">How it works</p>
+            <h2 id="how-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+              Five steps, from autopsy to rebirth
+            </h2>
+            <p className="mt-3 max-w-2xl text-ash">
+              Each package page walks through these steps in order. Steps 1, 2, 3 and 5 run right here in your browser.
+              Step 4 happens in Kiro, the AI coding tool used to do the rebuild.
+            </p>
+          </Reveal>
+          <div className="mt-10">
+            <HowItWorks />
+          </div>
+        </section>
+
+        {/* Graveyard */}
+        <section id="graveyard" aria-labelledby="graveyard-heading" className="scroll-mt-20 py-20">
+          <Reveal>
+            <p className="kicker">The Graveyard</p>
+            <h2 id="graveyard-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+              {cards.length} real, unmaintained packages
+            </h2>
+            <p className="mt-3 max-w-2xl text-ash">
+              Only these packages can be run on this site; it never installs code you type in. Not sure where to begin?
+              Open <Link href={`/package/${encodeURIComponent(START_HERE)}`}>{START_HERE}</Link>, the most complete example.
+            </p>
+          </Reveal>
+          <ul className="mt-10 grid gap-6 md:grid-cols-2">
+            {cards.map((c, i) => (
+              <Reveal as="li" key={c.name} delay={(i % 2) * 0.1}>
+                <PackageCard pkg={c} />
+              </Reveal>
+            ))}
+          </ul>
+          {cards.length === 0 && <p className="text-candle">The Graveyard is empty: no manifests found.</p>}
+        </section>
+
+        {/* Who */}
+        <section aria-labelledby="who-heading" className="py-12">
+          <Reveal>
+            <p className="kicker">Who this is for</p>
+            <h2 id="who-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+              Developers stuck with a dead dependency
+            </h2>
+          </Reveal>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <Reveal className="card p-6">
+              <h3 className="text-lg text-bone">You will get the most from it if</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-ash">
+                <li>You depend on a small utility package that nobody maintains.</li>
+                <li>You want a modern replacement you can read, not a black box.</li>
+                <li>You want to see what changed, and why, before you switch.</li>
+              </ul>
+            </Reveal>
+            <Reveal className="card p-6" delay={0.1}>
+              <h3 className="text-lg text-bone">What you can do here</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-ash">
+                <li>Read the health check of each package.</li>
+                <li>Download a Kiro spec bundle and rebuild a package yourself.</li>
+                <li>Inspect a rebuild and how its match score was produced.</li>
+              </ul>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="questions" aria-labelledby="faq-heading" className="scroll-mt-20 py-20">
+          <Reveal>
+            <p className="kicker">Questions</p>
+            <h2 id="faq-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+              Before you trust a score
+            </h2>
+          </Reveal>
+          <div className="mt-8 space-y-3">
+            {FAQ.map((f) => (
+              <Collapsible key={f.q} summary={f.q}>
+                <p className="leading-relaxed text-ash">{f.a}</p>
+              </Collapsible>
+            ))}
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

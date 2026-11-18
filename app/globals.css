@@ -8,7 +8,12 @@
   }
 
   body {
-    @apply bg-crypt text-bone antialiased;
+    @apply bg-crypt font-sans text-bone antialiased;
+    /* Faint moonlight from the top and a pumpkin ember at the bottom. Decorative only. */
+    background-image:
+      radial-gradient(60rem 30rem at 50% -10%, rgb(183 156 255 / 0.10), transparent 70%),
+      radial-gradient(40rem 20rem at 85% 110%, rgb(255 138 43 / 0.06), transparent 70%);
+    background-attachment: fixed;
   }
 
   a {
@@ -24,12 +29,96 @@
   h3 {
     @apply font-display;
   }
+
+  /* Native disclosure: hide the default marker, the summary carries its own chevron. */
+  summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  details[open] > summary .chevron {
+    transform: rotate(180deg);
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-mist bg-tomb/80 backdrop-blur-sm;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-semibold no-underline transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-pumpkin text-crypt hover:bg-candle;
+  }
+  .btn-ghost {
+    @apply btn border border-mist bg-tomb text-bone hover:border-wisp;
+  }
+  .btn-outline {
+    @apply btn border border-pumpkin bg-crypt text-pumpkin hover:bg-tomb disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .kicker {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-pumpkin;
+  }
+
+  /* Gradient beam that travels around the border of an element (used on the "Start here" card).
+     Static gradient border under reduced motion. */
+  .beam {
+    position: relative;
+    isolation: isolate;
+  }
+  .beam::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--beam-angle, 0deg), transparent 0 70%, #ff8a2b 80%, #ffd166 85%, transparent 95%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Light sweep across the primary call to action. */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 35%, rgb(255 255 255 / 0.35) 50%, transparent 65%);
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+
+  /* Dot travelling along the "How it works" pipeline. */
+  .pipeline-dot {
+    opacity: 0;
+  }
+}
+
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 /* Animations only run when the user has not asked for reduced motion.
    Without them, elements render in their static state (the séance shows
    static progress). */
 @media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
   @keyframes flicker {
     0%,
     100% {
@@ -53,11 +142,92 @@
     }
   }
 
+  @keyframes beam-spin {
+    to {
+      --beam-angle: 360deg;
+    }
+  }
+
+  @keyframes shimmer-sweep {
+    0%,
+    60% {
+      transform: translateX(-120%);
+    }
+    100% {
+      transform: translateX(120%);
+    }
+  }
+
+  @keyframes pipeline-travel {
+    0% {
+      left: -20%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes pipeline-travel-y {
+    0% {
+      top: -20%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
   .animate-flicker {
     animation: flicker 2.4s ease-in-out infinite;
   }
 
   .animate-drift {
     animation: drift 5s ease-in-out infinite;
+  }
+
+  .beam::before {
+    animation: beam-spin 4s linear infinite;
+  }
+
+  .shimmer::after {
+    animation: shimmer-sweep 3.2s ease-in-out infinite;
+  }
+
+  .pipeline-dot {
+    animation: pipeline-travel 6s ease-in-out infinite;
+  }
+  .pipeline-dot-y {
+    opacity: 0;
+    animation: pipeline-travel-y 6s ease-in-out infinite;
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 1.8s ease-out infinite;
   }
 }

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>string (mock): Revenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mock.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="mockbar"><strong>Design mock, not the live app.</strong> Real data from <code>data/string</code> and <code>graveyard/string</code>. This is the "not rebuilt yet" layout: Steps 4 and 5 explain why they are empty.</div>
+
+<header class="site">
+  <a class="brand" href="index.html" aria-label="Revenant home">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#b79cff" stroke-width="1.5" aria-hidden="true"><path d="M5 21V10a7 7 0 0 1 14 0v11l-2.5-2-2 2-2.5-2-2.5 2-2-2L5 21Z"/><circle cx="9.5" cy="10" r="1" fill="#b79cff"/><circle cx="14.5" cy="10" r="1" fill="#b79cff"/></svg>
+    <span>Revenant</span>
+  </a>
+  <nav aria-label="Main"><ul><li><a href="index.html#how">How it works</a></li><li><a href="index.html#graveyard">The Graveyard</a></li><li><a href="https://github.com/KartikManral092006/Revenant">GitHub</a></li></ul></nav>
+</header>
+
+<main id="main" class="wrap" style="padding-top:0">
+  <p class="crumb"><a href="index.html">← The Graveyard</a></p>
+  <div class="pkghead"><h1>string</h1><span class="ver">v3.3.3</span></div>
+  <p class="muted" style="margin-top:.4rem;max-width:42rem">A collection of text helpers such as <code>camelize</code>, <code>slugify</code> and <code>truncate</code>. About 80 thousand downloads a week.</p>
+
+  <section class="verdict-banner" aria-labelledby="sum-h">
+    <h2 id="sum-h">Summary: string is dead, has a security problem, and has not been rebuilt yet.</h2>
+    <ul class="facts" aria-label="Key facts">
+      <li><div class="k">Last release</div><div class="v dead">Oct 2016</div><div class="s">about 10 years ago · repository archived</div></li>
+      <li><div class="k">Known vulnerabilities</div><div class="v warn">1</div><div class="s">Slow-pattern attack (ReDoS, CVE-2017-16116)</div></li>
+      <li><div class="k">Rebuild</div><div class="v warn">Not yet</div><div class="s">the spec is ready to build from</div></li>
+      <li><div class="k">Behavior match</div><div class="v">No score</div><div class="s">a score needs a rebuild to compare with</div></li>
+    </ul>
+    <div class="cta">
+      <a class="btn btn-primary" href="/api/spec-bundle/string" download>Download Kiro spec bundle</a>
+      <a class="btn btn-quiet" href="package-lodash-set.html">See a package that was rebuilt: lodash.set</a>
+    </div>
+    <p class="honest">Revenant reports evidence, not proof. Here the evidence is the recording of the original; nothing has been compared yet.</p>
+  </section>
+
+  <nav class="stepper" aria-label="The five steps for string">
+    <ol>
+      <li><a class="done" href="#step-1" aria-current="step"><span class="dot"></span>1 Autopsy</a></li>
+      <li><a class="done" href="#step-2"><span class="dot"></span>2 Ghost Memory</a></li>
+      <li><a class="done" href="#step-3"><span class="dot"></span>3 Reverse Spec</a></li>
+      <li><a class="todo" href="#step-4"><span class="dot"></span>4 Resurrection <span class="sr-only">(not started)</span></a></li>
+      <li><a class="todo" href="#step-5"><span class="dot"></span>5 Rebirth Report <span class="sr-only">(needs a rebuild)</span></a></li>
+    </ol>
+  </nav>
+
+  <section class="step" id="step-1" aria-labelledby="s1-h">
+    <p class="kicker">Step 1 of 5 · Autopsy</p>
+    <h2 id="s1-h">Death Certificate</h2>
+    <div class="what">
+      <div><h3>What this step does</h3><p>Checks the package's health using public sources: the npm registry, the OSV vulnerability database and GitHub.</p></div>
+      <div class="found"><h3>What we found</h3><ul><li>No release since <strong>Oct 2016</strong>, and the repository is <strong>archived</strong>.</li><li><strong>1</strong> known vulnerability, unfixed in this version.</li></ul></div>
+    </div>
+    <div class="panel"><p class="small muted"><span class="chip warn">stored snapshot</span> Taken Nov 17, 2026.</p>
+      <dl class="rows">
+        <div class="row"><dt>Status</dt><dd><strong style="color:var(--pumpkin)">Unmaintained</strong><div class="sub">No release for more than two years, and the repository is archived.</div></dd></div>
+        <div class="row"><dt>Last release</dt><dd>Oct 11, 2016 <span class="sub">(about 10 years ago)</span></dd></div>
+        <div class="row"><dt>Known vulnerabilities</dt><dd><strong>1.</strong> Regular expression denial of service in the string package.<div class="sub">GHSA-g36h-6r4f-3mqp, also known as CVE-2017-16116</div></dd></div>
+        <div class="row"><dt>Weekly downloads</dt><dd>80,321</dd></div>
+        <div class="row"><dt>Source repository</dt><dd>Archived (read-only). Last change Jun 4, 2021.</dd></div>
+        <div class="row"><dt>License</dt><dd>MIT</dd></div>
+      </dl></div>
+    <div class="runlive"><div class="top"><strong>Check again with live data</strong><button type="button" class="btn" data-run="out1" data-sim="ok" data-ok="Checked live just now. Same result.">Check again</button></div>
+      <ul><li><b>What happens:</b> we ask npm, OSV and GitHub for today's facts.</li><li><b>Takes:</b> a few seconds.</li><li><b>Changes nothing:</b> the stored snapshot stays as it is.</li></ul><div id="out1" class="status" aria-live="polite"></div></div>
+  </section>
+
+  <section class="step" id="step-2" aria-labelledby="s2-h">
+    <p class="kicker">Step 2 of 5 · Ghost Memory</p>
+    <h2 id="s2-h">What the original package really does</h2>
+    <div class="what">
+      <div><h3>What this step does</h3><p>Runs six of the package's functions on generated inputs in an isolated sandbox and writes down what each one returns or throws. This record is the <button type="button" class="term">evidence<span class="tip" role="tooltip">One recorded input and what the original package did with it.</span></button> for the later steps.</p></div>
+      <div class="found"><h3>What we found</h3><ul><li><strong>6,000</strong> inputs recorded (1,000 per function): 5,894 returned a value, 106 threw a TypeError, 0 timed out.</li><li>Only <code>between</code> and <code>truncate</code> threw errors.</li></ul></div>
+    </div>
+    <div class="panel"><h3>Results by function</h3>
+      <div class="tablewrap"><table><caption class="sr-only">Recorded results by function</caption>
+        <thead><tr><th scope="col">Function</th><th scope="col">Returned a value</th><th scope="col">Threw an error</th></tr></thead>
+        <tbody>
+          <tr><td><code>camelize</code></td><td>1,000</td><td>0</td></tr>
+          <tr><td><code>dasherize</code></td><td>1,000</td><td>0</td></tr>
+          <tr><td><code>slugify</code></td><td>1,000</td><td>0</td></tr>
+          <tr><td><code>humanize</code></td><td>1,000</td><td>0</td></tr>
+          <tr><td><code>between</code></td><td>896</td><td>104</td></tr>
+          <tr><td><code>truncate</code></td><td>998</td><td>2</td></tr>
+        </tbody></table></div>
+      <dl class="rows" style="margin-top:1rem">
+        <div class="row"><dt>Functions exercised</dt><dd>6 of 6 (100%)</dd></div>
+        <div class="row"><dt>Code branches reached</dt><dd>52 of 114 (45.6%) <div class="sub">A branch is a decision point in the code. More than half were not reached, so treat what is recorded as a sample. Measured offline on Nov 17, 2026.</div></dd></div>
+      </dl></div>
+    <details><summary><span class="t"><strong>Evidence table</strong>: every recorded input (technical)</span><span class="sub">6,000 rows</span></summary><div class="body"><p class="small muted">Collapsed by default, paged 50 rows at a time, same as the lodash.set page.</p></div></details>
+    <div class="runlive"><div class="top"><strong>Record again, live</strong><button type="button" class="btn" data-run="out2" data-sim="ok" data-progress="candles" data-ok="Done live. Results match the stored recording in shape; coverage is not measured on live runs.">Record again</button></div>
+      <ul><li><b>What happens:</b> the original runs in the sandbox on freshly generated inputs.</li><li><b>Takes:</b> up to 30 seconds. A run that runs out of time is marked "partial".</li><li><b>Changes nothing:</b> the stored recording stays as it is.</li></ul><div id="out2" class="status" aria-live="polite"></div></div>
+  </section>
+
+  <section class="step" id="step-3" aria-labelledby="s3-h">
+    <p class="kicker">Step 3 of 5 · Reverse Spec</p>
+    <h2 id="s3-h">A written spec, built from the evidence</h2>
+    <div class="what">
+      <div><h3>What this step does</h3><p>An AI model reads the recording and writes a Kiro spec. Each requirement must cite recorded evidence; any that cannot is flagged.</p></div>
+      <div class="found"><h3>What we found</h3><ul><li><strong>8</strong> requirements, <strong>8 / 8</strong> cite evidence, 0 flagged.</li><li>The spec is ready to build from in Kiro.</li></ul></div>
+    </div>
+    <div class="panel"><a class="btn btn-primary" href="/api/spec-bundle/string" download>Download Kiro spec bundle</a>
+      <p class="small muted" style="margin:.75rem 0 0">Requirement list as on the lodash.set page.</p></div>
+  </section>
+
+  <section class="step" id="step-4" aria-labelledby="s4-h">
+    <p class="kicker">Step 4 of 5 · Resurrection · happens in Kiro, not in this page</p>
+    <h2 id="s4-h">The rebuild: not started</h2>
+    <div class="callout">
+      <p><strong>No rebuild exists for string yet.</strong> Rebuilding is careful work done by a person in Kiro, so Revenant only rebuilds a few packages. So far that is lodash.set and lodash.pick.</p>
+      <p style="margin-bottom:0">To make one: download the spec bundle above, open it in Kiro, and build from it.</p>
+    </div>
+  </section>
+
+  <section class="step" id="step-5" aria-labelledby="s5-h">
+    <p class="kicker">Step 5 of 5 · Rebirth Report</p>
+    <h2 id="s5-h">No Rebirth Report yet</h2>
+    <div class="callout">
+      <p><strong>Why there is no report.</strong> The Rebirth Report compares the original with a rebuild on the same inputs. With no rebuild there is nothing to compare, so there is no match score and no "vulnerability removed" claim.</p>
+      <p style="margin-bottom:0"><strong>What you can do.</strong> See a finished report for <a href="package-lodash-set.html#step-5">lodash.set</a>, or build string from the spec and run <code>npm run resurrect -- string</code>.</p>
+    </div>
+    <div class="runlive"><div class="top"><strong>Compare again, live</strong><button type="button" class="btn" disabled aria-describedby="why5">Compare again</button></div>
+      <p id="why5" class="small muted" style="margin:.5rem 0 0">Unavailable: there is no rebuild to compare with.</p></div>
+  </section>
+
+  <footer class="footer">Revenant is open source (MIT). <a href="https://github.com/KartikManral092006/Revenant">Source on GitHub</a>. <a href="index.html">Back to the Graveyard</a>.</footer>
+</main>
+<script src="mock.js"></script>
+</body>
+</html>

@@ -1,5 +1,10 @@
 "use client";
+import { AlertTriangle, Download, FileText, Link2 } from "lucide-react";
 import { useState } from "react";
+import { humanDate } from "./format";
+import { Collapsible } from "./ui/Collapsible";
+import { Reveal } from "./ui/Reveal";
+import { RunLivePanel } from "./ui/RunLivePanel";
 
 // Local structural types: client components must not import from lib/.
 export interface SpecRequirement {
@@ -8,6 +13,7 @@ export interface SpecRequirement {
   classIds: string[];
   missing?: string[];
   unsupported: boolean;
+  resolved?: { classId: string; memberCount: number }[];
 }
 export interface SpecBundleData {
   generatedAt: string;
@@ -29,7 +35,6 @@ export interface Budget {
   remainingTotal: number;
 }
 
-const headingFont = { fontFamily: "var(--font-display), Georgia, serif" } as const;
 const UNSUPPORTED_LABEL = "UNSUPPORTED BY RECORDED EVIDENCE";
 
 export function SpecView({ documents, name }: { documents: Record<string, string>; name: string }) {
@@ -38,15 +43,18 @@ export function SpecView({ documents, name }: { documents: Record<string, string
   if (names.length === 0) return <p className="text-candle">The bundle has no documents.</p>;
   return (
     <div>
-      <div role="group" aria-label={`Documents for ${name}`} className="mb-2 flex flex-wrap gap-2">
+      <div role="group" aria-label={`Documents for ${name}`} className="mb-3 flex flex-wrap gap-2">
         {names.map((n) => (
           <button
             key={n}
             type="button"
             aria-pressed={n === selected}
             onClick={() => setSelected(n)}
-            className={`rounded border px-2 py-0.5 text-xs ${n === selected ? "border-pumpkin text-pumpkin" : "border-mist text-ash"}`}
+            className={`inline-flex min-h-[32px] items-center gap-1.5 rounded-full border px-3 py-1 text-xs ${
+              n === selected ? "border-pumpkin bg-crypt text-pumpkin" : "border-mist text-ash hover:text-bone"
+            }`}
           >
+            <FileText aria-hidden="true" className="h-3.5 w-3.5" />
             {n}
           </button>
         ))}
@@ -54,7 +62,7 @@ export function SpecView({ documents, name }: { documents: Record<string, string
       <pre
         tabIndex={0}
         aria-label={selected}
-        className="max-h-96 overflow-auto whitespace-pre-wrap break-words rounded border border-mist p-3 text-xs"
+        className="max-h-[28rem] overflow-auto whitespace-pre-wrap break-words rounded-xl border border-mist bg-crypt p-4 font-mono text-xs leading-relaxed text-bone"
       >
         {documents[selected]}
       </pre>
@@ -68,6 +76,38 @@ export function GroqBudget({ budget }: { budget: Budget | null }) {
     <p className="text-sm text-ash">
       Groq budget remaining today: {budget.remainingForIp} for this visitor, {budget.remainingTotal} in total.
     </p>
+  );
+}
+
+function citation(r: SpecRequirement): string {
+  const groups = r.resolved?.length ?? r.classIds.length;
+  const inputs = r.resolved?.reduce((s, x) => s + x.memberCount, 0);
+  return `Cites ${groups} ${groups === 1 ? "group" : "groups"}${inputs !== undefined ? ` · ${inputs.toLocaleString("en-US")} inputs` : ""}`;
+}
+
+export function RequirementList({ requirements }: { requirements: SpecRequirement[] }) {
+  return (
+    <ol className="space-y-3">
+      {requirements.map((r, i) => (
+        <Reveal as="li" key={r.id} delay={Math.min(i, 8) * 0.04}>
+          <div className={`rounded-xl border p-4 ${r.unsupported ? "border-candle/50 bg-crypt" : "border-mist bg-crypt/60"}`}>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <span className="font-mono text-xs font-semibold text-pumpkin">{r.id}</span>
+              {r.unsupported ? (
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-candle">
+                  <AlertTriangle aria-hidden="true" className="h-3.5 w-3.5" /> {UNSUPPORTED_LABEL}
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1 text-xs text-ectoplasm">
+                  <Link2 aria-hidden="true" className="h-3.5 w-3.5" /> {citation(r)}
+                </span>
+              )}
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-bone">{r.statement}</p>
+          </div>
+        </Reveal>
+      ))}
+    </ol>
   );
 }
 
@@ -102,75 +142,64 @@ export function ReverseSpec({ name, bundle }: { name: string; bundle: SpecBundle
 
   const showingLive = live?.source === "live";
   const data = live?.bundle ?? bundle;
-  const flagged = data ? data.requirements.filter((r) => r.unsupported) : [];
   const budget = live ? { remainingForIp: live.remainingForIp, remainingTotal: live.remainingTotal } : null;
 
   return (
-    <section id="reverse-spec" aria-labelledby="spec-heading" className="mb-10 scroll-mt-6">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <h2 id="spec-heading" className="text-2xl text-bone" style={headingFont}>
-          Reverse Spec
-        </h2>
-        <div className="flex flex-wrap items-center gap-3">
-          <a
-            href={`/api/spec-bundle/${encodeURIComponent(name)}`}
-            download
-            className="rounded border border-mist px-3 py-1 text-sm text-bone"
-          >
-            Download Kiro spec bundle
-          </a>
-          <button
-            type="button"
-            disabled={running}
-            onClick={() => void run()}
-            className="rounded border border-pumpkin px-3 py-1 text-sm text-pumpkin disabled:opacity-60"
-          >
-            {running ? "Running…" : "Run live"}
-          </button>
-        </div>
-      </div>
-      {!bundle && (
-        <p className="mb-3 text-sm text-candle">
-          No stored bundle exists for this package, so the download will report that none is available.
-        </p>
-      )}
-      <div className="rounded-md border border-mist bg-tomb p-5" aria-live="polite">
-        {error && <p className="mb-3 text-sm text-candle">Live run failed: {error}. Showing the stored bundle.</p>}
-        {live?.message && <p className="mb-3 text-sm text-candle">{live.message}</p>}
-        <div className="mb-3">
-          <GroqBudget budget={budget} />
-        </div>
-        {data ? (
-          <>
-            <p className="mb-3 text-sm text-ash">
-              <span className="rounded border border-mist px-2 py-0.5 text-candle">{showingLive ? "live" : "stored"}</span>{" "}
-              generated at <time dateTime={data.generatedAt}>{data.generatedAt}</time> · model {data.model}
+    <div>
+      {data ? (
+        <>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <p className="flex flex-wrap items-center gap-2 text-sm text-ash">
+              <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${showingLive ? "border-ectoplasm/40 text-ectoplasm" : "border-candle/40 text-candle"}`}>
+                {showingLive ? "live" : "stored"}
+              </span>
+              Written <time dateTime={data.generatedAt}>{humanDate(data.generatedAt, new Date(data.generatedAt)).text}</time> by{" "}
+              <code className="font-mono text-xs text-bone">{data.model}</code> · {data.traceability.text}
             </p>
-            <p className="mb-3 text-sm">{data.traceability.text}</p>
-            {flagged.length > 0 && (
-              <ul className="mb-4 space-y-1 text-sm" aria-label="Flagged requirements">
-                {flagged.map((r) => (
-                  <li key={r.id} className="text-candle">
-                    <strong>{UNSUPPORTED_LABEL}</strong>: {r.id}, {r.statement}
-                  </li>
-                ))}
-              </ul>
-            )}
-            {data.citationIssues.length > 0 && (
-              <ul className="mb-4 space-y-1 text-sm text-candle" aria-label="Citation issues">
-                {data.citationIssues.map((c, i) => (
-                  <li key={`${c.requirementId}-${c.classId}-${i}`}>
-                    {c.requirementId}: {c.classId}, {c.message}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <a href={`/api/spec-bundle/${encodeURIComponent(name)}`} download className="btn-primary">
+              <Download aria-hidden="true" className="h-4 w-4" />
+              Download Kiro spec bundle
+            </a>
+          </div>
+          <h3 className="mb-3 font-sans text-base font-semibold text-bone">The requirements</h3>
+          <RequirementList requirements={data.requirements} />
+          {data.citationIssues.length > 0 && (
+            <ul className="mt-4 space-y-1 text-sm text-candle" aria-label="Citation issues">
+              {data.citationIssues.map((c, i) => (
+                <li key={`${c.requirementId}-${c.classId}-${i}`}>
+                  {c.requirementId}: {c.classId}, {c.message}
+                </li>
+              ))}
+            </ul>
+          )}
+          <Collapsible className="mt-6" summary="Read the spec files" meta={`${Object.keys(data.documents).length} files`}>
             <SpecView documents={data.documents} name={name} />
-          </>
-        ) : (
-          <p className="text-candle">No stored bundle for this package. Use Run live.</p>
-        )}
-      </div>
-    </section>
+          </Collapsible>
+        </>
+      ) : (
+        <p className="text-candle">No stored spec for this package. Download is unavailable.</p>
+      )}
+
+      <RunLivePanel
+        id="spec-live-desc"
+        copy={{
+          title: "Write again, live",
+          what: "A live request to an AI model (Groq) writes a fresh spec from the same recorded evidence.",
+          takes: "Usually under a minute.",
+          changesNothing: "The stored spec and the download stay as they are.",
+          limit: "5 live runs per visitor and 50 in total, per day.",
+        }}
+        action={
+          <button type="button" disabled={running} aria-describedby="spec-live-desc" onClick={() => void run()} className="btn-outline">
+            {running ? "Writing…" : "Write again"}
+          </button>
+        }
+      >
+        {running && <p className="text-sm text-ash">Writing the spec…</p>}
+        {error && <p className="text-sm text-candle">Live run failed: {error}. Showing the stored spec. Nothing was changed.</p>}
+        {live?.message && <p className="text-sm text-candle">{live.message}</p>}
+        <GroqBudget budget={budget} />
+      </RunLivePanel>
+    </div>
   );
 }

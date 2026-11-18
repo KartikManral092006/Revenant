@@ -1,6 +1,10 @@
 "use client";
 
+import { Stethoscope } from "lucide-react";
 import { useState } from "react";
+import { compactCount, humanDate } from "./format";
+import { RunLivePanel } from "./ui/RunLivePanel";
+import { Term } from "./ui/Term";
 
 // Local structural types: client components must not import from lib/.
 type Field<T> = { value: T } | { unknown: true; reason: string };
@@ -19,7 +23,10 @@ export interface CertificateData {
   license: Field<string>;
 }
 
-const headingFont = { fontFamily: "var(--font-display), Georgia, serif" } as const;
+const POLLUTION_TIP =
+  "A bug where a crafted key such as __proto__ changes the shared template every object inherits from, so unrelated code can behave differently.";
+const REDOS_TIP =
+  "Regular-expression denial of service: a crafted input makes a pattern match take so long that the program stalls.";
 
 function Unknown({ reason }: { reason: string }) {
   return (
@@ -31,7 +38,7 @@ function Unknown({ reason }: { reason: string }) {
 
 function Row<T>({ label, field, render }: { label: string; field: Field<T>; render: (v: T) => React.ReactNode }) {
   return (
-    <div className="grid grid-cols-[10rem_1fr] gap-3 border-b border-mist py-2 text-sm">
+    <div className="grid gap-1 border-b border-mist py-3 text-sm last:border-b-0 sm:grid-cols-[12rem_1fr] sm:gap-4">
       <dt className="text-ash">{label}</dt>
       <dd className="min-w-0 break-words text-bone">
         {"value" in field ? render(field.value) : <Unknown reason={field.reason} />}
@@ -40,49 +47,106 @@ function Row<T>({ label, field, render }: { label: string; field: Field<T>; rend
   );
 }
 
-export function DeathCertificateView({ cert }: { cert: CertificateData }) {
-  const label = cert.source === "live" ? "live" : "snapshot";
+function VulnSummary({ summary }: { summary?: string }) {
+  if (!summary) return <>Known issue</>;
+  if (/prototype pollution/i.test(summary)) {
+    return (
+      <>
+        <Term tip={POLLUTION_TIP}>Prototype pollution</Term>
+        {summary.replace(/prototype pollution/i, "")}
+      </>
+    );
+  }
+  if (/denial of service/i.test(summary)) {
+    return (
+      <>
+        <Term tip={REDOS_TIP}>{summary}</Term>
+      </>
+    );
+  }
+  return <>{summary}</>;
+}
+
+export function DeathCertificateView({ cert, now }: { cert: CertificateData; now?: Date }) {
+  const at = now ?? new Date();
+  const taken = humanDate(cert.fetchedAt, at).text;
   return (
     <div>
-      <p className="mb-3 text-sm text-ash">
-        <span className="rounded border border-mist px-2 py-0.5 text-candle">{label}</span>{" "}
-        <time dateTime={cert.fetchedAt}>{cert.fetchedAt}</time>
+      <p className="mb-4 flex flex-wrap items-center gap-2 text-sm text-ash">
+        <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${cert.source === "live" ? "border-ectoplasm/40 text-ectoplasm" : "border-candle/40 text-candle"}`}>
+          {cert.source === "live" ? "live" : "stored snapshot"}
+        </span>
+        <span>
+          {cert.source === "live" ? "Checked " : "Taken "}
+          <time dateTime={cert.fetchedAt}>{taken}</time>
+          {cert.source === "live" ? "." : ". Use “Check again” for today’s data."}
+        </span>
       </p>
       <dl>
         <Row
           label="Status"
           field={cert.inactive}
-          render={(v) => (v ? <strong className="text-pumpkin">Inactive</strong> : "Active")}
+          render={(v) =>
+            v ? (
+              <>
+                <strong className="text-blood">Unmaintained</strong>{" "}
+                <span className="text-ash">No release for more than two years.</span>
+              </>
+            ) : (
+              <strong className="text-ectoplasm">Active</strong>
+            )
+          }
         />
-        <Row label="Last publish" field={cert.lastPublish} render={(v) => v} />
-        <Row label="Deprecation" field={cert.deprecation} render={(v) => v ?? "not deprecated"} />
         <Row
-          label="Vulnerabilities"
+          label="Last release"
+          field={cert.lastPublish}
+          render={(v) => {
+            const h = humanDate(v, at);
+            return (
+              <time dateTime={v}>
+                {h.text} <span className="text-ash">({h.relative})</span>
+              </time>
+            );
+          }}
+        />
+        <Row label="Deprecation notice" field={cert.deprecation} render={(v) => v ?? "None on npm"} />
+        <Row
+          label="Known vulnerabilities"
           field={cert.vulnerabilities}
           render={(v) =>
             v.length === 0 ? (
-              "none reported"
+              <span className="text-ectoplasm">None reported</span>
             ) : (
-              <ul>
+              <ul className="space-y-2">
                 {v.map((x) => (
                   <li key={x.id}>
-                    {x.id}
-                    {x.aliases && x.aliases.length > 0 ? ` (${x.aliases.join(", ")})` : ""}
-                    {x.summary ? `: ${x.summary}` : ""}
+                    <VulnSummary summary={x.summary} />
+                    <span className="mt-0.5 block text-xs text-ash">
+                      {x.id}
+                      {x.aliases && x.aliases.length > 0 ? `, also known as ${x.aliases.join(", ")}` : ""}
+                    </span>
                   </li>
                 ))}
               </ul>
             )
           }
         />
-        <Row label="Weekly downloads" field={cert.weeklyDownloads} render={(v) => v.toLocaleString("en-US")} />
         <Row
-          label="Repository"
+          label="Weekly downloads"
+          field={cert.weeklyDownloads}
+          render={(v) => (
+            <>
+              {v.toLocaleString("en-US")} <span className="text-ash">(about {compactCount(v)})</span>
+            </>
+          )}
+        />
+        <Row
+          label="Source repository"
           field={cert.repo}
-          render={(v) => `${v.archived ? "archived" : "not archived"}, last push ${v.pushedAt}`}
+          render={(v) => `${v.archived ? "Archived" : "Not archived"}, last push ${humanDate(v.pushedAt, at).text}`}
         />
         {cert.repo.note && (
-          <div className="grid grid-cols-[10rem_1fr] gap-3 border-b border-mist py-2 text-sm">
+          <div className="grid gap-1 border-b border-mist py-3 text-sm sm:grid-cols-[12rem_1fr] sm:gap-4">
             <dt className="text-ash">Repository note</dt>
             <dd className="text-bone">{cert.repo.note}</dd>
           </div>
@@ -93,10 +157,11 @@ export function DeathCertificateView({ cert }: { cert: CertificateData }) {
   );
 }
 
-export function DeathCertificate({ name, initial }: { name: string; initial: CertificateData | null }) {
+export function DeathCertificate({ name, initial, nowIso }: { name: string; initial: CertificateData | null; nowIso?: string }) {
   const [cert, setCert] = useState<CertificateData | null>(initial);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const now = nowIso ? new Date(nowIso) : undefined;
 
   async function runLive(pkg: string) {
     setBusy(true);
@@ -106,35 +171,46 @@ export function DeathCertificate({ name, initial }: { name: string; initial: Cer
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setCert((await res.json()) as CertificateData);
     } catch (e) {
-      setError(`Live run failed: ${e instanceof Error ? e.message : String(e)}. Showing the stored snapshot.`);
+      setError(
+        `Live check failed: ${e instanceof Error ? e.message : String(e)}. Showing the stored snapshot. Nothing was changed.`,
+      );
     } finally {
       setBusy(false);
     }
   }
 
   return (
-    <section id="autopsy" aria-labelledby="autopsy-heading" className="mb-10 scroll-mt-6">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <h2 id="autopsy-heading" className="text-2xl text-bone" style={headingFont}>
-          Death Certificate
-        </h2>
-        <button
-          type="button"
-          onClick={() => runLive(name)}
-          disabled={busy}
-          className="rounded border border-pumpkin px-3 py-1 text-sm text-pumpkin disabled:opacity-60"
-        >
-          {busy ? "Running…" : "Run live"}
-        </button>
+    <div>
+      <div className="relative overflow-hidden rounded-2xl border border-mist bg-tomb p-6 sm:p-8" aria-live="polite">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-6 -top-6 text-mist">
+          <Stethoscope className="h-40 w-40 opacity-30" />
+        </div>
+        <p className="relative mb-4 font-display text-xl tracking-wide text-bone">Certificate of Death · {name}</p>
+        <div className="relative">
+          {cert ? (
+            <DeathCertificateView cert={cert} now={now} />
+          ) : (
+            <p className="text-candle">No stored snapshot for this package. Use Check again.</p>
+          )}
+        </div>
       </div>
-      <div className="rounded-md border border-mist bg-tomb p-5" aria-live="polite">
-        {cert ? (
-          <DeathCertificateView cert={cert} />
-        ) : (
-          <p className="text-candle">No stored snapshot for this package. Use Run live.</p>
-        )}
-        {error && <p className="mt-3 text-sm text-candle">{error}</p>}
-      </div>
-    </section>
+      <RunLivePanel
+        id="autopsy-live-desc"
+        copy={{
+          title: "Check again with live data",
+          what: "We ask npm, OSV and GitHub for today's facts.",
+          takes: "A few seconds.",
+          changesNothing: "The stored snapshot stays as it is; only your view updates.",
+        }}
+        action={
+          <button type="button" onClick={() => runLive(name)} disabled={busy} aria-describedby="autopsy-live-desc" className="btn-outline">
+            {busy ? "Checking…" : "Check again"}
+          </button>
+        }
+      >
+        {busy && <p className="text-sm text-ash">Working… this can take a few seconds.</p>}
+        {error && <p className="text-sm text-candle">{error}</p>}
+      </RunLivePanel>
+    </div>
   );
 }

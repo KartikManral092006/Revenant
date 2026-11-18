@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lodash.set (mock): Revenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mock.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="mockbar"><strong>Design mock, not the live app.</strong> Real data from <code>data/lodash.set</code> and <code>graveyard/lodash.set</code>. "Run live" buttons are faked: Step 1 succeeds, Step 3 shows the budget-used state.</div>
+
+<header class="site">
+  <a class="brand" href="index.html" aria-label="Revenant home">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#b79cff" stroke-width="1.5" aria-hidden="true"><path d="M5 21V10a7 7 0 0 1 14 0v11l-2.5-2-2 2-2.5-2-2.5 2-2-2L5 21Z"/><circle cx="9.5" cy="10" r="1" fill="#b79cff"/><circle cx="14.5" cy="10" r="1" fill="#b79cff"/></svg>
+    <span>Revenant</span>
+  </a>
+  <nav aria-label="Main"><ul><li><a href="index.html#how">How it works</a></li><li><a href="index.html#graveyard">The Graveyard</a></li><li><a href="https://github.com/KartikManral092006/Revenant">GitHub</a></li></ul></nav>
+</header>
+
+<main id="main" class="wrap" style="padding-top:0">
+  <p class="crumb"><a href="index.html">← The Graveyard</a></p>
+
+  <div class="pkghead">
+    <h1>lodash.set</h1><span class="ver">v4.3.2</span>
+  </div>
+  <p class="muted" style="margin-top:.4rem;max-width:42rem">A small helper that sets a value deep inside an object by path, for example <code>set(obj, "a.b", 1)</code>. About 2.0 million downloads a week.</p>
+
+  <!-- VERDICT BANNER -->
+  <section class="verdict-banner" aria-labelledby="sum-h">
+    <h2 id="sum-h">Summary: lodash.set is dead, had a security problem, and has been rebuilt.</h2>
+    <ul class="facts" aria-label="Key facts">
+      <li><div class="k">Last release</div><div class="v dead">Aug 2016</div><div class="s">about 10 years ago</div></li>
+      <li><div class="k">Known vulnerabilities</div><div class="v warn">1</div><div class="s">Prototype pollution (CVE-2020-8203)</div></li>
+      <li><div class="k">Behavior match</div><div class="v ok">942 / 942</div><div class="s">scored inputs matched, 0 mismatches</div></li>
+      <li><div class="k">Vulnerability in rebuild</div><div class="v ok">Removed</div><div class="s">58 inputs that exercise the fix are listed separately</div></li>
+    </ul>
+    <div class="cta">
+      <a class="btn btn-primary" href="#step-5">Read the Rebirth Report</a>
+      <a class="btn btn-quiet" href="/api/spec-bundle/lodash.set" download>Download Kiro spec bundle</a>
+      <a class="btn btn-quiet" href="https://github.com/KartikManral092006/Revenant/tree/main/resurrected/lodash.set">View the rebuild on GitHub</a>
+    </div>
+    <p class="honest">This is evidence, not proof. The match score covers 1,000 generated inputs, and about 43% of the original's code branches were not reached by them. Below, the five steps show how each number was produced.</p>
+  </section>
+
+  <!-- STICKY STEPPER -->
+  <nav class="stepper" aria-label="The five steps for lodash.set">
+    <ol>
+      <li><a class="done" href="#step-1" aria-current="step"><span class="dot"></span>1 Autopsy</a></li>
+      <li><a class="done" href="#step-2"><span class="dot"></span>2 Ghost Memory</a></li>
+      <li><a class="done" href="#step-3"><span class="dot"></span>3 Reverse Spec</a></li>
+      <li><a class="kiro" href="#step-4"><span class="dot"></span>4 Resurrection <span class="sr-only">(happens in Kiro, done)</span></a></li>
+      <li><a class="done" href="#step-5"><span class="dot"></span>5 Rebirth Report</a></li>
+    </ol>
+  </nav>
+
+  <!-- STEP 1 -->
+  <section class="step" id="step-1" aria-labelledby="s1-h">
+    <p class="kicker">Step 1 of 5 · Autopsy</p>
+    <h2 id="s1-h">Death Certificate</h2>
+    <div class="what">
+      <div><h3>What this step does</h3><p>Checks the package's health using public sources: the npm registry, the OSV vulnerability database and GitHub.</p></div>
+      <div class="found"><h3>What we found</h3><ul><li>No release since <strong>Aug 2016</strong>.</li><li><strong>1</strong> known vulnerability, still unfixed in this version.</li><li>Still downloaded about <strong>2.0 million</strong> times a week.</li></ul></div>
+    </div>
+    <div class="panel" aria-live="polite">
+      <p class="small muted"><span class="chip warn">stored snapshot</span> Taken <time datetime="2026-11-17T17:06:55.245Z">Nov 17, 2026</time>. Use "Check again" for today's data.</p>
+      <dl class="rows">
+        <div class="row"><dt>Status</dt><dd><strong style="color:var(--pumpkin)">Unmaintained</strong><div class="sub">No release for more than two years.</div></dd></div>
+        <div class="row"><dt>Last release</dt><dd>Aug 13, 2016 <span class="sub">(about 10 years ago)</span></dd></div>
+        <div class="row"><dt>Deprecation notice</dt><dd>None on npm</dd></div>
+        <div class="row"><dt>Known vulnerabilities</dt><dd><strong>1.</strong> <button type="button" class="term">Prototype pollution<span class="tip" role="tooltip">A bug where a crafted key such as <code>__proto__</code> changes the shared template every object inherits from, so unrelated code can behave differently.</span></button> in lodash.<div class="sub">GHSA-p6mc-m468-83gw, also known as CVE-2020-8203</div></dd></div>
+        <div class="row"><dt>Weekly downloads</dt><dd>2,034,648</dd></div>
+        <div class="row"><dt>Source repository</dt><dd>The lodash monorepo, still active <div class="sub">This package's own code has not changed since 2016, so its age is judged from the release date.</div></dd></div>
+        <div class="row"><dt>License</dt><dd>MIT</dd></div>
+      </dl>
+    </div>
+    <div class="runlive">
+      <div class="top"><strong>Check again with live data</strong>
+        <button type="button" class="btn" data-run="out1" data-sim="ok" data-ok="Checked live just now. Same result: 1 known vulnerability, last release Aug 2016.">Check again</button></div>
+      <ul><li><b>What happens:</b> we ask npm, OSV and GitHub for today's facts.</li><li><b>Takes:</b> a few seconds.</li><li><b>Changes nothing:</b> the stored snapshot stays as it is; only your view updates.</li></ul>
+      <div id="out1" class="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="step-2" aria-labelledby="s2-h">
+    <p class="kicker">Step 2 of 5 · Ghost Memory</p>
+    <h2 id="s2-h">What the original package really does</h2>
+    <div class="what">
+      <div><h3>What this step does</h3><p>Runs the original package on 1,000 generated inputs in an isolated sandbox, with no network. For each input we write down what came back: a value, an error, or a side effect. This record is the <button type="button" class="term">evidence<span class="tip" role="tooltip">One recorded input and what the original package did with it. The later steps only rely on this recorded behavior, not on guesses or the README.</span></button> used by every later step.</p></div>
+      <div class="found"><h3>What we found</h3><ul><li><strong>1,000</strong> inputs recorded: 994 returned a value, 6 threw an error, 0 timed out.</li><li><strong>58</strong> inputs changed <code>Object.prototype</code>. That is the vulnerability, seen in action.</li><li>The 1,000 inputs fall into <strong>27</strong> <button type="button" class="term">behavior groups<span class="tip" role="tooltip">Inputs that look alike (same kind of path, same kind of target, same outcome) are grouped, so you can read 27 groups instead of 1,000 rows. Also called a behavior class in the technical docs.</span></button>.</li></ul></div>
+    </div>
+    <div class="panel">
+      <h3>How much of the package was tested</h3>
+      <dl class="rows">
+        <div class="row"><dt>Functions exercised</dt><dd>1 of 1 exported functions (100%)</dd></div>
+        <div class="row"><dt>Code branches reached</dt><dd>82 of 143 (57.3%) <div class="sub">A branch is a decision point in the code, such as an <code>if</code>. The other 43% were not reached by these inputs, which is one reason the final score is evidence, not proof. Measured offline on Nov 17, 2026.</div></dd></div>
+        <div class="row"><dt>Recording</dt><dd>Stored · Nov 17, 2026 · random seed 4302 <div class="sub">Same seed, same inputs: the recording can be reproduced.</div></dd></div>
+      </dl>
+    </div>
+    <div class="panel" style="margin-top:1rem" id="groups">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem">
+        <h3>Behavior groups, largest first</h3>
+        <label class="small muted"><input type="checkbox" data-toggle-tech="#groups"> Show technical IDs</label>
+      </div>
+      <ul class="bars" aria-label="Behavior groups">
+<li><span>Dotted path (a.b) on a plain object: returned a value<span class="tech">lodash.set:default:class:dot|plain-object|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:100%"></span></span><span class="num">276 inputs</span></li>
+<li><span>Mixed path (a[0].b) on a plain object: returned a value<span class="tech">lodash.set:default:class:mixed|plain-object|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:80%"></span></span><span class="num">221 inputs</span></li>
+<li><span>Empty path on a plain object: returned a value<span class="tech">lodash.set:default:class:empty|plain-object|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:30%"></span></span><span class="num">84 inputs</span></li>
+<li><span>Bracket path (a[0]) on a plain object: returned a value<span class="tech">lodash.set:default:class:bracket-index|plain-object|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:29%"></span></span><span class="num">79 inputs</span></li>
+<li><span>Prototype-style path (__proto__) on a plain object: returned a value<span class="tech">lodash.set:default:class:proto-path|plain-object|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:21%"></span></span><span class="num">57 inputs</span></li>
+<li><span>Prototype-polluting path on a plain object: changed Object.prototype<span class="tech">lodash.set:default:class:proto-path|plain-object|prototype-pollution</span></span><span class="track" aria-hidden="true"><span class="fill hot" style="width:19%"></span></span><span class="num">53 inputs</span></li>
+<li><span>Dotted path (a.b) on an array: returned a value<span class="tech">lodash.set:default:class:dot|array|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:13%"></span></span><span class="num">36 inputs</span></li>
+<li><span>Inputs that fit no group<span class="tech">lodash.set:default:class:unclassified</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:11%"></span></span><span class="num">30 inputs</span></li>
+      </ul>
+      <details class="plain"><summary><span class="t">Show the other 19 groups</span></summary>
+        <ul class="bars" aria-label="Remaining behavior groups">
+<li><span>Mixed path (a[0].b) on an array: returned a value<span class="tech">lodash.set:default:class:mixed|array|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:11%"></span></span><span class="num">30 inputs</span></li>
+<li><span>Dotted path (a.b) on null or undefined: returned a value<span class="tech">lodash.set:default:class:dot|null-or-undefined|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:8%"></span></span><span class="num">21 inputs</span></li>
+<li><span>Dotted path (a.b) on a number or string: returned a value<span class="tech">lodash.set:default:class:dot|primitive|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:8%"></span></span><span class="num">21 inputs</span></li>
+<li><span>Mixed path (a[0].b) on null or undefined: returned a value<span class="tech">lodash.set:default:class:mixed|null-or-undefined|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:5%"></span></span><span class="num">15 inputs</span></li>
+<li><span>Mixed path (a[0].b) on a number or string: returned a value<span class="tech">lodash.set:default:class:mixed|primitive|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:5%"></span></span><span class="num">15 inputs</span></li>
+<li><span>Empty path on an array: returned a value<span class="tech">lodash.set:default:class:empty|array|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:4%"></span></span><span class="num">10 inputs</span></li>
+<li><span>Empty path on null or undefined: returned a value<span class="tech">lodash.set:default:class:empty|null-or-undefined|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:3%"></span></span><span class="num">7 inputs</span></li>
+<li><span>Bracket path (a[0]) on an array: returned a value<span class="tech">lodash.set:default:class:bracket-index|array|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:3%"></span></span><span class="num">7 inputs</span></li>
+<li><span>Prototype-style path (__proto__) on an array: returned a value<span class="tech">lodash.set:default:class:proto-path|array|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:2%"></span></span><span class="num">6 inputs</span></li>
+<li><span>Empty path on a number or string: returned a value<span class="tech">lodash.set:default:class:empty|primitive|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:2%"></span></span><span class="num">6 inputs</span></li>
+<li><span>Prototype-polluting path on an array: changed Object.prototype<span class="tech">lodash.set:default:class:proto-path|array|prototype-pollution</span></span><span class="track" aria-hidden="true"><span class="fill hot" style="width:2%"></span></span><span class="num">5 inputs</span></li>
+<li><span>Bracket path (a[0]) on a number or string: returned a value<span class="tech">lodash.set:default:class:bracket-index|primitive|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:2%"></span></span><span class="num">5 inputs</span></li>
+<li><span>Bracket path (a[0]) on null or undefined: returned a value<span class="tech">lodash.set:default:class:bracket-index|null-or-undefined|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:2%"></span></span><span class="num">5 inputs</span></li>
+<li><span>Prototype-style path (__proto__) on an array: threw a TypeError<span class="tech">lodash.set:default:class:proto-path|array|threw:TypeError</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:1%"></span></span><span class="num">3 inputs</span></li>
+<li><span>Prototype-style path (__proto__) on a number or string: returned a value<span class="tech">lodash.set:default:class:proto-path|primitive|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:1%"></span></span><span class="num">3 inputs</span></li>
+<li><span>Prototype-style path (__proto__) on null or undefined: returned a value<span class="tech">lodash.set:default:class:proto-path|null-or-undefined|returned</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:1%"></span></span><span class="num">2 inputs</span></li>
+<li><span>Prototype-style path (__proto__) on a plain object: threw a TypeError<span class="tech">lodash.set:default:class:proto-path|plain-object|threw:TypeError</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:0%"></span></span><span class="num">1 inputs</span></li>
+<li><span>Dotted path (a.b) on an array: threw another error<span class="tech">lodash.set:default:class:dot|array|threw:other</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:0%"></span></span><span class="num">1 inputs</span></li>
+<li><span>Mixed path (a[0].b) on a plain object: threw another error<span class="tech">lodash.set:default:class:mixed|plain-object|threw:other</span></span><span class="track" aria-hidden="true"><span class="fill" style="width:0%"></span></span><span class="num">1 inputs</span></li>
+        </ul>
+      </details>
+    </div>
+    <details>
+      <summary><span class="t"><strong>Evidence table</strong>: every recorded input (technical)</span><span class="sub">1,000 rows · 5 shown as a sample</span></summary>
+      <div class="body">
+        <p class="small muted">Each row is one input and what the original did with it. The list is paged 50 rows at a time in the real page. Showing a sample of five here.</p>
+        <div class="tablewrap" id="evi"><table>
+          <caption class="sr-only">Sample of recorded evidence</caption>
+          <thead><tr><th scope="col">Input given</th><th scope="col">What happened</th><th scope="col">Times seen</th><th scope="col">Evidence ID</th></tr></thead>
+          <tbody>
+            <tr><td><code>[{}, "__proto__.polluted", "yes"]</code></td><td>Returned, and <code>Object.prototype</code> gained a key</td><td>8</td><td class="mono">lodash.set:default:6c238a2a1e63</td></tr>
+            <tr><td><code>[{}, "a.0", 1]</code></td><td>Returned a value</td><td>8</td><td class="mono">lodash.set:default:53f3a357ee1a</td></tr>
+            <tr><td><code>[{}, "", 1]</code></td><td>Returned a value</td><td>5</td><td class="mono">lodash.set:default:e206d72d2359</td></tr>
+            <tr><td><code>[{…}, null, 93]</code></td><td>Returned a value</td><td>1</td><td class="mono">lodash.set:default:72baf168e67a</td></tr>
+            <tr><td>A nested object, path <code>"[1]…"</code></td><td>Threw a TypeError</td><td>1</td><td class="mono">lodash.set:default:707709441402</td></tr>
+          </tbody></table></div>
+        <p class="small muted" style="margin-top:.5rem">Showing 5 of 1,000 records. <a href="#evi">Show 50 more</a> (faked)</p>
+      </div>
+    </details>
+    <div class="runlive">
+      <div class="top"><strong>Record again, live</strong>
+        <button type="button" class="btn" data-run="out2" data-sim="ok" data-progress="candles" data-ok="Done live. 1,000 inputs recorded: 994 returned, 6 threw, 0 timed out. Code coverage is not measured on live runs; the figures above come from the stored recording.">Record again</button></div>
+      <ul><li><b>What happens:</b> the original runs in the sandbox on freshly generated inputs. Candles light as it goes.</li><li><b>Takes:</b> up to 30 seconds. If time runs out, you get a result marked "partial".</li><li><b>Changes nothing:</b> the stored recording stays as it is.</li></ul>
+      <div id="out2" class="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="step-3" aria-labelledby="s3-h">
+    <p class="kicker">Step 3 of 5 · Reverse Spec</p>
+    <h2 id="s3-h">A written spec, built from the evidence</h2>
+    <div class="what">
+      <div><h3>What this step does</h3><p>An AI model reads the recorded behavior and writes a Kiro spec: requirements, a design, a task list and steering notes. Each requirement must cite the evidence behind it. A requirement with no evidence is flagged.</p></div>
+      <div class="found"><h3>What we found</h3><ul><li><strong>7</strong> requirements, <strong>7 / 7</strong> cite evidence.</li><li><strong>0</strong> flagged as unsupported by recorded evidence.</li><li>Written on Nov 17, 2026 by <code>openai/gpt-oss-120b</code>.</li></ul></div>
+    </div>
+    <div class="panel">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem"><h3>The requirements</h3><a class="btn btn-quiet" href="/api/spec-bundle/lodash.set" download>Download Kiro spec bundle</a></div>
+      <ol class="reqs" aria-label="Requirements">
+        <li><span class="id">REQ-1</span>Bracket paths such as <code>a[0]</code>: the target is returned after the value is set. <span class="sub">Cites 4 groups · 96 inputs</span></li>
+        <li><span class="id">REQ-2</span>Dotted paths such as <code>a.b</code>: the target is returned after the value is set. <span class="sub">Cites 4 groups · 354 inputs</span></li>
+        <li><span class="id">REQ-3</span>Empty path: the target is returned unchanged. <span class="sub">Cites 4 groups · 107 inputs</span></li>
+        <li><span class="id">REQ-4</span>Mixed dot and bracket paths: the value is set and the target is returned. <span class="sub">Cites 4 groups · 281 inputs</span></li>
+        <li><span class="id">REQ-5</span>Paths such as <code>__proto__</code> or <code>constructor.prototype</code> may return the target, throw a TypeError, or change a prototype, depending on the target. <span class="sub">Cites 8 groups · 130 inputs</span></li>
+        <li><span class="id">REQ-6</span>Dotted paths on an array may, rarely, throw an error other than TypeError. <span class="sub">Cites 1 group · 1 input</span></li>
+        <li><span class="id">REQ-7</span>Mixed paths on a plain object may, rarely, throw an error other than TypeError. <span class="sub">Cites 1 group · 1 input</span></li>
+      </ol>
+      <details class="plain"><summary><span class="t">Read the spec files</span><span class="sub">requirements.md, design.md, tasks.md, 3 steering files</span></summary>
+        <div class="body"><p class="small muted">File picker and preview as today (scrollable, keyboard focusable). Collapsed by default.</p></div></details>
+    </div>
+    <div class="runlive">
+      <div class="top"><strong>Write the spec again with AI</strong>
+        <button type="button" class="btn" data-run="out3" data-sim="err" data-err="No AI runs left today for you (limit: 5 per visitor, 50 for everyone). Showing the stored spec from Nov 17, 2026. Nothing was changed.">Write again</button></div>
+      <ul><li><b>What happens:</b> a live request to an AI model (Groq) rewrites the spec from the recorded evidence.</li><li><b>Limited:</b> 5 runs per visitor and 50 in total per day. Your remaining runs are shown after you start one.</li><li><b>Takes:</b> usually under a minute (to be measured).</li><li><b>Changes nothing:</b> the stored spec stays as it is. If the limit is reached, the stored spec is shown instead.</li></ul>
+      <div id="out3" class="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" id="step-4" aria-labelledby="s4-h">
+    <p class="kicker">Step 4 of 5 · Resurrection · happens in Kiro, not in this page</p>
+    <h2 id="s4-h">The rebuild</h2>
+    <div class="what">
+      <div><h3>What this step does</h3><p>A developer, working with Kiro, builds a modern replacement from the spec. A Kiro hook re-runs the comparison every time a file in the rebuild is saved, so a mistake shows up straight away. This step cannot run in the browser.</p></div>
+      <div class="found"><h3>What we found</h3><ul><li>A rebuild of lodash.set <strong>exists</strong> in the repository.</li><li>It keeps the original MIT license and credits the original authors.</li><li>A save hook for it is set up in <code>.kiro/hooks</code>.</li></ul></div>
+    </div>
+    <div class="panel">
+      <p><a class="btn btn-primary" href="https://github.com/KartikManral092006/Revenant/tree/main/resurrected/lodash.set">View resurrected/lodash.set on GitHub →</a></p>
+      <p class="small muted" style="margin-bottom:0">To re-run the comparison yourself: <code>npm run resurrect -- lodash.set</code></p>
+    </div>
+  </section>
+
+  <!-- STEP 5 -->
+  <section class="step" id="step-5" aria-labelledby="s5-h">
+    <p class="kicker">Step 5 of 5 · Rebirth Report</p>
+    <h2 id="s5-h">Original versus rebuild</h2>
+    <div class="what">
+      <div><h3>What this step does</h3><p>Runs the original and the rebuild on the same 1,000 inputs and compares what each one returns. Differences that are deliberate security fixes are listed separately and left out of the score.</p></div>
+      <div class="found"><h3>What we found</h3><ul><li><strong>942 / 942</strong> scored inputs matched.</li><li><strong>0</strong> mismatches.</li><li><strong>58</strong> inputs left out of the score because they exercise the security fix.</li></ul></div>
+    </div>
+    <div class="panel">
+      <p class="small muted"><span class="chip warn">stored</span> Generated <time datetime="2026-11-18T05:17:18.208Z">Nov 18, 2026</time> · random seed 4302 · 1,000 inputs</p>
+      <p style="font-size:1.25rem;margin-bottom:.25rem">942 / 942 inputs matched</p>
+      <div class="scorebar" role="img" aria-label="942 matched, 58 left out for a deliberate fix, 0 mismatched"><span class="m" style="width:94.2%"></span><span class="x" style="width:5.8%"></span></div>
+      <div class="legend"><span><span class="sw" style="background:var(--ectoplasm)"></span>942 matched</span><span><span class="sw" style="background:var(--candle)"></span>58 left out (deliberate fix)</span><span><span class="sw" style="background:var(--blood)"></span>0 mismatched</span></div>
+
+      <h3 style="margin-top:1.5rem">Deliberate difference: the security fix</h3>
+      <p><button type="button" class="term">Intentional difference<span class="tip" role="tooltip">A place where the rebuild is meant to behave differently from the original, written down in advance with a reason. These inputs are excluded from the match score and listed here instead.</span></button>: <strong>prototype pollution</strong>. The original lets paths such as <code>__proto__.x</code> and <code>constructor.prototype.x</code> write onto <code>Object.prototype</code>. The rebuild refuses to. <span class="sub">Advisory GHSA-p6mc-m468-83gw · 58 inputs · rule <code>lodash.set-prototype-pollution</code></span></p>
+
+      <h3 style="margin-top:1.25rem">Vulnerability removed</h3>
+      <p>GHSA-p6mc-m468-83gw (CVE-2020-8203): the 58 inputs that polluted the original no longer pollute the rebuild.</p>
+
+      <h3 style="margin-top:1.25rem">Mismatches</h3>
+      <p>None found among the 1,000 inputs.</p>
+
+      <h3 style="margin-top:1.25rem">Original test suite</h3>
+      <p><span class="chip warn">not available</span> The published 4.3.2 package contains no test files. The tests live in the lodash monorepo and were not adapted here.</p>
+    </div>
+    <div class="runlive">
+      <div class="top"><strong>Compare again, live</strong>
+        <button type="button" class="btn" data-run="out5" data-sim="ok" data-progress="candles" data-ok="Done live. 942 / 942 scored inputs matched, 58 left out for the deliberate fix, 0 mismatches.">Compare again</button></div>
+      <ul><li><b>What happens:</b> the original and the rebuild both run in the sandbox on the same fresh inputs. Candles light as it goes.</li><li><b>Takes:</b> usually under a minute (to be measured). A run that runs out of time is marked "partial".</li><li><b>Changes nothing:</b> the stored report stays as it is.</li></ul>
+      <div id="out5" class="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="block" id="glossary" aria-labelledby="gl-h">
+    <h2 id="gl-h">Glossary</h2>
+    <div class="panel"><dl class="gloss" style="margin:0">
+      <dt>Ghost Memory</dt><dd>The recording step. We run the original package on many generated inputs and write down what it does.</dd>
+      <dt>Evidence</dt><dd>One recorded input and the original's response. Everything later is built from it. It shows how a package behaved on tested inputs; it is not proof for inputs that were not tested.</dd>
+      <dt>Behavior group (behavior class)</dt><dd>A set of similar inputs with the same kind of outcome, used to summarize the evidence.</dd>
+      <dt>Intentional difference</dt><dd>A planned, documented place where the rebuild differs from the original, usually a security fix. Left out of the match score and listed separately.</dd>
+      <dt>Prototype pollution</dt><dd>A bug where crafted input changes the shared template that all objects inherit from.</dd>
+    </dl></div>
+  </section>
+
+  <footer class="footer">Revenant is open source (MIT). <a href="https://github.com/KartikManral092006/Revenant">Source on GitHub</a>. <a href="index.html">Back to the Graveyard</a>.</footer>
+</main>
+<script src="mock.js"></script>
+</body>
+</html>
