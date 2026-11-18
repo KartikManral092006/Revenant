@@ -55,14 +55,26 @@
   }
 }
 
-@layer components {
-  .card {
-    @apply rounded-xl border border-line bg-surface;
-    box-shadow:
-      0 1px 0 0 rgb(255 255 255 / 0.03) inset,
-      0 1px 2px 0 rgb(0 0 0 / 0.4);
-  }
+/* Lenis smooth scrolling (see components/motion/SmoothScroll.tsx). */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+html.lenis {
+  scroll-behavior: auto !important;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
 
+@layer components {
   .btn {
     @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium no-underline transition-all duration-200 ease-out;
   }
@@ -84,30 +96,6 @@
     @apply inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted;
   }
 
-  /* Hairline gradient border used to mark the "Start here" card. Static. */
-  .highlight-ring {
-    position: relative;
-    isolation: isolate;
-  }
-  .highlight-ring::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, rgb(167 139 250 / 0.7), rgb(167 139 250 / 0.05) 45%, rgb(74 222 128 / 0.35));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Dot travelling along the "How it works" pipeline. */
-  .pipeline-dot,
-  .pipeline-dot-y {
-    opacity: 0;
-  }
 }
 
 /* Animations only run when the user has not asked for reduced motion.
@@ -138,40 +126,6 @@
     }
   }
 
-  @keyframes pipeline-travel {
-    0% {
-      left: -20%;
-      opacity: 0;
-    }
-    15% {
-      opacity: 1;
-    }
-    85% {
-      opacity: 1;
-    }
-    100% {
-      left: 100%;
-      opacity: 0;
-    }
-  }
-
-  @keyframes pipeline-travel-y {
-    0% {
-      top: -20%;
-      opacity: 0;
-    }
-    15% {
-      opacity: 1;
-    }
-    85% {
-      opacity: 1;
-    }
-    100% {
-      top: 100%;
-      opacity: 0;
-    }
-  }
-
   .animate-flicker {
     animation: flicker 2.8s ease-in-out infinite;
   }
@@ -180,10 +134,21 @@
     animation: drift 6s ease-in-out infinite;
   }
 
-  .pipeline-dot {
-    animation: pipeline-travel 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  /* Accordions open and close smoothly where the browser supports animating to height: auto. */
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+    .disclosure::details-content {
+      height: 0;
+      overflow: clip;
+      transition:
+        height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        content-visibility 0.4s allow-discrete;
+    }
+    .disclosure[open]::details-content {
+      height: auto;
+    }
   }
-  .pipeline-dot-y {
-    animation: pipeline-travel-y 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-  }
+
 }

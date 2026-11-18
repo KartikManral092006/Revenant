@@ -1,7 +1,10 @@
 import { ChevronDown } from "lucide-react";
 import type { ReactNode } from "react";
 
-/** Native details/summary with a consistent summary line. Keyboard operable without JavaScript. */
+/**
+ * Native details/summary as a divider row (no box). Keyboard operable without JavaScript. The open
+ * panel eases in via `interpolate-size` where the browser supports it.
+ */
 export function Collapsible({
   summary,
   meta,
@@ -16,15 +19,15 @@ export function Collapsible({
   className?: string;
 }) {
   return (
-    <details open={defaultOpen} className={`group rounded-xl border border-line bg-surface/60 ${className}`}>
-      <summary className="flex min-h-[44px] items-center justify-between gap-3 rounded-xl px-5 py-3 hover:bg-surface">
-        <span className="font-semibold text-fg">{summary}</span>
-        <span className="flex items-center gap-3 text-sm text-muted">
+    <details open={defaultOpen} className={`disclosure group border-b border-line ${className}`}>
+      <summary className="flex min-h-[56px] items-center justify-between gap-4 py-4 text-left transition-colors hover:text-link">
+        <span className="font-medium text-fg group-hover:text-inherit">{summary}</span>
+        <span className="flex shrink-0 items-center gap-3 text-sm text-muted">
           {meta}
-          <ChevronDown aria-hidden="true" className="chevron h-4 w-4 transition-transform duration-200" />
+          <ChevronDown aria-hidden="true" className="chevron h-4 w-4 transition-transform duration-300 ease-out" />
         </span>
       </summary>
-      <div className="border-t border-line px-5 py-4">{children}</div>
+      <div className="pb-6">{children}</div>
     </details>
   );
 }

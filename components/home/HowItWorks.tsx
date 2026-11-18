@@ -1,5 +1,7 @@
+"use client";
 import { Ghost, Hammer, HeartPulse, ScrollText, Stethoscope } from "lucide-react";
-import { Reveal } from "../ui/Reveal";
+import { motion, useInView, useReducedMotion, useScroll, useSpring } from "motion/react";
+import { useRef } from "react";
 
 const STEPS = [
   {
@@ -39,42 +41,56 @@ const STEPS = [
   },
 ] as const;
 
-/** Five-step pipeline. A beam travels along the line (static under reduced motion). */
+function Step({ step, last }: { step: (typeof STEPS)[number]; last: boolean }) {
+  const ref = useRef<HTMLLIElement>(null);
+  // A step "lights up" once it reaches the middle of the viewport, in time with the line.
+  const lit = useInView(ref, { margin: "0px 0px -45% 0px", once: true });
+  const reduce = useReducedMotion();
+  const Icon = step.icon;
+  const kiro = step.where === "In Kiro";
+  const on = lit || reduce;
+  return (
+    <li ref={ref} className={`relative grid grid-cols-[3rem_1fr] gap-5 ${last ? "" : "pb-12"}`}>
+      <div
+        className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-700 ease-out ${
+          on ? (kiro ? "border-link bg-canvas text-link" : "border-accent bg-canvas text-accent") : "border-line bg-canvas text-muted"
+        }`}
+      >
+        <Icon aria-hidden="true" className="h-5 w-5" />
+      </div>
+      <div className={`pt-2 transition-all duration-700 ease-out ${on ? "translate-x-0 opacity-100" : "translate-x-2 opacity-60"}`}>
+        <p className="text-sm text-muted">Step {step.n}</p>
+        <h3 className="mt-0.5 text-lg font-semibold text-fg">{step.name}</h3>
+        <p className="mt-1 max-w-md leading-relaxed text-muted">{step.text}</p>
+        <p className={`mt-2 text-sm font-medium ${kiro ? "text-link" : "text-success"}`}>{step.where}</p>
+      </div>
+    </li>
+  );
+}
+
+/**
+ * The five steps as a vertical timeline. The line fills as you scroll through it and each step
+ * lights up when the line reaches it. Under reduced motion the line is full and every step is lit.
+ */
 export function HowItWorks() {
+  const ref = useRef<HTMLOListElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 55%"] });
+  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });
+
   return (
     <div className="relative">
-      {/* Horizontal track on wide screens */}
-      <div aria-hidden="true" className="absolute left-[10%] right-[10%] top-7 hidden h-px overflow-hidden bg-line lg:block">
-        <span className="pipeline-dot absolute top-0 h-px w-1/5 bg-gradient-to-r from-transparent via-accent to-transparent" />
+      {/* Track and scroll-linked fill, centred on the step icons. */}
+      <div aria-hidden="true" className="absolute bottom-6 left-6 top-6 w-px -translate-x-1/2 bg-line">
+        <motion.div
+          className="absolute inset-x-0 top-0 h-full origin-top bg-gradient-to-b from-accent via-link to-success"
+          style={{ scaleY: reduce ? 1 : fill }}
+        />
       </div>
-      {/* Vertical track on narrow screens */}
-      <div aria-hidden="true" className="absolute bottom-6 left-7 top-6 w-px overflow-hidden bg-line lg:hidden">
-        <span className="pipeline-dot-y absolute left-0 h-1/5 w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
-      </div>
-      <ol className="relative grid gap-6 lg:grid-cols-5 lg:gap-4">
-        {STEPS.map((s, i) => {
-          const Icon = s.icon;
-          const kiro = s.where === "In Kiro";
-          return (
-            <Reveal as="li" key={s.n} delay={i * 0.08} className="flex gap-4 lg:flex-col lg:items-center lg:text-center">
-              <div
-                className={`relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border bg-surface ${
-                  kiro ? "border-link text-link" : "border-accent/60 text-accent"
-                }`}
-              >
-                <Icon aria-hidden="true" className="h-6 w-6" />
-                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-canvas">
-                  {s.n}
-                </span>
-              </div>
-              <div className="min-w-0">
-                <h3 className="text-base font-semibold text-fg">{s.name}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-muted">{s.text}</p>
-                <p className={`mt-2 text-xs font-medium ${kiro ? "text-link" : "text-success"}`}>{s.where}</p>
-              </div>
-            </Reveal>
-          );
-        })}
+      <ol ref={ref} className="relative">
+        {STEPS.map((s, i) => (
+          <Step key={s.n} step={s} last={i === STEPS.length - 1} />
+        ))}
       </ol>
     </div>
   );

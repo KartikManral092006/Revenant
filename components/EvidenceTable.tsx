@@ -27,10 +27,10 @@ export function EvidenceTable({ rows, total }: { rows: EvidenceRow[]; total: num
   const multiExport = new Set(rows.map((r) => r.export)).size > 1;
   return (
     <div>
-      <div className="overflow-x-auto rounded-xl border border-line">
+      <div className="overflow-x-auto border-y border-line" data-lenis-prevent-horizontal="">
         <table className="w-full text-left text-sm">
           <caption className="sr-only">Recorded evidence: each row is one input and what the original did with it</caption>
-          <thead className="bg-canvas text-muted">
+          <thead className="text-muted">
             <tr>
               {multiExport && <th scope="col" className="px-3 py-2">Function</th>}
               <th scope="col" className="px-3 py-2">Input given</th>

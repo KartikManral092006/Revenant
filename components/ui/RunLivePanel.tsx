@@ -1,4 +1,4 @@
-import { Clock, RotateCw, ShieldCheck } from "lucide-react";
+import { Clock, ShieldCheck, Zap } from "lucide-react";
 import type { ReactNode } from "react";
 
 export interface RunLiveCopy {
@@ -11,7 +11,8 @@ export interface RunLiveCopy {
 
 /**
  * Explains a live action before it is run: what happens, how long it takes, and what it leaves
- * untouched. Hosts the action button and the live status area.
+ * untouched. A plain section under a hairline, not a box. Hosts the action button and the live
+ * status area.
  */
 export function RunLivePanel({
   copy,
@@ -26,27 +27,27 @@ export function RunLivePanel({
   id: string;
 }) {
   return (
-    <div className="mt-6 rounded-xl border border-dashed border-line bg-canvas/60 p-5">
-      <div className="flex flex-wrap items-start justify-between gap-4">
+    <div className="mt-10 border-t border-line pt-6">
+      <div className="flex flex-wrap items-start justify-between gap-6">
         <div className="min-w-0 max-w-2xl">
-          <h3 className="flex items-center gap-2 font-sans text-base font-semibold text-fg">
-            <RotateCw aria-hidden="true" className="h-4 w-4 text-accent" />
+          <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
+            <Zap aria-hidden="true" className="h-4 w-4 text-accent" />
             {copy.title}
           </h3>
-          <dl id={id} className="mt-3 grid gap-2 text-sm text-muted sm:grid-cols-[auto_1fr] sm:gap-x-4">
-            <dt className="font-semibold text-fg">What happens</dt>
+          <dl id={id} className="mt-3 grid gap-x-6 gap-y-1.5 text-sm text-muted sm:grid-cols-[auto_1fr]">
+            <dt className="text-fg">What happens</dt>
             <dd>{copy.what}</dd>
-            <dt className="flex items-center gap-1 font-semibold text-fg">
+            <dt className="flex items-center gap-1.5 text-fg">
               <Clock aria-hidden="true" className="h-3.5 w-3.5" /> Takes
             </dt>
             <dd>{copy.takes}</dd>
-            <dt className="flex items-center gap-1 font-semibold text-fg">
+            <dt className="flex items-center gap-1.5 text-fg">
               <ShieldCheck aria-hidden="true" className="h-3.5 w-3.5" /> Changes nothing
             </dt>
             <dd>{copy.changesNothing}</dd>
             {copy.limit && (
               <>
-                <dt className="font-semibold text-fg">Limit</dt>
+                <dt className="text-fg">Limit</dt>
                 <dd>{copy.limit}</dd>
               </>
             )}

@@ -132,25 +132,25 @@ export function RebirthReportView({
   const removed = report?.vulnerabilitiesRemoved ?? [];
   return (
     <>
-      <div className="card p-6">
-        <p className="mb-4 text-xl font-semibold tracking-tight text-fg">
+      <div className="border-y border-line py-8">
+        <p className="mb-6 text-2xl font-semibold tracking-tight text-fg">
           {scoreText}
           {partial && <span className="ml-2 rounded-full border border-warn/40 px-2 py-0.5 align-middle font-sans text-sm text-warn">partial result</span>}
         </p>
         {s && <ScoreRing score={s} />}
       </div>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="card p-5">
-          <h3 className="flex items-center gap-2 font-sans text-base font-semibold text-fg">
-            <ShieldCheck aria-hidden="true" className="h-4 w-4 text-link" /> Intentional differences
+      <div className="mt-10 grid gap-x-16 gap-y-10 lg:grid-cols-2">
+        <div>
+          <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
+            <ShieldCheck aria-hidden="true" className="h-4 w-4 text-accent" /> Intentional differences
           </h3>
           <p className="mt-1 text-xs text-muted">Behavior changed on purpose, each tied to a published advisory, and left out of the score.</p>
           {diffs.length > 0 ? (
             <ul className="mt-3 space-y-2 text-sm" aria-label="Intentional differences">
               {diffs.map((d) => (
-                <li key={d.id} className="rounded-xl border border-link/30 bg-canvas p-3">
-                  <strong className="font-mono text-xs text-link">{d.id}</strong>
+                <li key={d.id} className="border-l-2 border-accent/60 pl-4">
+                  <strong className="font-mono text-xs font-normal text-accent">{d.id}</strong>
                   <p className="mt-1 text-fg">{d.reason}</p>
                   <p className="mt-1 text-xs text-muted">
                     advisory {d.advisory}, {d.covered} inputs excluded from the score
@@ -163,8 +163,8 @@ export function RebirthReportView({
           )}
         </div>
 
-        <div className="card p-5">
-          <h3 className="font-sans text-base font-semibold text-fg">Mismatches</h3>
+        <div>
+          <h3 className="text-base font-semibold text-fg">Mismatches</h3>
           <p className="mt-1 text-xs text-muted">Inputs where the rebuild did something different and no rule explains why.</p>
           {samples.length > 0 ? (
             <ul className="mt-3 space-y-1 text-sm text-danger" aria-label="Mismatches">
@@ -177,8 +177,8 @@ export function RebirthReportView({
           )}
         </div>
 
-        <div className="card p-5">
-          <h3 className="font-sans text-base font-semibold text-fg">Vulnerabilities removed</h3>
+        <div className="lg:border-t lg:border-line lg:pt-10">
+          <h3 className="text-base font-semibold text-fg">Vulnerabilities removed</h3>
           <p className="mt-1 text-xs text-muted">Listed only when the original showed the vulnerable behavior and the rebuild did not.</p>
           {removed.length > 0 ? (
             <ul className="mt-3 space-y-1 text-sm" aria-label="Vulnerabilities removed">
@@ -193,8 +193,8 @@ export function RebirthReportView({
           )}
         </div>
 
-        <div className="card p-5">
-          <h3 className="font-sans text-base font-semibold text-fg">Original test suite</h3>
+        <div className="lg:border-t lg:border-line lg:pt-10">
+          <h3 className="text-base font-semibold text-fg">Original test suite</h3>
           <p className="mt-1 text-xs text-muted">The tests that shipped with the original package, run against the rebuild.</p>
           {report?.originalTestSuite ? (
             <p className="mt-3 text-sm">
@@ -240,7 +240,7 @@ export function RebirthReport({
   return (
     <div>
       {notRebuilt && (
-        <div className="rounded-xl border border-warn/40 bg-surface p-6" id="rebirth-not-rebuilt">
+        <div className="border-l-2 border-warn pl-5" id="rebirth-not-rebuilt">
           <p className="flex items-center gap-2 font-semibold text-warn">
             <HeartPulse aria-hidden="true" className="h-5 w-5" /> Not rebuilt yet, so there is nothing to compare
           </p>

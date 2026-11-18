@@ -59,13 +59,13 @@ function Meter({ value, tone = "accent", label }: { value: number; tone?: "accen
   const reduce = useReducedMotion();
   const w = `${Math.max(0, Math.min(100, value))}%`;
   return (
-    <div className="mt-3 h-2 overflow-hidden rounded-full bg-raised" role="img" aria-label={label}>
+    <div className="mt-3 h-1 overflow-hidden rounded-full bg-raised" role="img" aria-label={label}>
       <motion.div
         className={`h-full rounded-full ${tone === "accent" ? "bg-accent" : "bg-success"}`}
         initial={reduce ? false : { width: 0 }}
         whileInView={{ width: w }}
         viewport={{ once: true }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         style={reduce ? { width: w } : undefined}
       />
     </div>
@@ -78,8 +78,8 @@ export function CoverageFigure({ coverage, recording }: { coverage: CoverageData
   const b = coverage.branches;
   const measured = humanDate(coverage.measuredAt, new Date(coverage.measuredAt)).text;
   return (
-    <div className="grid gap-4 md:grid-cols-3">
-      <div className="card p-5">
+    <div className="grid gap-8 border-y border-line py-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-line">
+      <div className="md:pr-6">
         <p className="text-sm text-muted">Functions exercised</p>
         <p className="mt-1 text-3xl font-semibold tracking-tight text-fg">
           {f.exercised} <span className="text-lg text-muted">of {f.total}</span>
@@ -87,7 +87,7 @@ export function CoverageFigure({ coverage, recording }: { coverage: CoverageData
         <Meter value={Number(pct(f.exercised, f.total, f.percent))} tone="success" label={`${pct(f.exercised, f.total, f.percent)}% of exported functions exercised`} />
         <p className="mt-2 text-xs text-muted">Exported functions exercised: {f.exercised} / {f.total} ({pct(f.exercised, f.total, f.percent)}%)</p>
       </div>
-      <div className="card p-5">
+      <div className="md:px-6">
         <p className="text-sm text-muted">
           Code <Term tip={BRANCH_TIP}>branches</Term> reached
         </p>
@@ -106,7 +106,7 @@ export function CoverageFigure({ coverage, recording }: { coverage: CoverageData
           <p className="mt-1 text-warn">coverage unavailable for branches</p>
         )}
       </div>
-      <div className="card p-5">
+      <div className="md:pl-6">
         <p className="text-sm text-muted">Recording</p>
         <p className="mt-1 text-xl font-semibold text-fg">
           {recording ? `${recording.stats.total.toLocaleString("en-US")} inputs` : "—"}
@@ -131,22 +131,22 @@ function groupLive(rows: EvidenceRow[], labels: Record<string, string>): Behavio
 function GroupList({ groups, max, showIds }: { groups: BehaviorGroupData[]; max: number; showIds: boolean }) {
   const reduce = useReducedMotion();
   return (
-    <ul className="space-y-2">
+    <ul className="divide-y divide-line border-y border-line">
       {groups.map((g, i) => {
         const w = `${Math.max(2, (g.count / max) * 100)}%`;
         return (
-          <li key={g.classId} className="rounded-xl border border-line bg-canvas/60 px-4 py-3">
+          <li key={g.classId} className="py-3.5">
             <div className="flex items-baseline justify-between gap-3 text-sm">
               <span className={g.polluting ? "font-semibold text-danger" : "text-fg"}>{g.label}</span>
               <span className="shrink-0 tabular-nums text-muted">{g.count.toLocaleString("en-US")} inputs</span>
             </div>
-            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-raised" aria-hidden="true">
+            <div className="mt-2 h-1 overflow-hidden rounded-full bg-raised" aria-hidden="true">
               <motion.div
                 className={`h-full rounded-full ${g.polluting ? "bg-danger" : "bg-link"}`}
                 initial={reduce ? false : { width: 0 }}
                 whileInView={{ width: w }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: Math.min(i, 10) * 0.04 }}
+                transition={{ duration: 1, delay: Math.min(i, 10) * 0.05, ease: [0.16, 1, 0.3, 1] }}
                 style={reduce ? { width: w } : undefined}
               />
             </div>
@@ -220,7 +220,7 @@ export function GhostMemory({
             {data.stats.pollution} with prototype pollution.
           </p>
 
-          <h3 className="mb-3 font-sans text-base font-semibold text-fg">How much of the package was tested</h3>
+          <h3 className="mb-4 text-base font-semibold text-fg">How much of the package was tested</h3>
           {showingLive ? (
             <p className="text-warn">
               {result?.coverageNote ??
@@ -230,8 +230,8 @@ export function GhostMemory({
             <CoverageFigure coverage={coverage} recording={recording} />
           )}
 
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
-            <h3 className="font-sans text-base font-semibold text-fg">
+          <div className="mt-14 flex flex-wrap items-center justify-between gap-3">
+            <h3 className="text-base font-semibold text-fg">
               <Term tip="Inputs that look alike (same kind of input, same outcome) are grouped, so you can read a few groups instead of a thousand rows.">
                 Behavior groups
               </Term>
@@ -245,7 +245,7 @@ export function GhostMemory({
           <div className="mt-3">
             <GroupList groups={top} max={max} showIds={showIds} />
             {rest.length > 0 && (
-              <Collapsible className="mt-3" summary={`Show the other ${rest.length} groups`}>
+              <Collapsible summary={`Show the other ${rest.length} groups`}>
                 <GroupList groups={rest} max={max} showIds={showIds} />
               </Collapsible>
             )}

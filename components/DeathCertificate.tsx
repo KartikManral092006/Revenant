@@ -1,6 +1,5 @@
 "use client";
 
-import { Stethoscope } from "lucide-react";
 import { useState } from "react";
 import { compactCount, humanDate } from "./format";
 import { RunLivePanel } from "./ui/RunLivePanel";
@@ -181,12 +180,9 @@ export function DeathCertificate({ name, initial, nowIso }: { name: string; init
 
   return (
     <div>
-      <div className="relative overflow-hidden rounded-xl border border-line bg-surface p-6 sm:p-8" aria-live="polite">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-6 -top-6 text-line">
-          <Stethoscope className="h-40 w-40 opacity-30" />
-        </div>
-        <p className="relative mb-4 text-lg font-semibold text-fg">Certificate of Death · {name}</p>
-        <div className="relative">
+      <div aria-live="polite">
+        <p className="mb-2 text-base font-semibold text-fg">Certificate of Death · {name}</p>
+        <div>
           {cert ? (
             <DeathCertificateView cert={cert} now={now} />
           ) : (

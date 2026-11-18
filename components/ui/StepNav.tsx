@@ -68,8 +68,8 @@ export function StepNav({ items }: { items: StepNavItem[] }) {
   }, [current, reduce]);
 
   return (
-    <nav aria-label="Steps" className="sticky top-0 z-20 -mx-4 mt-10 border-b border-line bg-canvas/85 px-4 py-3 backdrop-blur-md sm:-mx-6 sm:px-6">
-      <ol ref={listRef} className="flex gap-2 overflow-x-auto [scrollbar-width:none]">
+    <nav aria-label="Steps" className="sticky top-0 z-20 -mx-4 border-b border-line bg-canvas/80 px-4 backdrop-blur-xl sm:-mx-6 sm:px-6">
+      <ol ref={listRef} className="flex gap-6 overflow-x-auto [scrollbar-width:none] sm:gap-8">
         {items.map((item) => {
           const active = item.slug === current;
           return (
@@ -78,31 +78,24 @@ export function StepNav({ items }: { items: StepNavItem[] }) {
                 href={`#${item.slug}`}
                 aria-current={active ? "step" : undefined}
                 onClick={() => setCurrent(item.slug)}
-                className={`relative flex min-h-[36px] items-center gap-2 rounded-full border px-3 py-1.5 text-sm no-underline transition-colors ${
-                  active ? "border-accent text-fg" : "border-line text-muted hover:text-fg"
+                className={`relative flex min-h-[52px] items-center gap-2 text-sm no-underline transition-colors duration-300 ${
+                  active ? "text-fg" : "text-muted hover:text-fg"
                 }`}
               >
+                <span aria-hidden="true" className={`font-mono text-xs ${active ? "text-accent" : "text-muted"}`}>
+                  0{item.n}
+                </span>
+                {item.label}
+                <StateIcon state={item.state} />
+                <span className="sr-only">({STATE_TEXT[item.state]})</span>
                 {active && (
                   <motion.span
-                    layoutId="step-highlight"
+                    layoutId="step-underline"
                     aria-hidden="true"
-                    className="absolute inset-0 rounded-full bg-surface"
-                    transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}
+                    className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-accent"
+                    transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 36 }}
                   />
                 )}
-                <span className="relative flex items-center gap-2">
-                  <span
-                    aria-hidden="true"
-                    className={`flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                      active ? "bg-accent text-canvas" : "bg-raised text-fg"
-                    }`}
-                  >
-                    {item.n}
-                  </span>
-                  {item.label}
-                  <StateIcon state={item.state} />
-                  <span className="sr-only">({STATE_TEXT[item.state]})</span>
-                </span>
               </a>
             </li>
           );

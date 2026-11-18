@@ -62,7 +62,7 @@ export function SpecView({ documents, name }: { documents: Record<string, string
       <pre
         tabIndex={0}
         aria-label={selected}
-        className="max-h-[28rem] overflow-auto whitespace-pre-wrap break-words rounded-xl border border-line bg-canvas p-4 font-mono text-xs leading-relaxed text-fg"
+        className="max-h-[28rem] overflow-auto whitespace-pre-wrap break-words rounded-lg border border-line bg-surface p-4 font-mono text-xs leading-relaxed text-fg"
       >
         {documents[selected]}
       </pre>
@@ -87,12 +87,13 @@ function citation(r: SpecRequirement): string {
 
 export function RequirementList({ requirements }: { requirements: SpecRequirement[] }) {
   return (
-    <ol className="space-y-3">
+    <ol className="divide-y divide-line border-y border-line">
       {requirements.map((r, i) => (
         <Reveal as="li" key={r.id} delay={Math.min(i, 8) * 0.04}>
-          <div className={`rounded-xl border p-4 ${r.unsupported ? "border-warn/50 bg-canvas" : "border-line bg-canvas/60"}`}>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <span className="font-mono text-xs font-semibold text-accent">{r.id}</span>
+          <div className={`grid gap-2 py-5 sm:grid-cols-[5rem_1fr_auto] sm:gap-6 ${r.unsupported ? "border-l-2 border-warn pl-4" : ""}`}>
+            <span className="font-mono text-sm text-accent">{r.id}</span>
+            <p className="text-sm leading-relaxed text-fg sm:order-none">{r.statement}</p>
+            <div className="sm:whitespace-nowrap sm:text-right">
               {r.unsupported ? (
                 <span className="inline-flex items-center gap-1 text-xs font-semibold text-warn">
                   <AlertTriangle aria-hidden="true" className="h-3.5 w-3.5" /> {UNSUPPORTED_LABEL}
@@ -103,7 +104,6 @@ export function RequirementList({ requirements }: { requirements: SpecRequiremen
                 </span>
               )}
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-fg">{r.statement}</p>
           </div>
         </Reveal>
       ))}
@@ -161,7 +161,7 @@ export function ReverseSpec({ name, bundle }: { name: string; bundle: SpecBundle
               Download Kiro spec bundle
             </a>
           </div>
-          <h3 className="mb-3 font-sans text-base font-semibold text-fg">The requirements</h3>
+          <h3 className="mb-4 mt-10 text-base font-semibold text-fg">The requirements</h3>
           <RequirementList requirements={data.requirements} />
           {data.citationIssues.length > 0 && (
             <ul className="mt-4 space-y-1 text-sm text-warn" aria-label="Citation issues">
@@ -172,7 +172,7 @@ export function ReverseSpec({ name, bundle }: { name: string; bundle: SpecBundle
               ))}
             </ul>
           )}
-          <Collapsible className="mt-6" summary="Read the spec files" meta={`${Object.keys(data.documents).length} files`}>
+          <Collapsible summary="Read the spec files" meta={`${Object.keys(data.documents).length} files`}>
             <SpecView documents={data.documents} name={name} />
           </Collapsible>
         </>

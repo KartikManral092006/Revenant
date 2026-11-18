@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ScrollProgress } from "../components/motion/ScrollProgress";
+import { SmoothScroll } from "../components/motion/SmoothScroll";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 import { REPO_URL } from "./_lib/package-copy";
 import "./globals.css";
@@ -27,6 +29,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to content
         </a>
+        <SmoothScroll />
+        <ScrollProgress />
         <SiteHeader repoUrl={REPO_URL} />
         {children}
         <SiteFooter repoUrl={REPO_URL} />

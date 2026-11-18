@@ -26,13 +26,13 @@ const TERMS = [
 
 export function Glossary() {
   return (
-    <section id="glossary" aria-labelledby="glossary-heading" className="scroll-mt-28 py-12">
+    <section id="glossary" aria-labelledby="glossary-heading" className="scroll-mt-24 border-t border-line py-20">
       <h2 id="glossary-heading" className="flex items-center gap-2 text-xl font-semibold text-fg">
         <BookOpen aria-hidden="true" className="h-5 w-5 text-accent" /> Glossary
       </h2>
-      <dl className="mt-6 grid gap-4 sm:grid-cols-2">
+      <dl className="mt-8 grid gap-x-16 sm:grid-cols-2">
         {TERMS.map((t) => (
-          <div key={t.term} className="card p-5">
+          <div key={t.term} className="border-t border-line py-5">
             <dt className="font-semibold text-fg">{t.term}</dt>
             <dd className="mt-1 text-sm leading-relaxed text-muted">{t.text}</dd>
           </div>
