@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Resurrect lodash.set",
+      "trigger": "PostFileSave",
+      "matcher": "resurrected/lodash\\.set/",
+      "action": {
+        "type": "command",
+        "command": "npm run resurrect -- lodash.set"
+      }
+    }
+  ]
+}

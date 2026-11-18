@@ -1,5 +1,5 @@
 /** npm downloads client: weekly downloads. */
-import { fetchJson, type HttpResult } from './http';
+import { fetchJson, type HttpResult } from './http.js';
 
 const BASE = 'https://api.npmjs.org/downloads/point/last-week/';
 

@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-17T18:14:08.723Z",
+  "package": "lodash.pick",
+  "model": "openai/gpt-oss-120b",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "statement": "When property paths are expressed using dot notation, lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).",
+      "classIds": [
+        "lodash.pick:default:class:dot|array|returned",
+        "lodash.pick:default:class:dot|null-or-undefined|returned",
+        "lodash.pick:default:class:dot|plain-object|returned",
+        "lodash.pick:default:class:dot|primitive|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.pick:default:class:dot|array|returned",
+          "evidenceIds": [
+            "lodash.pick:default:07784fd83d52",
+            "lodash.pick:default:0cb8200a11be",
+            "lodash.pick:default:0eb9d504d5d4"
+          ],
+          "memberCount": 39
+        },
+        {
+          "classId": "lodash.pick:default:class:dot|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.pick:default:10d2a37f52c3",
+            "lodash.pick:default:1ad98cfc6e0e",
+            "lodash.pick:default:1dfaff06d812"
+          ],
+          "memberCount": 30
+        },
+        {
+          "classId": "lodash.pick:default:class:dot|plain-object|returned",
+          "evidenceIds": [
+            "lodash.pick:default:004d1fe13edf",
+            "lodash.pick:default:017c3219b806",
+            "lodash.pick:default:019bd406f57d"
+          ],
+          "memberCount": 299
+        },
+        {
+          "classId": "lodash.pick:default:class:dot|primitive|returned",
+          "evidenceIds": [
+            "lodash.pick:default:04d77f9c35a7",
+            "lodash.pick:default:091e85a588b7",
+            "lodash.pick:default:0d2c34e21e75"
+          ],
+          "memberCount": 17
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-2",
+      "statement": "When property paths are expressed using bracket-index notation, lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).",
+      "classIds": [
+        "lodash.pick:default:class:bracket-index|array|returned",
+        "lodash.pick:default:class:bracket-index|null-or-undefined|returned",
+        "lodash.pick:default:class:bracket-index|plain-object|returned",
+        "lodash.pick:default:class:bracket-index|primitive|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.pick:default:class:bracket-index|array|returned",
+          "evidenceIds": [
+            "lodash.pick:default:28e74a4bb835",
+            "lodash.pick:default:2f2bf98026ac",
+            "lodash.pick:default:3815281833ea"
+          ],
+          "memberCount": 9
+        },
+        {
+          "classId": "lodash.pick:default:class:bracket-index|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.pick:default:361a8e402617",
+            "lodash.pick:default:8c765ec70a1c",
+            "lodash.pick:default:bf3520959268"
+          ],
+          "memberCount": 4
+        },
+        {
+          "classId": "lodash.pick:default:class:bracket-index|plain-object|returned",
+          "evidenceIds": [
+            "lodash.pick:default:01b9aa0f633b",
+            "lodash.pick:default:040b63fa5b78",
+            "lodash.pick:default:068818360e4a"
+          ],
+          "memberCount": 67
+        },
+        {
+          "classId": "lodash.pick:default:class:bracket-index|primitive|returned",
+          "evidenceIds": [
+            "lodash.pick:default:6040b83a3189",
+            "lodash.pick:default:60d7043550f4",
+            "lodash.pick:default:aa52229814ea"
+          ],
+          "memberCount": 5
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-3",
+      "statement": "When property paths are empty (no paths provided), lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).",
+      "classIds": [
+        "lodash.pick:default:class:empty|array|returned",
+        "lodash.pick:default:class:empty|null-or-undefined|returned",
+        "lodash.pick:default:class:empty|plain-object|returned",
+        "lodash.pick:default:class:empty|primitive|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.pick:default:class:empty|array|returned",
+          "evidenceIds": [
+            "lodash.pick:default:29dcc45e34c8",
+            "lodash.pick:default:3bb0807ada97",
+            "lodash.pick:default:52a1ce3be80f"
+          ],
+          "memberCount": 15
+        },
+        {
+          "classId": "lodash.pick:default:class:empty|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.pick:default:ab799ef3ef3e"
+          ],
+          "memberCount": 1
+        },
+        {
+          "classId": "lodash.pick:default:class:empty|plain-object|returned",
+          "evidenceIds": [
+            "lodash.pick:default:04ad940af90d",
+            "lodash.pick:default:0dde2f833e96",
+            "lodash.pick:default:1ac250053d36"
+          ],
+          "memberCount": 72
+        },
+        {
+          "classId": "lodash.pick:default:class:empty|primitive|returned",
+          "evidenceIds": [
+            "lodash.pick:default:1b711c794e69",
+            "lodash.pick:default:95e186dd7a87",
+            "lodash.pick:default:ca1282538b10"
+          ],
+          "memberCount": 5
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-4",
+      "statement": "When property paths are mixed (combination of dot and bracket notation), lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).",
+      "classIds": [
+        "lodash.pick:default:class:mixed|array|returned",
+        "lodash.pick:default:class:mixed|null-or-undefined|returned",
+        "lodash.pick:default:class:mixed|plain-object|returned",
+        "lodash.pick:default:class:mixed|primitive|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.pick:default:class:mixed|array|returned",
+          "evidenceIds": [
+            "lodash.pick:default:09983f26589d",
+            "lodash.pick:default:0c2e199f12af",
+            "lodash.pick:default:11d05f922cf3"
+          ],
+          "memberCount": 24
+        },
+        {
+          "classId": "lodash.pick:default:class:mixed|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.pick:default:0dc8186550fc",
+            "lodash.pick:default:363e6670f71b",
+            "lodash.pick:default:39b2978a23ba"
+          ],
+          "memberCount": 16
+        },
+        {
+          "classId": "lodash.pick:default:class:mixed|plain-object|returned",
+          "evidenceIds": [
+            "lodash.pick:default:00291fed4ada",
+            "lodash.pick:default:011bdeebb17c",
+            "lodash.pick:default:029589dca197"
+          ],
+          "memberCount": 233
+        },
+        {
+          "classId": "lodash.pick:default:class:mixed|primitive|returned",
+          "evidenceIds": [
+            "lodash.pick:default:0055a02bc1f7",
+            "lodash.pick:default:1cbfe1c11c0d",
+            "lodash.pick:default:28603f89bcb7"
+          ],
+          "memberCount": 12
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-5",
+      "statement": "When property paths traverse prototype properties (proto-path), lodash.pick returns a result for any target type (array, plain object, primitive).",
+      "classIds": [
+        "lodash.pick:default:class:proto-path|array|returned",
+        "lodash.pick:default:class:proto-path|plain-object|returned",
+        "lodash.pick:default:class:proto-path|primitive|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.pick:default:class:proto-path|array|returned",
+          "evidenceIds": [
+            "lodash.pick:default:1a0cafe90b45",
+            "lodash.pick:default:1ede4e57c29c",
+            "lodash.pick:default:44fa9273eec4"
+          ],
+          "memberCount": 10
+        },
+        {
+          "classId": "lodash.pick:default:class:proto-path|plain-object|returned",
+          "evidenceIds": [
+            "lodash.pick:default:0557b080dadb",
+            "lodash.pick:default:0579d5b9e790",
+            "lodash.pick:default:083c23ef9481"
+          ],
+          "memberCount": 88
+        },
+        {
+          "classId": "lodash.pick:default:class:proto-path|primitive|returned",
+          "evidenceIds": [
+            "lodash.pick:default:12b48581af4b",
+            "lodash.pick:default:303c2ced0246",
+            "lodash.pick:default:3836ff0234bd"
+          ],
+          "memberCount": 12
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    }
+  ],
+  "documents": {
+    "requirements.md": "# Requirements: lodash.pick\n\nTraceability: 5 / 5 requirements cite evidence\n\n## REQ-1\n\nWhen property paths are expressed using dot notation, lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n\nEvidence:\n- class `lodash.pick:default:class:dot|array|returned` (39 recorded inputs): lodash.pick:default:07784fd83d52, lodash.pick:default:0cb8200a11be, lodash.pick:default:0eb9d504d5d4\n- class `lodash.pick:default:class:dot|null-or-undefined|returned` (30 recorded inputs): lodash.pick:default:10d2a37f52c3, lodash.pick:default:1ad98cfc6e0e, lodash.pick:default:1dfaff06d812\n- class `lodash.pick:default:class:dot|plain-object|returned` (299 recorded inputs): lodash.pick:default:004d1fe13edf, lodash.pick:default:017c3219b806, lodash.pick:default:019bd406f57d\n- class `lodash.pick:default:class:dot|primitive|returned` (17 recorded inputs): lodash.pick:default:04d77f9c35a7, lodash.pick:default:091e85a588b7, lodash.pick:default:0d2c34e21e75\n\n## REQ-2\n\nWhen property paths are expressed using bracket-index notation, lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n\nEvidence:\n- class `lodash.pick:default:class:bracket-index|array|returned` (9 recorded inputs): lodash.pick:default:28e74a4bb835, lodash.pick:default:2f2bf98026ac, lodash.pick:default:3815281833ea\n- class `lodash.pick:default:class:bracket-index|null-or-undefined|returned` (4 recorded inputs): lodash.pick:default:361a8e402617, lodash.pick:default:8c765ec70a1c, lodash.pick:default:bf3520959268\n- class `lodash.pick:default:class:bracket-index|plain-object|returned` (67 recorded inputs): lodash.pick:default:01b9aa0f633b, lodash.pick:default:040b63fa5b78, lodash.pick:default:068818360e4a\n- class `lodash.pick:default:class:bracket-index|primitive|returned` (5 recorded inputs): lodash.pick:default:6040b83a3189, lodash.pick:default:60d7043550f4, lodash.pick:default:aa52229814ea\n\n## REQ-3\n\nWhen property paths are empty (no paths provided), lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n\nEvidence:\n- class `lodash.pick:default:class:empty|array|returned` (15 recorded inputs): lodash.pick:default:29dcc45e34c8, lodash.pick:default:3bb0807ada97, lodash.pick:default:52a1ce3be80f\n- class `lodash.pick:default:class:empty|null-or-undefined|returned` (1 recorded inputs): lodash.pick:default:ab799ef3ef3e\n- class `lodash.pick:default:class:empty|plain-object|returned` (72 recorded inputs): lodash.pick:default:04ad940af90d, lodash.pick:default:0dde2f833e96, lodash.pick:default:1ac250053d36\n- class `lodash.pick:default:class:empty|primitive|returned` (5 recorded inputs): lodash.pick:default:1b711c794e69, lodash.pick:default:95e186dd7a87, lodash.pick:default:ca1282538b10\n\n## REQ-4\n\nWhen property paths are mixed (combination of dot and bracket notation), lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n\nEvidence:\n- class `lodash.pick:default:class:mixed|array|returned` (24 recorded inputs): lodash.pick:default:09983f26589d, lodash.pick:default:0c2e199f12af, lodash.pick:default:11d05f922cf3\n- class `lodash.pick:default:class:mixed|null-or-undefined|returned` (16 recorded inputs): lodash.pick:default:0dc8186550fc, lodash.pick:default:363e6670f71b, lodash.pick:default:39b2978a23ba\n- class `lodash.pick:default:class:mixed|plain-object|returned` (233 recorded inputs): lodash.pick:default:00291fed4ada, lodash.pick:default:011bdeebb17c, lodash.pick:default:029589dca197\n- class `lodash.pick:default:class:mixed|primitive|returned` (12 recorded inputs): lodash.pick:default:0055a02bc1f7, lodash.pick:default:1cbfe1c11c0d, lodash.pick:default:28603f89bcb7\n\n## REQ-5\n\nWhen property paths traverse prototype properties (proto-path), lodash.pick returns a result for any target type (array, plain object, primitive).\n\nEvidence:\n- class `lodash.pick:default:class:proto-path|array|returned` (10 recorded inputs): lodash.pick:default:1a0cafe90b45, lodash.pick:default:1ede4e57c29c, lodash.pick:default:44fa9273eec4\n- class `lodash.pick:default:class:proto-path|plain-object|returned` (88 recorded inputs): lodash.pick:default:0557b080dadb, lodash.pick:default:0579d5b9e790, lodash.pick:default:083c23ef9481\n- class `lodash.pick:default:class:proto-path|primitive|returned` (12 recorded inputs): lodash.pick:default:12b48581af4b, lodash.pick:default:303c2ced0246, lodash.pick:default:3836ff0234bd\n",
+    "design.md": "# Design: lodash.pick\n\nThis design follows the recorded behavior of `lodash.pick`. 5 / 5 requirements cite evidence.\n\n## Behaviors to implement\n\n### REQ-1\n\nWhen property paths are expressed using dot notation, lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n\nBehavior classes: `lodash.pick:default:class:dot|array|returned`, `lodash.pick:default:class:dot|null-or-undefined|returned`, `lodash.pick:default:class:dot|plain-object|returned`, `lodash.pick:default:class:dot|primitive|returned`\n\n### REQ-2\n\nWhen property paths are expressed using bracket-index notation, lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n\nBehavior classes: `lodash.pick:default:class:bracket-index|array|returned`, `lodash.pick:default:class:bracket-index|null-or-undefined|returned`, `lodash.pick:default:class:bracket-index|plain-object|returned`, `lodash.pick:default:class:bracket-index|primitive|returned`\n\n### REQ-3\n\nWhen property paths are empty (no paths provided), lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n\nBehavior classes: `lodash.pick:default:class:empty|array|returned`, `lodash.pick:default:class:empty|null-or-undefined|returned`, `lodash.pick:default:class:empty|plain-object|returned`, `lodash.pick:default:class:empty|primitive|returned`\n\n### REQ-4\n\nWhen property paths are mixed (combination of dot and bracket notation), lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n\nBehavior classes: `lodash.pick:default:class:mixed|array|returned`, `lodash.pick:default:class:mixed|null-or-undefined|returned`, `lodash.pick:default:class:mixed|plain-object|returned`, `lodash.pick:default:class:mixed|primitive|returned`\n\n### REQ-5\n\nWhen property paths traverse prototype properties (proto-path), lodash.pick returns a result for any target type (array, plain object, primitive).\n\nBehavior classes: `lodash.pick:default:class:proto-path|array|returned`, `lodash.pick:default:class:proto-path|plain-object|returned`, `lodash.pick:default:class:proto-path|primitive|returned`\n\n## Approach\n\nImplement each behavior as a small function. Compare the rebuild with the recorded Evidence IDs listed in requirements.md.\n",
+    "tasks.md": "# Tasks: lodash.pick\n\n- [ ] 1. Set up the project and test harness\n- [ ] 2. Implement REQ-1: When property paths are expressed using dot notation, lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n  - Evidence classes: `lodash.pick:default:class:dot|array|returned`, `lodash.pick:default:class:dot|null-or-undefined|returned`, `lodash.pick:default:class:dot|plain-object|returned`, `lodash.pick:default:class:dot|primitive|returned`\n- [ ] 3. Implement REQ-2: When property paths are expressed using bracket-index notation, lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n  - Evidence classes: `lodash.pick:default:class:bracket-index|array|returned`, `lodash.pick:default:class:bracket-index|null-or-undefined|returned`, `lodash.pick:default:class:bracket-index|plain-object|returned`, `lodash.pick:default:class:bracket-index|primitive|returned`\n- [ ] 4. Implement REQ-3: When property paths are empty (no paths provided), lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n  - Evidence classes: `lodash.pick:default:class:empty|array|returned`, `lodash.pick:default:class:empty|null-or-undefined|returned`, `lodash.pick:default:class:empty|plain-object|returned`, `lodash.pick:default:class:empty|primitive|returned`\n- [ ] 5. Implement REQ-4: When property paths are mixed (combination of dot and bracket notation), lodash.pick returns a result for any target type (array, plain object, primitive, null or undefined).\n  - Evidence classes: `lodash.pick:default:class:mixed|array|returned`, `lodash.pick:default:class:mixed|null-or-undefined|returned`, `lodash.pick:default:class:mixed|plain-object|returned`, `lodash.pick:default:class:mixed|primitive|returned`\n- [ ] 6. Implement REQ-5: When property paths traverse prototype properties (proto-path), lodash.pick returns a result for any target type (array, plain object, primitive).\n  - Evidence classes: `lodash.pick:default:class:proto-path|array|returned`, `lodash.pick:default:class:proto-path|plain-object|returned`, `lodash.pick:default:class:proto-path|primitive|returned`\n- [ ] 7. Run the recorded inputs against the rebuild and compare outcomes\n",
+    "steering/product.md": "# Product: lodash.pick\n\nRebuild `lodash.pick` so that it matches its recorded behavior. 5 requirements were derived from recorded Evidence. 5 / 5 requirements cite evidence.\n",
+    "steering/tech.md": "# Tech: lodash.pick\n\n- TypeScript or JavaScript on Node.js\n- No runtime dependencies unless a requirement needs one\n- Test with recorded inputs and compare outcomes\n",
+    "steering/structure.md": "# Structure: lodash.pick\n\n- `requirements.md` lists behaviors with cited Evidence IDs\n- `design.md` and `tasks.md` follow the same requirement IDs\n- Requirements marked unsupported have no resolving Evidence and need review\n"
+  },
+  "traceability": {
+    "x": 5,
+    "y": 5,
+    "text": "5 / 5 requirements cite evidence"
+  },
+  "citationIssues": []
+}

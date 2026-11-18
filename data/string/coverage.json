@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "package": "string",
+  "version": "3.3.3",
+  "measuredAt": "2026-11-17T17:46:16.111Z",
+  "exportedFunctions": {
+    "exercised": 6,
+    "total": 6,
+    "percent": 100
+  },
+  "branches": {
+    "covered": 52,
+    "total": 114,
+    "percent": 45.614035087719294
+  }
+}

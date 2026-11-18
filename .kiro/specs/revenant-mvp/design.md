@@ -295,13 +295,13 @@ interface SandboxRunner {
 1. `tsc -p tsconfig.node.json` compiles `sandbox/`, `lib/graveyard`, `lib/diff` and `lib/ghost-memory` (and anything they import) into `build/node/`. This must come first because `check-pins.js` is compiled output.
 2. `node build/node/lib/graveyard/check-pins.js` validates the pins.
 3. `npm ci --ignore-scripts --prefix graveyard` installs the Graveyard packages.
-4. `next build`.
+4. `next build --webpack` (Turbopack cannot resolve the NodeNext `.js` specifiers that point at `.ts` files; `next.config.ts` sets `experimental.extensionAlias`, which only webpack honors).
 
 ```json
 {
   "scripts": {
     "build:node": "tsc -p tsconfig.node.json",
-    "build": "npm run build:node && node build/node/lib/graveyard/check-pins.js && npm ci --ignore-scripts --prefix graveyard && next build",
+    "build": "npm run build:node && node build/node/lib/graveyard/check-pins.js && npm ci --ignore-scripts --prefix graveyard && next build --webpack",
     "resurrect": "node build/node/lib/diff/cli.js"
   }
 }
@@ -870,7 +870,7 @@ The network tests must show that the stubs, not the permission model, stop the c
 | 17 | NDJSON streaming not buffered by Render's proxy | verified (2026-11-17, spike on Render): 10 lines arrived one per second (serverElapsedMs 0, 1000, 2002, ... 9008) and the user saw them arrive live, so the proxy does not buffer the stream |
 | 18 | `zlib.crc32` availability on the pinned Node version | verified on Node v22.23.1 (2026-11-17, by the user) |
 | 19 | Hook v1 schema (the original text was "Hook stdin JSON field names for the `--from-hook` flag"; stdin is no longer used) | verified (2026-11-17, by the user): the v1 hook schema was confirmed from Kiro's extension code, not from Node |
-| 20 | `next build` leaves `build/node/` (sandbox and CLI output) untouched | verify |
+| 20 | `next build` leaves `build/node/` (sandbox and CLI output) untouched | verified locally (Next 16.4.6, 2026-11-18): the file list of `build/node/` (51 files) is identical before and after `npm run build`. Turbopack failed with 21 "Module not found" errors on `.js` specifiers; Turbopack has no extensionAlias, so `build` uses `next build --webpack` with `experimental.extensionAlias` `{".js": [".ts", ".tsx", ".js"]}`. `next start` served `/package/lodash.set` (200), an unknown package page and API route (404), and `/api/autopsy/lodash.set` (200). Not yet checked on Render |
 | 21 | ESLint is available as a dev tool in the project template | verify |
 | 22 | OSV shape for "vulnerabilities removed" basis, and how `lodash.pick` shows the pollution issue | verify |
 | 23 | WCAG contrast of the final palette with an independent checker | verify |

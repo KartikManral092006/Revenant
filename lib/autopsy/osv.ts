@@ -2,7 +2,7 @@
  * OSV client. Lists vulnerabilities that affect one exact package version.
  * Never throws: failures become an `unknown` field with a reason.
  */
-import { fetchJson, known, unknownField, type Field } from './http';
+import { fetchJson, known, unknownField, type Field } from './http.js';
 
 export const OSV_QUERY_URL = 'https://api.osv.dev/v1/query';
 

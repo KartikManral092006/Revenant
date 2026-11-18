@@ -5,6 +5,7 @@ import { spawn, type ChildProcess } from 'node:child_process';
 import path from 'node:path';
 import type {
   ChildMsg,
+  CallStyle,
   Limits,
   Outcome,
   ParentMsg,
@@ -31,6 +32,8 @@ export interface RunBatchOptions {
   /** Absolute, validated by the lib/graveyard allowlist. */
   packageDir: string;
   exportName: string;
+  /** Manifest `callStyle`; forwarded to the child in the init message. */
+  callStyle?: CallStyle;
   /** Serialized argument lists. */
   inputs: AsyncIterable<Tagged[]>;
   limits: Limits;
@@ -209,7 +212,7 @@ export async function runBatch(opts: RunBatchOptions): Promise<RunBatchResult> {
     if (spawned > 0) respawns++;
     spawned++;
     const proc = spawn(process.execPath, args, {
-      env: {},
+      env: {} as NodeJS.ProcessEnv,
       stdio: ['ignore', 'ignore', 'ignore', 'ipc'],
       cwd: repoRoot,
     });
@@ -219,6 +222,7 @@ export async function runBatch(opts: RunBatchOptions): Promise<RunBatchResult> {
       type: 'init',
       packageDir: opts.packageDir,
       exportName: opts.exportName,
+      ...(opts.callStyle ? { callStyle: opts.callStyle } : {}),
       limits,
     };
     if (!handle.send(init)) {

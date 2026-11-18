@@ -46,8 +46,14 @@ export type Outcome =
   | { kind: 'output-too-large'; bytes: number };
 // 'timeout' is produced by the parent: a hung child cannot report itself.
 
+/**
+ * How an export is called. `function` (default): `mod[exportName](...args)`.
+ * `receiver-wrapper`: `mod(args[0])[exportName](...args.slice(1))`, for factories such as `string`.
+ */
+export type CallStyle = 'function' | 'receiver-wrapper';
+
 export type ParentMsg =
-  | { type: 'init'; packageDir: string; exportName: string; limits: Limits }
+  | { type: 'init'; packageDir: string; exportName: string; limits: Limits; callStyle?: CallStyle }
   | { type: 'call'; callId: number; args: Tagged[] }
   | { type: 'shutdown' };
 

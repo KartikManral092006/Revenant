@@ -1,0 +1,41 @@
+{
+  "package": "lodash.set",
+  "version": "4.3.2",
+  "fetchedAt": "2026-11-17T17:06:55.245Z",
+  "source": "snapshot",
+  "lastPublish": {
+    "value": "2016-08-13T17:44:16.595Z"
+  },
+  "inactive": {
+    "value": true
+  },
+  "deprecation": {
+    "value": null
+  },
+  "vulnerabilities": {
+    "value": [
+      {
+        "id": "GHSA-p6mc-m468-83gw",
+        "aliases": [
+          "CVE-2020-8203"
+        ],
+        "summary": "Prototype Pollution in lodash"
+      }
+    ]
+  },
+  "weeklyDownloads": {
+    "value": 2034648
+  },
+  "repo": {
+    "value": {
+      "archived": false,
+      "pushedAt": "2026-10-01T23:04:09Z"
+    },
+    "note": "source repo is the lodash monorepo"
+  },
+  "license": {
+    "value": "MIT"
+  },
+  "generatedAt": "2026-11-17T17:06:55.245Z",
+  "schemaVersion": 1
+}

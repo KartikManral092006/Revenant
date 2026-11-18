@@ -95,7 +95,7 @@ function encodeWith(value: unknown, repeated: Set<object>, collecting: boolean):
       case 'symbol':
         return { $t: 'other', kind: typeof v };
       case 'function': {
-        const f = v as Function;
+        const f = v as { length?: unknown };
         return {
           $t: 'fn',
           name: safeString(readProp(f, 'name'), ''),

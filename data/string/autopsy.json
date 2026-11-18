@@ -1,0 +1,40 @@
+{
+  "package": "string",
+  "version": "3.3.3",
+  "fetchedAt": "2026-11-17T17:06:56.532Z",
+  "source": "snapshot",
+  "lastPublish": {
+    "value": "2016-10-11T06:12:13.668Z"
+  },
+  "inactive": {
+    "value": true
+  },
+  "deprecation": {
+    "value": null
+  },
+  "vulnerabilities": {
+    "value": [
+      {
+        "id": "GHSA-g36h-6r4f-3mqp",
+        "aliases": [
+          "CVE-2017-16116"
+        ],
+        "summary": "Regular Expression Denial of Service in string package"
+      }
+    ]
+  },
+  "weeklyDownloads": {
+    "value": 80321
+  },
+  "repo": {
+    "value": {
+      "archived": true,
+      "pushedAt": "2021-06-04T01:49:13Z"
+    }
+  },
+  "license": {
+    "value": "MIT"
+  },
+  "generatedAt": "2026-11-17T17:06:56.532Z",
+  "schemaVersion": 1
+}

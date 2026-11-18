@@ -18,7 +18,11 @@
     "sandbox/**/*.ts",
     "lib/graveyard/**/*.ts",
     "lib/diff/**/*.ts",
-    "lib/ghost-memory/**/*.ts"
+    "lib/ghost-memory/**/*.ts",
+    "lib/autopsy/**/*.ts",
+    "lib/reverse-spec/**/*.ts",
+    "lib/report/**/*.ts",
+    "scripts/**/*.ts"
   ],
   "exclude": ["node_modules", "build", "graveyard/node_modules", "**/*.test.ts"]
 }

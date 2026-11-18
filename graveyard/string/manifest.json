@@ -1,6 +1,7 @@
 {
   "name": "string",
   "version": "3.3.3",
+  "callStyle": "receiver-wrapper",
   "exportsUnderTest": [
     {
       "name": "camelize",

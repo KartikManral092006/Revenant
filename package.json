@@ -8,9 +8,12 @@
   "scripts": {
     "dev": "next dev",
     "build:node": "tsc -p tsconfig.node.json",
-    "build": "npm run build:node && node build/node/lib/graveyard/check-pins.js && npm ci --ignore-scripts --prefix graveyard && next build",
+    "build": "npm run build:node && node build/node/lib/graveyard/check-pins.js && npm ci --ignore-scripts --prefix graveyard && next build --webpack",
     "start": "next start",
     "lint": "eslint .",
+    "autopsy:snapshots": "npm run build:node && node --env-file-if-exists=.env.local build/node/scripts/write-autopsy-snapshots.js",
+    "reverse-spec:bundles": "npm run build:node && node --env-file-if-exists=.env.local build/node/scripts/write-reverse-spec-bundles.js",
+    "record:ghost-memory": "npm run build:node && node build/node/scripts/record-ghost-memory.js",
     "resurrect": "node build/node/lib/diff/cli.js",
     "test": "vitest --run"
   },

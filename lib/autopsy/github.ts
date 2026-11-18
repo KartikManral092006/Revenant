@@ -7,7 +7,7 @@
  * is served and labelled with its timestamp; without one the fields are unknown.
  */
 
-import { fetchJson, known, unknownField, type Field } from './http';
+import { fetchJson, known, unknownField, type Field } from './http.js';
 
 export const GITHUB_API_BASE = 'https://api.github.com/repos';
 /** Proposed 1 hour, to stay under 60 unauthenticated requests per hour per IP. */

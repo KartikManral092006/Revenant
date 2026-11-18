@@ -25,6 +25,8 @@ export interface Manifest {
   name: string;
   version: string;
   monorepo?: boolean;
+  /** How exports are called in the sandbox. Default `function`; `receiver-wrapper` for factories like `string`. */
+  callStyle?: 'function' | 'receiver-wrapper';
   exportsUnderTest: { name: string; arity: number }[];
   generator: {
     argSpecs: { kind: ArgKind }[];
@@ -100,6 +102,10 @@ export function validateManifest(input: unknown): ManifestValidation {
 
   if (input.monorepo !== undefined && typeof input.monorepo !== 'boolean') {
     errors.push('monorepo must be a boolean when present');
+  }
+
+  if (input.callStyle !== undefined && input.callStyle !== 'function' && input.callStyle !== 'receiver-wrapper') {
+    errors.push('callStyle must be "function" or "receiver-wrapper" when present');
   }
 
   // exportsUnderTest

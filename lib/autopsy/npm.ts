@@ -1,5 +1,5 @@
 /** npm registry client: last publish, deprecation, license, repository URL. */
-import { fetchJson, known, unknownField, type Field, type HttpResult } from './http';
+import { fetchJson, known, unknownField, type Field, type HttpResult } from './http.js';
 
 export interface NpmInfo {
   lastPublish: Field<string>;

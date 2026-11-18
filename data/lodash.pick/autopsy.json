@@ -1,0 +1,41 @@
+{
+  "package": "lodash.pick",
+  "version": "4.4.0",
+  "fetchedAt": "2026-11-17T17:06:53.930Z",
+  "source": "snapshot",
+  "lastPublish": {
+    "value": "2016-08-13T17:43:20.352Z"
+  },
+  "inactive": {
+    "value": true
+  },
+  "deprecation": {
+    "value": "This package is deprecated. Use destructuring assignment syntax instead."
+  },
+  "vulnerabilities": {
+    "value": [
+      {
+        "id": "GHSA-p6mc-m468-83gw",
+        "aliases": [
+          "CVE-2020-8203"
+        ],
+        "summary": "Prototype Pollution in lodash"
+      }
+    ]
+  },
+  "weeklyDownloads": {
+    "value": 2214031
+  },
+  "repo": {
+    "value": {
+      "archived": false,
+      "pushedAt": "2026-10-01T23:04:09Z"
+    },
+    "note": "source repo is the lodash monorepo"
+  },
+  "license": {
+    "value": "MIT"
+  },
+  "generatedAt": "2026-11-17T17:06:53.930Z",
+  "schemaVersion": 1
+}

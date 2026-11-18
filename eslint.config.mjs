@@ -23,6 +23,11 @@ const eslintConfig = [
     ],
   },
   {
+    // Sandbox fixtures must stay CommonJS (they mimic real npm packages).
+    files: ["tests/fixtures/**/*.js"],
+    rules: { "@typescript-eslint/no-require-imports": "off" },
+  },
+  {
     files: ["app/**/*.{js,jsx,ts,tsx,mjs,cjs}", "lib/**/*.{js,jsx,ts,tsx,mjs,cjs}", "components/**/*.{js,jsx,ts,tsx,mjs,cjs}"],
     rules: {
       "no-restricted-imports": [

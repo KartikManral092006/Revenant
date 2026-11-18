@@ -1,0 +1,450 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-17T18:16:24.820Z",
+  "package": "string",
+  "model": "openai/gpt-oss-120b",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "statement": "The `string.between` function returns a result when the input string consists of ASCII characters, empty string, long strings, symbols, or whitespace.",
+      "classIds": [
+        "string:between:class:ascii|returned",
+        "string:between:class:empty|returned",
+        "string:between:class:long|returned",
+        "string:between:class:symbols|returned",
+        "string:between:class:whitespace|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "string:between:class:ascii|returned",
+          "evidenceIds": [
+            "string:between:0173fb5eab5c",
+            "string:between:02310418ef29",
+            "string:between:06afe34b4b6b"
+          ],
+          "memberCount": 126
+        },
+        {
+          "classId": "string:between:class:empty|returned",
+          "evidenceIds": [
+            "string:between:01a2ba353b4b",
+            "string:between:02a31634c6ab",
+            "string:between:047c9743bbd0"
+          ],
+          "memberCount": 140
+        },
+        {
+          "classId": "string:between:class:long|returned",
+          "evidenceIds": [
+            "string:between:0066731a63ab",
+            "string:between:079aca746ea4",
+            "string:between:07ee7d07ed44"
+          ],
+          "memberCount": 96
+        },
+        {
+          "classId": "string:between:class:symbols|returned",
+          "evidenceIds": [
+            "string:between:010c9d26b0eb",
+            "string:between:0278affdeb33",
+            "string:between:03d7f188b7b6"
+          ],
+          "memberCount": 476
+        },
+        {
+          "classId": "string:between:class:whitespace|returned",
+          "evidenceIds": [
+            "string:between:02d3cc33717b",
+            "string:between:038ece201203",
+            "string:between:04bc5bd54e31"
+          ],
+          "memberCount": 58
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-2",
+      "statement": "The `string.between` function throws a TypeError when the input string consists of ASCII characters, empty string, symbols, or whitespace that are invalid for the operation.",
+      "classIds": [
+        "string:between:class:ascii|threw:TypeError",
+        "string:between:class:empty|threw:TypeError",
+        "string:between:class:symbols|threw:TypeError",
+        "string:between:class:whitespace|threw:TypeError"
+      ],
+      "resolved": [
+        {
+          "classId": "string:between:class:ascii|threw:TypeError",
+          "evidenceIds": [
+            "string:between:141a31082acd",
+            "string:between:3b302006e471",
+            "string:between:7d217f39df67"
+          ],
+          "memberCount": 39
+        },
+        {
+          "classId": "string:between:class:empty|threw:TypeError",
+          "evidenceIds": [
+            "string:between:0406a2cfd487",
+            "string:between:055539df4a0b",
+            "string:between:17344010ecbe"
+          ],
+          "memberCount": 15
+        },
+        {
+          "classId": "string:between:class:symbols|threw:TypeError",
+          "evidenceIds": [
+            "string:between:332c6ea95444",
+            "string:between:5c44b8e7f794",
+            "string:between:5e4a4a96851e"
+          ],
+          "memberCount": 47
+        },
+        {
+          "classId": "string:between:class:whitespace|threw:TypeError",
+          "evidenceIds": [
+            "string:between:4974abd018ab",
+            "string:between:d9fb90e95c51",
+            "string:between:f03a7f76849a"
+          ],
+          "memberCount": 3
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-3",
+      "statement": "The `string.camelize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).",
+      "classIds": [
+        "string:camelize:class:ascii|returned",
+        "string:camelize:class:empty|returned",
+        "string:camelize:class:long|returned",
+        "string:camelize:class:symbols|returned",
+        "string:camelize:class:whitespace|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "string:camelize:class:ascii|returned",
+          "evidenceIds": [
+            "string:camelize:010382a5cad0",
+            "string:camelize:030d0de3c1a7",
+            "string:camelize:040e5a813d7c"
+          ],
+          "memberCount": 165
+        },
+        {
+          "classId": "string:camelize:class:empty|returned",
+          "evidenceIds": [
+            "string:camelize:055539df4a0b"
+          ],
+          "memberCount": 155
+        },
+        {
+          "classId": "string:camelize:class:long|returned",
+          "evidenceIds": [
+            "string:camelize:0040bdc452e4",
+            "string:camelize:00dfffc5c639",
+            "string:camelize:04174dc4b531"
+          ],
+          "memberCount": 96
+        },
+        {
+          "classId": "string:camelize:class:symbols|returned",
+          "evidenceIds": [
+            "string:camelize:0098fa6df51b",
+            "string:camelize:00dcd7e6fb77",
+            "string:camelize:014741ffb30e"
+          ],
+          "memberCount": 523
+        },
+        {
+          "classId": "string:camelize:class:whitespace|returned",
+          "evidenceIds": [
+            "string:camelize:02bef776f771",
+            "string:camelize:074254fad8b9",
+            "string:camelize:0a8986e1a412"
+          ],
+          "memberCount": 61
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-4",
+      "statement": "The `string.dasherize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).",
+      "classIds": [
+        "string:dasherize:class:ascii|returned",
+        "string:dasherize:class:empty|returned",
+        "string:dasherize:class:long|returned",
+        "string:dasherize:class:symbols|returned",
+        "string:dasherize:class:whitespace|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "string:dasherize:class:ascii|returned",
+          "evidenceIds": [
+            "string:dasherize:010382a5cad0",
+            "string:dasherize:030d0de3c1a7",
+            "string:dasherize:040e5a813d7c"
+          ],
+          "memberCount": 165
+        },
+        {
+          "classId": "string:dasherize:class:empty|returned",
+          "evidenceIds": [
+            "string:dasherize:055539df4a0b"
+          ],
+          "memberCount": 155
+        },
+        {
+          "classId": "string:dasherize:class:long|returned",
+          "evidenceIds": [
+            "string:dasherize:0040bdc452e4",
+            "string:dasherize:00dfffc5c639",
+            "string:dasherize:04174dc4b531"
+          ],
+          "memberCount": 96
+        },
+        {
+          "classId": "string:dasherize:class:symbols|returned",
+          "evidenceIds": [
+            "string:dasherize:0098fa6df51b",
+            "string:dasherize:00dcd7e6fb77",
+            "string:dasherize:014741ffb30e"
+          ],
+          "memberCount": 523
+        },
+        {
+          "classId": "string:dasherize:class:whitespace|returned",
+          "evidenceIds": [
+            "string:dasherize:02bef776f771",
+            "string:dasherize:074254fad8b9",
+            "string:dasherize:0a8986e1a412"
+          ],
+          "memberCount": 61
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-5",
+      "statement": "The `string.humanize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).",
+      "classIds": [
+        "string:humanize:class:ascii|returned",
+        "string:humanize:class:empty|returned",
+        "string:humanize:class:long|returned",
+        "string:humanize:class:symbols|returned",
+        "string:humanize:class:whitespace|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "string:humanize:class:ascii|returned",
+          "evidenceIds": [
+            "string:humanize:010382a5cad0",
+            "string:humanize:030d0de3c1a7",
+            "string:humanize:040e5a813d7c"
+          ],
+          "memberCount": 165
+        },
+        {
+          "classId": "string:humanize:class:empty|returned",
+          "evidenceIds": [
+            "string:humanize:055539df4a0b"
+          ],
+          "memberCount": 155
+        },
+        {
+          "classId": "string:humanize:class:long|returned",
+          "evidenceIds": [
+            "string:humanize:0040bdc452e4",
+            "string:humanize:00dfffc5c639",
+            "string:humanize:04174dc4b531"
+          ],
+          "memberCount": 96
+        },
+        {
+          "classId": "string:humanize:class:symbols|returned",
+          "evidenceIds": [
+            "string:humanize:0098fa6df51b",
+            "string:humanize:00dcd7e6fb77",
+            "string:humanize:014741ffb30e"
+          ],
+          "memberCount": 523
+        },
+        {
+          "classId": "string:humanize:class:whitespace|returned",
+          "evidenceIds": [
+            "string:humanize:02bef776f771",
+            "string:humanize:074254fad8b9",
+            "string:humanize:0a8986e1a412"
+          ],
+          "memberCount": 61
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-6",
+      "statement": "The `string.slugify` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).",
+      "classIds": [
+        "string:slugify:class:ascii|returned",
+        "string:slugify:class:empty|returned",
+        "string:slugify:class:long|returned",
+        "string:slugify:class:symbols|returned",
+        "string:slugify:class:whitespace|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "string:slugify:class:ascii|returned",
+          "evidenceIds": [
+            "string:slugify:010382a5cad0",
+            "string:slugify:030d0de3c1a7",
+            "string:slugify:040e5a813d7c"
+          ],
+          "memberCount": 165
+        },
+        {
+          "classId": "string:slugify:class:empty|returned",
+          "evidenceIds": [
+            "string:slugify:055539df4a0b"
+          ],
+          "memberCount": 155
+        },
+        {
+          "classId": "string:slugify:class:long|returned",
+          "evidenceIds": [
+            "string:slugify:0040bdc452e4",
+            "string:slugify:00dfffc5c639",
+            "string:slugify:04174dc4b531"
+          ],
+          "memberCount": 96
+        },
+        {
+          "classId": "string:slugify:class:symbols|returned",
+          "evidenceIds": [
+            "string:slugify:0098fa6df51b",
+            "string:slugify:00dcd7e6fb77",
+            "string:slugify:014741ffb30e"
+          ],
+          "memberCount": 523
+        },
+        {
+          "classId": "string:slugify:class:whitespace|returned",
+          "evidenceIds": [
+            "string:slugify:02bef776f771",
+            "string:slugify:074254fad8b9",
+            "string:slugify:0a8986e1a412"
+          ],
+          "memberCount": 61
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-7",
+      "statement": "The `string.truncate` function returns a string for ASCII, empty, long, symbols, and whitespace inputs.",
+      "classIds": [
+        "string:truncate:class:ascii|returned",
+        "string:truncate:class:empty|returned",
+        "string:truncate:class:long|returned",
+        "string:truncate:class:symbols|returned",
+        "string:truncate:class:whitespace|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "string:truncate:class:ascii|returned",
+          "evidenceIds": [
+            "string:truncate:018afd78b862",
+            "string:truncate:03d192bd9f87",
+            "string:truncate:0a49404c7354"
+          ],
+          "memberCount": 164
+        },
+        {
+          "classId": "string:truncate:class:empty|returned",
+          "evidenceIds": [
+            "string:truncate:012307c85e92",
+            "string:truncate:022d54234822",
+            "string:truncate:030dd4f16278"
+          ],
+          "memberCount": 155
+        },
+        {
+          "classId": "string:truncate:class:long|returned",
+          "evidenceIds": [
+            "string:truncate:01c815898fd9",
+            "string:truncate:0442603a2b6e",
+            "string:truncate:053e028d825e"
+          ],
+          "memberCount": 96
+        },
+        {
+          "classId": "string:truncate:class:symbols|returned",
+          "evidenceIds": [
+            "string:truncate:001b5761ddc6",
+            "string:truncate:005934c80cab",
+            "string:truncate:012500eb2dd7"
+          ],
+          "memberCount": 522
+        },
+        {
+          "classId": "string:truncate:class:whitespace|returned",
+          "evidenceIds": [
+            "string:truncate:01382297e9ff",
+            "string:truncate:02cb5ce3b869",
+            "string:truncate:0646f8f6d188"
+          ],
+          "memberCount": 61
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-8",
+      "statement": "The `string.truncate` function throws a TypeError for a single ASCII input and a single symbols input that are invalid for truncation.",
+      "classIds": [
+        "string:truncate:class:ascii|threw:TypeError",
+        "string:truncate:class:symbols|threw:TypeError"
+      ],
+      "resolved": [
+        {
+          "classId": "string:truncate:class:ascii|threw:TypeError",
+          "evidenceIds": [
+            "string:truncate:6bbf20a1a3d9"
+          ],
+          "memberCount": 1
+        },
+        {
+          "classId": "string:truncate:class:symbols|threw:TypeError",
+          "evidenceIds": [
+            "string:truncate:f6f7b7f504dd"
+          ],
+          "memberCount": 1
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    }
+  ],
+  "documents": {
+    "requirements.md": "# Requirements: string\n\nTraceability: 8 / 8 requirements cite evidence\n\n## REQ-1\n\nThe `string.between` function returns a result when the input string consists of ASCII characters, empty string, long strings, symbols, or whitespace.\n\nEvidence:\n- class `string:between:class:ascii|returned` (126 recorded inputs): string:between:0173fb5eab5c, string:between:02310418ef29, string:between:06afe34b4b6b\n- class `string:between:class:empty|returned` (140 recorded inputs): string:between:01a2ba353b4b, string:between:02a31634c6ab, string:between:047c9743bbd0\n- class `string:between:class:long|returned` (96 recorded inputs): string:between:0066731a63ab, string:between:079aca746ea4, string:between:07ee7d07ed44\n- class `string:between:class:symbols|returned` (476 recorded inputs): string:between:010c9d26b0eb, string:between:0278affdeb33, string:between:03d7f188b7b6\n- class `string:between:class:whitespace|returned` (58 recorded inputs): string:between:02d3cc33717b, string:between:038ece201203, string:between:04bc5bd54e31\n\n## REQ-2\n\nThe `string.between` function throws a TypeError when the input string consists of ASCII characters, empty string, symbols, or whitespace that are invalid for the operation.\n\nEvidence:\n- class `string:between:class:ascii|threw:TypeError` (39 recorded inputs): string:between:141a31082acd, string:between:3b302006e471, string:between:7d217f39df67\n- class `string:between:class:empty|threw:TypeError` (15 recorded inputs): string:between:0406a2cfd487, string:between:055539df4a0b, string:between:17344010ecbe\n- class `string:between:class:symbols|threw:TypeError` (47 recorded inputs): string:between:332c6ea95444, string:between:5c44b8e7f794, string:between:5e4a4a96851e\n- class `string:between:class:whitespace|threw:TypeError` (3 recorded inputs): string:between:4974abd018ab, string:between:d9fb90e95c51, string:between:f03a7f76849a\n\n## REQ-3\n\nThe `string.camelize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n\nEvidence:\n- class `string:camelize:class:ascii|returned` (165 recorded inputs): string:camelize:010382a5cad0, string:camelize:030d0de3c1a7, string:camelize:040e5a813d7c\n- class `string:camelize:class:empty|returned` (155 recorded inputs): string:camelize:055539df4a0b\n- class `string:camelize:class:long|returned` (96 recorded inputs): string:camelize:0040bdc452e4, string:camelize:00dfffc5c639, string:camelize:04174dc4b531\n- class `string:camelize:class:symbols|returned` (523 recorded inputs): string:camelize:0098fa6df51b, string:camelize:00dcd7e6fb77, string:camelize:014741ffb30e\n- class `string:camelize:class:whitespace|returned` (61 recorded inputs): string:camelize:02bef776f771, string:camelize:074254fad8b9, string:camelize:0a8986e1a412\n\n## REQ-4\n\nThe `string.dasherize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n\nEvidence:\n- class `string:dasherize:class:ascii|returned` (165 recorded inputs): string:dasherize:010382a5cad0, string:dasherize:030d0de3c1a7, string:dasherize:040e5a813d7c\n- class `string:dasherize:class:empty|returned` (155 recorded inputs): string:dasherize:055539df4a0b\n- class `string:dasherize:class:long|returned` (96 recorded inputs): string:dasherize:0040bdc452e4, string:dasherize:00dfffc5c639, string:dasherize:04174dc4b531\n- class `string:dasherize:class:symbols|returned` (523 recorded inputs): string:dasherize:0098fa6df51b, string:dasherize:00dcd7e6fb77, string:dasherize:014741ffb30e\n- class `string:dasherize:class:whitespace|returned` (61 recorded inputs): string:dasherize:02bef776f771, string:dasherize:074254fad8b9, string:dasherize:0a8986e1a412\n\n## REQ-5\n\nThe `string.humanize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n\nEvidence:\n- class `string:humanize:class:ascii|returned` (165 recorded inputs): string:humanize:010382a5cad0, string:humanize:030d0de3c1a7, string:humanize:040e5a813d7c\n- class `string:humanize:class:empty|returned` (155 recorded inputs): string:humanize:055539df4a0b\n- class `string:humanize:class:long|returned` (96 recorded inputs): string:humanize:0040bdc452e4, string:humanize:00dfffc5c639, string:humanize:04174dc4b531\n- class `string:humanize:class:symbols|returned` (523 recorded inputs): string:humanize:0098fa6df51b, string:humanize:00dcd7e6fb77, string:humanize:014741ffb30e\n- class `string:humanize:class:whitespace|returned` (61 recorded inputs): string:humanize:02bef776f771, string:humanize:074254fad8b9, string:humanize:0a8986e1a412\n\n## REQ-6\n\nThe `string.slugify` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n\nEvidence:\n- class `string:slugify:class:ascii|returned` (165 recorded inputs): string:slugify:010382a5cad0, string:slugify:030d0de3c1a7, string:slugify:040e5a813d7c\n- class `string:slugify:class:empty|returned` (155 recorded inputs): string:slugify:055539df4a0b\n- class `string:slugify:class:long|returned` (96 recorded inputs): string:slugify:0040bdc452e4, string:slugify:00dfffc5c639, string:slugify:04174dc4b531\n- class `string:slugify:class:symbols|returned` (523 recorded inputs): string:slugify:0098fa6df51b, string:slugify:00dcd7e6fb77, string:slugify:014741ffb30e\n- class `string:slugify:class:whitespace|returned` (61 recorded inputs): string:slugify:02bef776f771, string:slugify:074254fad8b9, string:slugify:0a8986e1a412\n\n## REQ-7\n\nThe `string.truncate` function returns a string for ASCII, empty, long, symbols, and whitespace inputs.\n\nEvidence:\n- class `string:truncate:class:ascii|returned` (164 recorded inputs): string:truncate:018afd78b862, string:truncate:03d192bd9f87, string:truncate:0a49404c7354\n- class `string:truncate:class:empty|returned` (155 recorded inputs): string:truncate:012307c85e92, string:truncate:022d54234822, string:truncate:030dd4f16278\n- class `string:truncate:class:long|returned` (96 recorded inputs): string:truncate:01c815898fd9, string:truncate:0442603a2b6e, string:truncate:053e028d825e\n- class `string:truncate:class:symbols|returned` (522 recorded inputs): string:truncate:001b5761ddc6, string:truncate:005934c80cab, string:truncate:012500eb2dd7\n- class `string:truncate:class:whitespace|returned` (61 recorded inputs): string:truncate:01382297e9ff, string:truncate:02cb5ce3b869, string:truncate:0646f8f6d188\n\n## REQ-8\n\nThe `string.truncate` function throws a TypeError for a single ASCII input and a single symbols input that are invalid for truncation.\n\nEvidence:\n- class `string:truncate:class:ascii|threw:TypeError` (1 recorded inputs): string:truncate:6bbf20a1a3d9\n- class `string:truncate:class:symbols|threw:TypeError` (1 recorded inputs): string:truncate:f6f7b7f504dd\n",
+    "design.md": "# Design: string\n\nThis design follows the recorded behavior of `string`. 8 / 8 requirements cite evidence.\n\n## Behaviors to implement\n\n### REQ-1\n\nThe `string.between` function returns a result when the input string consists of ASCII characters, empty string, long strings, symbols, or whitespace.\n\nBehavior classes: `string:between:class:ascii|returned`, `string:between:class:empty|returned`, `string:between:class:long|returned`, `string:between:class:symbols|returned`, `string:between:class:whitespace|returned`\n\n### REQ-2\n\nThe `string.between` function throws a TypeError when the input string consists of ASCII characters, empty string, symbols, or whitespace that are invalid for the operation.\n\nBehavior classes: `string:between:class:ascii|threw:TypeError`, `string:between:class:empty|threw:TypeError`, `string:between:class:symbols|threw:TypeError`, `string:between:class:whitespace|threw:TypeError`\n\n### REQ-3\n\nThe `string.camelize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n\nBehavior classes: `string:camelize:class:ascii|returned`, `string:camelize:class:empty|returned`, `string:camelize:class:long|returned`, `string:camelize:class:symbols|returned`, `string:camelize:class:whitespace|returned`\n\n### REQ-4\n\nThe `string.dasherize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n\nBehavior classes: `string:dasherize:class:ascii|returned`, `string:dasherize:class:empty|returned`, `string:dasherize:class:long|returned`, `string:dasherize:class:symbols|returned`, `string:dasherize:class:whitespace|returned`\n\n### REQ-5\n\nThe `string.humanize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n\nBehavior classes: `string:humanize:class:ascii|returned`, `string:humanize:class:empty|returned`, `string:humanize:class:long|returned`, `string:humanize:class:symbols|returned`, `string:humanize:class:whitespace|returned`\n\n### REQ-6\n\nThe `string.slugify` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n\nBehavior classes: `string:slugify:class:ascii|returned`, `string:slugify:class:empty|returned`, `string:slugify:class:long|returned`, `string:slugify:class:symbols|returned`, `string:slugify:class:whitespace|returned`\n\n### REQ-7\n\nThe `string.truncate` function returns a string for ASCII, empty, long, symbols, and whitespace inputs.\n\nBehavior classes: `string:truncate:class:ascii|returned`, `string:truncate:class:empty|returned`, `string:truncate:class:long|returned`, `string:truncate:class:symbols|returned`, `string:truncate:class:whitespace|returned`\n\n### REQ-8\n\nThe `string.truncate` function throws a TypeError for a single ASCII input and a single symbols input that are invalid for truncation.\n\nBehavior classes: `string:truncate:class:ascii|threw:TypeError`, `string:truncate:class:symbols|threw:TypeError`\n\n## Approach\n\nImplement each behavior as a small function. Compare the rebuild with the recorded Evidence IDs listed in requirements.md.\n",
+    "tasks.md": "# Tasks: string\n\n- [ ] 1. Set up the project and test harness\n- [ ] 2. Implement REQ-1: The `string.between` function returns a result when the input string consists of ASCII characters, empty string, long strings, symbols, or whitespace.\n  - Evidence classes: `string:between:class:ascii|returned`, `string:between:class:empty|returned`, `string:between:class:long|returned`, `string:between:class:symbols|returned`, `string:between:class:whitespace|returned`\n- [ ] 3. Implement REQ-2: The `string.between` function throws a TypeError when the input string consists of ASCII characters, empty string, symbols, or whitespace that are invalid for the operation.\n  - Evidence classes: `string:between:class:ascii|threw:TypeError`, `string:between:class:empty|threw:TypeError`, `string:between:class:symbols|threw:TypeError`, `string:between:class:whitespace|threw:TypeError`\n- [ ] 4. Implement REQ-3: The `string.camelize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n  - Evidence classes: `string:camelize:class:ascii|returned`, `string:camelize:class:empty|returned`, `string:camelize:class:long|returned`, `string:camelize:class:symbols|returned`, `string:camelize:class:whitespace|returned`\n- [ ] 5. Implement REQ-4: The `string.dasherize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n  - Evidence classes: `string:dasherize:class:ascii|returned`, `string:dasherize:class:empty|returned`, `string:dasherize:class:long|returned`, `string:dasherize:class:symbols|returned`, `string:dasherize:class:whitespace|returned`\n- [ ] 6. Implement REQ-5: The `string.humanize` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n  - Evidence classes: `string:humanize:class:ascii|returned`, `string:humanize:class:empty|returned`, `string:humanize:class:long|returned`, `string:humanize:class:symbols|returned`, `string:humanize:class:whitespace|returned`\n- [ ] 7. Implement REQ-6: The `string.slugify` function always returns a string for any input shape (ASCII, empty, long, symbols, whitespace).\n  - Evidence classes: `string:slugify:class:ascii|returned`, `string:slugify:class:empty|returned`, `string:slugify:class:long|returned`, `string:slugify:class:symbols|returned`, `string:slugify:class:whitespace|returned`\n- [ ] 8. Implement REQ-7: The `string.truncate` function returns a string for ASCII, empty, long, symbols, and whitespace inputs.\n  - Evidence classes: `string:truncate:class:ascii|returned`, `string:truncate:class:empty|returned`, `string:truncate:class:long|returned`, `string:truncate:class:symbols|returned`, `string:truncate:class:whitespace|returned`\n- [ ] 9. Implement REQ-8: The `string.truncate` function throws a TypeError for a single ASCII input and a single symbols input that are invalid for truncation.\n  - Evidence classes: `string:truncate:class:ascii|threw:TypeError`, `string:truncate:class:symbols|threw:TypeError`\n- [ ] 10. Run the recorded inputs against the rebuild and compare outcomes\n",
+    "steering/product.md": "# Product: string\n\nRebuild `string` so that it matches its recorded behavior. 8 requirements were derived from recorded Evidence. 8 / 8 requirements cite evidence.\n",
+    "steering/tech.md": "# Tech: string\n\n- TypeScript or JavaScript on Node.js\n- No runtime dependencies unless a requirement needs one\n- Test with recorded inputs and compare outcomes\n",
+    "steering/structure.md": "# Structure: string\n\n- `requirements.md` lists behaviors with cited Evidence IDs\n- `design.md` and `tasks.md` follow the same requirement IDs\n- Requirements marked unsupported have no resolving Evidence and need review\n"
+  },
+  "traceability": {
+    "x": 8,
+    "y": 8,
+    "text": "8 / 8 requirements cite evidence"
+  },
+  "citationIssues": []
+}

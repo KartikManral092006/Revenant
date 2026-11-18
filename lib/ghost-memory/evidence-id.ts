@@ -10,6 +10,8 @@ export interface Evidence {
   export: string;
   /** Serialized arguments before the call. */
   input: Tagged[];
+  /** How many times the generator produced this exact input (stored once). */
+  count: number;
   outcome: Outcome | { kind: 'timeout'; afterMs: number };
   /** Post-call argument state; null on timeout. */
   argsAfter: Tagged[] | null;

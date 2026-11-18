@@ -14,6 +14,7 @@ import { deserialize, serialize } from './serialize.js';
 import { checkInputSize, checkOutputSize } from './limits.js';
 import { compareSnapshot, takeSnapshot, type ProtoSnapshot } from './pollution.js';
 import { installNetworkStubs } from './stubs.js';
+import { pickExport } from './export-adapter.js';
 
 // Package console output is discarded. IPC uses process.send, not stdout.
 const noop = (): void => {};
@@ -64,23 +65,12 @@ async function loadPackage(packageDir: string): Promise<unknown> {
   }
 }
 
-function pickExport(mod: unknown, exportName: string): ((...a: unknown[]) => unknown) | null {
-  const m = mod as Record<string, unknown> | ((...a: unknown[]) => unknown);
-  if (exportName === 'default') {
-    if (typeof m === 'function') return m;
-    const d = (m as Record<string, unknown>)?.default;
-    return typeof d === 'function' ? (d as (...a: unknown[]) => unknown) : null;
-  }
-  const f = (m as Record<string, unknown>)?.[exportName];
-  return typeof f === 'function' ? (f as (...a: unknown[]) => unknown) : null;
-}
-
 async function onInit(msg: Extract<ParentMsg, { type: 'init' }>): Promise<void> {
   limits = msg.limits;
   installNetworkStubs();
   snapshot = takeSnapshot();
   const mod = await loadPackage(msg.packageDir);
-  fn = pickExport(mod, msg.exportName);
+  fn = pickExport(mod, msg.exportName, msg.callStyle);
   if (!fn) {
     post({
       type: 'fatal',

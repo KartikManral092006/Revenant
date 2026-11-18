@@ -4,11 +4,11 @@
  * source becomes an `unknown` field with its reason.
  * `buildCertificate` calls the clients and then assembles.
  */
-import { fetchWeeklyDownloads } from './downloads';
-import { fetchRepoInfo, type GithubClientOptions, type RepoInfo, type RepoLookup } from './github';
-import { known, unknownField, type Field, type HttpResult } from './http';
-import { fetchNpmInfo, type NpmInfo } from './npm';
-import { fetchVulnerabilities, type Vulnerability } from './osv';
+import { fetchWeeklyDownloads } from './downloads.js';
+import { fetchRepoInfo, type GithubClientOptions, type RepoInfo, type RepoLookup } from './github.js';
+import { known, unknownField, type Field, type HttpResult } from './http.js';
+import { fetchNpmInfo, type NpmInfo } from './npm.js';
+import { fetchVulnerabilities, type Vulnerability } from './osv.js';
 
 export const MONOREPO_NOTE = 'source repo is the lodash monorepo';
 export const INACTIVE_MONTHS = 24;

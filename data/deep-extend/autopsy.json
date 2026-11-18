@@ -1,0 +1,32 @@
+{
+  "package": "deep-extend",
+  "version": "0.6.0",
+  "fetchedAt": "2026-11-17T17:06:52.598Z",
+  "source": "snapshot",
+  "lastPublish": {
+    "value": "2018-05-22T18:13:17.476Z"
+  },
+  "inactive": {
+    "value": true
+  },
+  "deprecation": {
+    "value": null
+  },
+  "vulnerabilities": {
+    "value": []
+  },
+  "weeklyDownloads": {
+    "value": 60845689
+  },
+  "repo": {
+    "value": {
+      "archived": false,
+      "pushedAt": "2020-12-02T10:08:26Z"
+    }
+  },
+  "license": {
+    "value": "MIT"
+  },
+  "generatedAt": "2026-11-17T17:06:52.598Z",
+  "schemaVersion": 1
+}

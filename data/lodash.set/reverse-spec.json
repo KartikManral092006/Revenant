@@ -1,0 +1,345 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-17T18:15:16.920Z",
+  "package": "lodash.set",
+  "model": "openai/gpt-oss-120b",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "statement": "When the path is expressed using bracket notation (e.g., \"[key]\") and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target (or a new object) after setting the value.",
+      "classIds": [
+        "lodash.set:default:class:bracket-index|array|returned",
+        "lodash.set:default:class:bracket-index|plain-object|returned",
+        "lodash.set:default:class:bracket-index|primitive|returned",
+        "lodash.set:default:class:bracket-index|null-or-undefined|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.set:default:class:bracket-index|array|returned",
+          "evidenceIds": [
+            "lodash.set:default:121b187645f5",
+            "lodash.set:default:1584305cd191",
+            "lodash.set:default:3d713cce6b0e"
+          ],
+          "memberCount": 7
+        },
+        {
+          "classId": "lodash.set:default:class:bracket-index|plain-object|returned",
+          "evidenceIds": [
+            "lodash.set:default:0318b2b2de09",
+            "lodash.set:default:042390d51ac7",
+            "lodash.set:default:04b71571ce1f"
+          ],
+          "memberCount": 79
+        },
+        {
+          "classId": "lodash.set:default:class:bracket-index|primitive|returned",
+          "evidenceIds": [
+            "lodash.set:default:00cf66ce44b6",
+            "lodash.set:default:04e68c801fa5",
+            "lodash.set:default:0bb5d0c35993"
+          ],
+          "memberCount": 5
+        },
+        {
+          "classId": "lodash.set:default:class:bracket-index|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.set:default:5e211814f1f0",
+            "lodash.set:default:dea8dcdeb684",
+            "lodash.set:default:e48b91f21b07"
+          ],
+          "memberCount": 5
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-2",
+      "statement": "When the path is expressed using dot notation (e.g., \"a.b\") and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target (or a new object) after setting the value.",
+      "classIds": [
+        "lodash.set:default:class:dot|array|returned",
+        "lodash.set:default:class:dot|plain-object|returned",
+        "lodash.set:default:class:dot|primitive|returned",
+        "lodash.set:default:class:dot|null-or-undefined|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.set:default:class:dot|array|returned",
+          "evidenceIds": [
+            "lodash.set:default:05c4b69d565c",
+            "lodash.set:default:0eb3945a04cd",
+            "lodash.set:default:2992823e2610"
+          ],
+          "memberCount": 36
+        },
+        {
+          "classId": "lodash.set:default:class:dot|plain-object|returned",
+          "evidenceIds": [
+            "lodash.set:default:004336931815",
+            "lodash.set:default:014e105bacdf",
+            "lodash.set:default:01dab751360f"
+          ],
+          "memberCount": 276
+        },
+        {
+          "classId": "lodash.set:default:class:dot|primitive|returned",
+          "evidenceIds": [
+            "lodash.set:default:0777d81678ae",
+            "lodash.set:default:13f8405eb9e1",
+            "lodash.set:default:23aa827e2e4e"
+          ],
+          "memberCount": 21
+        },
+        {
+          "classId": "lodash.set:default:class:dot|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.set:default:19174a930bb8",
+            "lodash.set:default:2694fc248119",
+            "lodash.set:default:33fe95dbc907"
+          ],
+          "memberCount": 21
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-3",
+      "statement": "When the path is empty (i.e., no path segments) and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target unchanged.",
+      "classIds": [
+        "lodash.set:default:class:empty|array|returned",
+        "lodash.set:default:class:empty|plain-object|returned",
+        "lodash.set:default:class:empty|primitive|returned",
+        "lodash.set:default:class:empty|null-or-undefined|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.set:default:class:empty|array|returned",
+          "evidenceIds": [
+            "lodash.set:default:6396c0a62691",
+            "lodash.set:default:6606b664e293",
+            "lodash.set:default:750b99909eeb"
+          ],
+          "memberCount": 10
+        },
+        {
+          "classId": "lodash.set:default:class:empty|plain-object|returned",
+          "evidenceIds": [
+            "lodash.set:default:012ca8c8d12e",
+            "lodash.set:default:040e9225ac5e",
+            "lodash.set:default:08a6e758dcf7"
+          ],
+          "memberCount": 84
+        },
+        {
+          "classId": "lodash.set:default:class:empty|primitive|returned",
+          "evidenceIds": [
+            "lodash.set:default:3e13e3a26159",
+            "lodash.set:default:7b03ba2799c4",
+            "lodash.set:default:7c866aaf2524"
+          ],
+          "memberCount": 6
+        },
+        {
+          "classId": "lodash.set:default:class:empty|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.set:default:2e6f0fae67da",
+            "lodash.set:default:3ab1278448ea",
+            "lodash.set:default:4f9de1425fa8"
+          ],
+          "memberCount": 7
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-4",
+      "statement": "When the path contains a mixture of dot and bracket notation, lodash.set returns the target after setting the value for array, plain object, or primitive targets, and also for null/undefined targets.",
+      "classIds": [
+        "lodash.set:default:class:mixed|array|returned",
+        "lodash.set:default:class:mixed|plain-object|returned",
+        "lodash.set:default:class:mixed|primitive|returned",
+        "lodash.set:default:class:mixed|null-or-undefined|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.set:default:class:mixed|array|returned",
+          "evidenceIds": [
+            "lodash.set:default:09739d735d99",
+            "lodash.set:default:209916bfbd0c",
+            "lodash.set:default:2440411f9849"
+          ],
+          "memberCount": 30
+        },
+        {
+          "classId": "lodash.set:default:class:mixed|plain-object|returned",
+          "evidenceIds": [
+            "lodash.set:default:002a235c1963",
+            "lodash.set:default:0054ca19cf32",
+            "lodash.set:default:03151f8b2457"
+          ],
+          "memberCount": 221
+        },
+        {
+          "classId": "lodash.set:default:class:mixed|primitive|returned",
+          "evidenceIds": [
+            "lodash.set:default:08fb528df7cd",
+            "lodash.set:default:0af27f43c29a",
+            "lodash.set:default:17d12f4ed158"
+          ],
+          "memberCount": 15
+        },
+        {
+          "classId": "lodash.set:default:class:mixed|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.set:default:1ef7d1c98c7a",
+            "lodash.set:default:1fa2d1d0d4ec",
+            "lodash.set:default:3c2432bf72a7"
+          ],
+          "memberCount": 15
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-5",
+      "statement": "When the path attempts prototype pollution (e.g., \"__proto__\" or \"constructor.prototype\"), lodash.set may either return the target, throw a TypeError, or perform prototype pollution depending on the target type.",
+      "classIds": [
+        "lodash.set:default:class:proto-path|array|returned",
+        "lodash.set:default:class:proto-path|array|threw:TypeError",
+        "lodash.set:default:class:proto-path|array|prototype-pollution",
+        "lodash.set:default:class:proto-path|plain-object|returned",
+        "lodash.set:default:class:proto-path|plain-object|threw:TypeError",
+        "lodash.set:default:class:proto-path|plain-object|prototype-pollution",
+        "lodash.set:default:class:proto-path|primitive|returned",
+        "lodash.set:default:class:proto-path|null-or-undefined|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.set:default:class:proto-path|array|returned",
+          "evidenceIds": [
+            "lodash.set:default:10754b945a15",
+            "lodash.set:default:65e81563cfb7",
+            "lodash.set:default:6d6507f8bfab"
+          ],
+          "memberCount": 6
+        },
+        {
+          "classId": "lodash.set:default:class:proto-path|array|threw:TypeError",
+          "evidenceIds": [
+            "lodash.set:default:245b84479e4e",
+            "lodash.set:default:5c19047c167d",
+            "lodash.set:default:dd25d00eab1e"
+          ],
+          "memberCount": 3
+        },
+        {
+          "classId": "lodash.set:default:class:proto-path|array|prototype-pollution",
+          "evidenceIds": [
+            "lodash.set:default:0620d6217a96",
+            "lodash.set:default:655224bd7b3a",
+            "lodash.set:default:6ce59020deca"
+          ],
+          "memberCount": 5
+        },
+        {
+          "classId": "lodash.set:default:class:proto-path|plain-object|returned",
+          "evidenceIds": [
+            "lodash.set:default:0e2942a2c604",
+            "lodash.set:default:16c6e8f8c0b6",
+            "lodash.set:default:203e27818f6e"
+          ],
+          "memberCount": 57
+        },
+        {
+          "classId": "lodash.set:default:class:proto-path|plain-object|threw:TypeError",
+          "evidenceIds": [
+            "lodash.set:default:707709441402"
+          ],
+          "memberCount": 1
+        },
+        {
+          "classId": "lodash.set:default:class:proto-path|plain-object|prototype-pollution",
+          "evidenceIds": [
+            "lodash.set:default:02567e4e65ef",
+            "lodash.set:default:0dad0773dd51",
+            "lodash.set:default:0dd9c2e002a4"
+          ],
+          "memberCount": 53
+        },
+        {
+          "classId": "lodash.set:default:class:proto-path|primitive|returned",
+          "evidenceIds": [
+            "lodash.set:default:002ffc4e216f",
+            "lodash.set:default:3c63a910f5e1",
+            "lodash.set:default:55d2933950e9"
+          ],
+          "memberCount": 3
+        },
+        {
+          "classId": "lodash.set:default:class:proto-path|null-or-undefined|returned",
+          "evidenceIds": [
+            "lodash.set:default:979455c0ebd0",
+            "lodash.set:default:d9e68abc394e"
+          ],
+          "memberCount": 2
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-6",
+      "statement": "When using dot notation on an array target, lodash.set may throw a non‑TypeError exception in rare cases.",
+      "classIds": [
+        "lodash.set:default:class:dot|array|threw:other"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.set:default:class:dot|array|threw:other",
+          "evidenceIds": [
+            "lodash.set:default:28bdbda0d45e"
+          ],
+          "memberCount": 1
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-7",
+      "statement": "When using mixed notation on a plain object target, lodash.set may throw a non‑TypeError exception in rare cases.",
+      "classIds": [
+        "lodash.set:default:class:mixed|plain-object|threw:other"
+      ],
+      "resolved": [
+        {
+          "classId": "lodash.set:default:class:mixed|plain-object|threw:other",
+          "evidenceIds": [
+            "lodash.set:default:6caff73e3b47"
+          ],
+          "memberCount": 1
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    }
+  ],
+  "documents": {
+    "requirements.md": "# Requirements: lodash.set\n\nTraceability: 7 / 7 requirements cite evidence\n\n## REQ-1\n\nWhen the path is expressed using bracket notation (e.g., \"[key]\") and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target (or a new object) after setting the value.\n\nEvidence:\n- class `lodash.set:default:class:bracket-index|array|returned` (7 recorded inputs): lodash.set:default:121b187645f5, lodash.set:default:1584305cd191, lodash.set:default:3d713cce6b0e\n- class `lodash.set:default:class:bracket-index|plain-object|returned` (79 recorded inputs): lodash.set:default:0318b2b2de09, lodash.set:default:042390d51ac7, lodash.set:default:04b71571ce1f\n- class `lodash.set:default:class:bracket-index|primitive|returned` (5 recorded inputs): lodash.set:default:00cf66ce44b6, lodash.set:default:04e68c801fa5, lodash.set:default:0bb5d0c35993\n- class `lodash.set:default:class:bracket-index|null-or-undefined|returned` (5 recorded inputs): lodash.set:default:5e211814f1f0, lodash.set:default:dea8dcdeb684, lodash.set:default:e48b91f21b07\n\n## REQ-2\n\nWhen the path is expressed using dot notation (e.g., \"a.b\") and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target (or a new object) after setting the value.\n\nEvidence:\n- class `lodash.set:default:class:dot|array|returned` (36 recorded inputs): lodash.set:default:05c4b69d565c, lodash.set:default:0eb3945a04cd, lodash.set:default:2992823e2610\n- class `lodash.set:default:class:dot|plain-object|returned` (276 recorded inputs): lodash.set:default:004336931815, lodash.set:default:014e105bacdf, lodash.set:default:01dab751360f\n- class `lodash.set:default:class:dot|primitive|returned` (21 recorded inputs): lodash.set:default:0777d81678ae, lodash.set:default:13f8405eb9e1, lodash.set:default:23aa827e2e4e\n- class `lodash.set:default:class:dot|null-or-undefined|returned` (21 recorded inputs): lodash.set:default:19174a930bb8, lodash.set:default:2694fc248119, lodash.set:default:33fe95dbc907\n\n## REQ-3\n\nWhen the path is empty (i.e., no path segments) and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target unchanged.\n\nEvidence:\n- class `lodash.set:default:class:empty|array|returned` (10 recorded inputs): lodash.set:default:6396c0a62691, lodash.set:default:6606b664e293, lodash.set:default:750b99909eeb\n- class `lodash.set:default:class:empty|plain-object|returned` (84 recorded inputs): lodash.set:default:012ca8c8d12e, lodash.set:default:040e9225ac5e, lodash.set:default:08a6e758dcf7\n- class `lodash.set:default:class:empty|primitive|returned` (6 recorded inputs): lodash.set:default:3e13e3a26159, lodash.set:default:7b03ba2799c4, lodash.set:default:7c866aaf2524\n- class `lodash.set:default:class:empty|null-or-undefined|returned` (7 recorded inputs): lodash.set:default:2e6f0fae67da, lodash.set:default:3ab1278448ea, lodash.set:default:4f9de1425fa8\n\n## REQ-4\n\nWhen the path contains a mixture of dot and bracket notation, lodash.set returns the target after setting the value for array, plain object, or primitive targets, and also for null/undefined targets.\n\nEvidence:\n- class `lodash.set:default:class:mixed|array|returned` (30 recorded inputs): lodash.set:default:09739d735d99, lodash.set:default:209916bfbd0c, lodash.set:default:2440411f9849\n- class `lodash.set:default:class:mixed|plain-object|returned` (221 recorded inputs): lodash.set:default:002a235c1963, lodash.set:default:0054ca19cf32, lodash.set:default:03151f8b2457\n- class `lodash.set:default:class:mixed|primitive|returned` (15 recorded inputs): lodash.set:default:08fb528df7cd, lodash.set:default:0af27f43c29a, lodash.set:default:17d12f4ed158\n- class `lodash.set:default:class:mixed|null-or-undefined|returned` (15 recorded inputs): lodash.set:default:1ef7d1c98c7a, lodash.set:default:1fa2d1d0d4ec, lodash.set:default:3c2432bf72a7\n\n## REQ-5\n\nWhen the path attempts prototype pollution (e.g., \"__proto__\" or \"constructor.prototype\"), lodash.set may either return the target, throw a TypeError, or perform prototype pollution depending on the target type.\n\nEvidence:\n- class `lodash.set:default:class:proto-path|array|returned` (6 recorded inputs): lodash.set:default:10754b945a15, lodash.set:default:65e81563cfb7, lodash.set:default:6d6507f8bfab\n- class `lodash.set:default:class:proto-path|array|threw:TypeError` (3 recorded inputs): lodash.set:default:245b84479e4e, lodash.set:default:5c19047c167d, lodash.set:default:dd25d00eab1e\n- class `lodash.set:default:class:proto-path|array|prototype-pollution` (5 recorded inputs): lodash.set:default:0620d6217a96, lodash.set:default:655224bd7b3a, lodash.set:default:6ce59020deca\n- class `lodash.set:default:class:proto-path|plain-object|returned` (57 recorded inputs): lodash.set:default:0e2942a2c604, lodash.set:default:16c6e8f8c0b6, lodash.set:default:203e27818f6e\n- class `lodash.set:default:class:proto-path|plain-object|threw:TypeError` (1 recorded inputs): lodash.set:default:707709441402\n- class `lodash.set:default:class:proto-path|plain-object|prototype-pollution` (53 recorded inputs): lodash.set:default:02567e4e65ef, lodash.set:default:0dad0773dd51, lodash.set:default:0dd9c2e002a4\n- class `lodash.set:default:class:proto-path|primitive|returned` (3 recorded inputs): lodash.set:default:002ffc4e216f, lodash.set:default:3c63a910f5e1, lodash.set:default:55d2933950e9\n- class `lodash.set:default:class:proto-path|null-or-undefined|returned` (2 recorded inputs): lodash.set:default:979455c0ebd0, lodash.set:default:d9e68abc394e\n\n## REQ-6\n\nWhen using dot notation on an array target, lodash.set may throw a non‑TypeError exception in rare cases.\n\nEvidence:\n- class `lodash.set:default:class:dot|array|threw:other` (1 recorded inputs): lodash.set:default:28bdbda0d45e\n\n## REQ-7\n\nWhen using mixed notation on a plain object target, lodash.set may throw a non‑TypeError exception in rare cases.\n\nEvidence:\n- class `lodash.set:default:class:mixed|plain-object|threw:other` (1 recorded inputs): lodash.set:default:6caff73e3b47\n",
+    "design.md": "# Design: lodash.set\n\nThis design follows the recorded behavior of `lodash.set`. 7 / 7 requirements cite evidence.\n\n## Behaviors to implement\n\n### REQ-1\n\nWhen the path is expressed using bracket notation (e.g., \"[key]\") and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target (or a new object) after setting the value.\n\nBehavior classes: `lodash.set:default:class:bracket-index|array|returned`, `lodash.set:default:class:bracket-index|plain-object|returned`, `lodash.set:default:class:bracket-index|primitive|returned`, `lodash.set:default:class:bracket-index|null-or-undefined|returned`\n\n### REQ-2\n\nWhen the path is expressed using dot notation (e.g., \"a.b\") and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target (or a new object) after setting the value.\n\nBehavior classes: `lodash.set:default:class:dot|array|returned`, `lodash.set:default:class:dot|plain-object|returned`, `lodash.set:default:class:dot|primitive|returned`, `lodash.set:default:class:dot|null-or-undefined|returned`\n\n### REQ-3\n\nWhen the path is empty (i.e., no path segments) and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target unchanged.\n\nBehavior classes: `lodash.set:default:class:empty|array|returned`, `lodash.set:default:class:empty|plain-object|returned`, `lodash.set:default:class:empty|primitive|returned`, `lodash.set:default:class:empty|null-or-undefined|returned`\n\n### REQ-4\n\nWhen the path contains a mixture of dot and bracket notation, lodash.set returns the target after setting the value for array, plain object, or primitive targets, and also for null/undefined targets.\n\nBehavior classes: `lodash.set:default:class:mixed|array|returned`, `lodash.set:default:class:mixed|plain-object|returned`, `lodash.set:default:class:mixed|primitive|returned`, `lodash.set:default:class:mixed|null-or-undefined|returned`\n\n### REQ-5\n\nWhen the path attempts prototype pollution (e.g., \"__proto__\" or \"constructor.prototype\"), lodash.set may either return the target, throw a TypeError, or perform prototype pollution depending on the target type.\n\nBehavior classes: `lodash.set:default:class:proto-path|array|returned`, `lodash.set:default:class:proto-path|array|threw:TypeError`, `lodash.set:default:class:proto-path|array|prototype-pollution`, `lodash.set:default:class:proto-path|plain-object|returned`, `lodash.set:default:class:proto-path|plain-object|threw:TypeError`, `lodash.set:default:class:proto-path|plain-object|prototype-pollution`, `lodash.set:default:class:proto-path|primitive|returned`, `lodash.set:default:class:proto-path|null-or-undefined|returned`\n\n### REQ-6\n\nWhen using dot notation on an array target, lodash.set may throw a non‑TypeError exception in rare cases.\n\nBehavior classes: `lodash.set:default:class:dot|array|threw:other`\n\n### REQ-7\n\nWhen using mixed notation on a plain object target, lodash.set may throw a non‑TypeError exception in rare cases.\n\nBehavior classes: `lodash.set:default:class:mixed|plain-object|threw:other`\n\n## Approach\n\nImplement each behavior as a small function. Compare the rebuild with the recorded Evidence IDs listed in requirements.md.\n",
+    "tasks.md": "# Tasks: lodash.set\n\n- [ ] 1. Set up the project and test harness\n- [ ] 2. Implement REQ-1: When the path is expressed using bracket notation (e.g., \"[key]\") and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target (or a new object) after setting the value.\n  - Evidence classes: `lodash.set:default:class:bracket-index|array|returned`, `lodash.set:default:class:bracket-index|plain-object|returned`, `lodash.set:default:class:bracket-index|primitive|returned`, `lodash.set:default:class:bracket-index|null-or-undefined|returned`\n- [ ] 3. Implement REQ-2: When the path is expressed using dot notation (e.g., \"a.b\") and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target (or a new object) after setting the value.\n  - Evidence classes: `lodash.set:default:class:dot|array|returned`, `lodash.set:default:class:dot|plain-object|returned`, `lodash.set:default:class:dot|primitive|returned`, `lodash.set:default:class:dot|null-or-undefined|returned`\n- [ ] 4. Implement REQ-3: When the path is empty (i.e., no path segments) and the target is an array, a plain object, a primitive value, or null/undefined, lodash.set returns the target unchanged.\n  - Evidence classes: `lodash.set:default:class:empty|array|returned`, `lodash.set:default:class:empty|plain-object|returned`, `lodash.set:default:class:empty|primitive|returned`, `lodash.set:default:class:empty|null-or-undefined|returned`\n- [ ] 5. Implement REQ-4: When the path contains a mixture of dot and bracket notation, lodash.set returns the target after setting the value for array, plain object, or primitive targets, and also for null/undefined targets.\n  - Evidence classes: `lodash.set:default:class:mixed|array|returned`, `lodash.set:default:class:mixed|plain-object|returned`, `lodash.set:default:class:mixed|primitive|returned`, `lodash.set:default:class:mixed|null-or-undefined|returned`\n- [ ] 6. Implement REQ-5: When the path attempts prototype pollution (e.g., \"__proto__\" or \"constructor.prototype\"), lodash.set may either return the target, throw a TypeError, or perform prototype pollution depending on the target type.\n  - Evidence classes: `lodash.set:default:class:proto-path|array|returned`, `lodash.set:default:class:proto-path|array|threw:TypeError`, `lodash.set:default:class:proto-path|array|prototype-pollution`, `lodash.set:default:class:proto-path|plain-object|returned`, `lodash.set:default:class:proto-path|plain-object|threw:TypeError`, `lodash.set:default:class:proto-path|plain-object|prototype-pollution`, `lodash.set:default:class:proto-path|primitive|returned`, `lodash.set:default:class:proto-path|null-or-undefined|returned`\n- [ ] 7. Implement REQ-6: When using dot notation on an array target, lodash.set may throw a non‑TypeError exception in rare cases.\n  - Evidence classes: `lodash.set:default:class:dot|array|threw:other`\n- [ ] 8. Implement REQ-7: When using mixed notation on a plain object target, lodash.set may throw a non‑TypeError exception in rare cases.\n  - Evidence classes: `lodash.set:default:class:mixed|plain-object|threw:other`\n- [ ] 9. Run the recorded inputs against the rebuild and compare outcomes\n",
+    "steering/product.md": "# Product: lodash.set\n\nRebuild `lodash.set` so that it matches its recorded behavior. 7 requirements were derived from recorded Evidence. 7 / 7 requirements cite evidence.\n",
+    "steering/tech.md": "# Tech: lodash.set\n\n- TypeScript or JavaScript on Node.js\n- No runtime dependencies unless a requirement needs one\n- Test with recorded inputs and compare outcomes\n",
+    "steering/structure.md": "# Structure: lodash.set\n\n- `requirements.md` lists behaviors with cited Evidence IDs\n- `design.md` and `tasks.md` follow the same requirement IDs\n- Requirements marked unsupported have no resolving Evidence and need review\n"
+  },
+  "traceability": {
+    "x": 7,
+    "y": 7,
+    "text": "7 / 7 requirements cite evidence"
+  },
+  "citationIssues": []
+}

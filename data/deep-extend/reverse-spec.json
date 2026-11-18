@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-17T18:13:01.403Z",
+  "package": "deep-extend",
+  "model": "openai/gpt-oss-120b",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "statement": "When all arguments are arrays, deep-extend returns a merged array.",
+      "classIds": [
+        "deep-extend:default:class:arrays|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:arrays|returned",
+          "evidenceIds": [
+            "deep-extend:default:0223b466d5ef",
+            "deep-extend:default:0451d947a52f",
+            "deep-extend:default:047c78200a48"
+          ],
+          "memberCount": 156
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-2",
+      "statement": "When all arguments are arrays, deep-extend may throw a TypeError for invalid array inputs.",
+      "classIds": [
+        "deep-extend:default:class:arrays|threw:TypeError"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:arrays|threw:TypeError",
+          "evidenceIds": [
+            "deep-extend:default:4d97c0e57fae",
+            "deep-extend:default:8cc48f774aba",
+            "deep-extend:default:a5d40438c030"
+          ],
+          "memberCount": 5
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-3",
+      "statement": "When all arguments are arrays, deep-extend may throw a non‑TypeError exception for unexpected errors.",
+      "classIds": [
+        "deep-extend:default:class:arrays|threw:other"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:arrays|threw:other",
+          "evidenceIds": [
+            "deep-extend:default:d5c0fb615c70"
+          ],
+          "memberCount": 1
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-4",
+      "statement": "When arguments contain nested objects, deep-extend returns a merged object preserving the nested structure.",
+      "classIds": [
+        "deep-extend:default:class:nested|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:nested|returned",
+          "evidenceIds": [
+            "deep-extend:default:001c4b35d517",
+            "deep-extend:default:002f1a690f2d",
+            "deep-extend:default:0031619eccf1"
+          ],
+          "memberCount": 509
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-5",
+      "statement": "When arguments are null or primitive values, deep-extend returns the first non‑object argument unchanged.",
+      "classIds": [
+        "deep-extend:default:class:null-or-primitive|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:null-or-primitive|returned",
+          "evidenceIds": [
+            "deep-extend:default:0933d0863195",
+            "deep-extend:default:0976fd4035a2",
+            "deep-extend:default:0da18e58d093"
+          ],
+          "memberCount": 95
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-6",
+      "statement": "When arguments are null or primitive values, deep-extend may return false to indicate no merge was performed.",
+      "classIds": [
+        "deep-extend:default:class:null-or-primitive|returned-false"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:null-or-primitive|returned-false",
+          "evidenceIds": [
+            "deep-extend:default:0627deb8e08e",
+            "deep-extend:default:062f3da9c569",
+            "deep-extend:default:063f04808910"
+          ],
+          "memberCount": 69
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-7",
+      "statement": "When arguments are null or primitive values, deep-extend may throw a TypeError for invalid primitive inputs.",
+      "classIds": [
+        "deep-extend:default:class:null-or-primitive|threw:TypeError"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:null-or-primitive|threw:TypeError",
+          "evidenceIds": [
+            "deep-extend:default:07ca97ae5567",
+            "deep-extend:default:1e94314ab700",
+            "deep-extend:default:26e9cd488a6f"
+          ],
+          "memberCount": 15
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-8",
+      "statement": "When a single argument is provided, deep-extend returns that argument unchanged.",
+      "classIds": [
+        "deep-extend:default:class:single|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:single|returned",
+          "evidenceIds": [
+            "deep-extend:default:b713f6d2a989"
+          ],
+          "memberCount": 16
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    },
+    {
+      "id": "REQ-9",
+      "statement": "When two plain (non‑nested, non‑array) objects are provided, deep-extend returns a merged object containing properties from both.",
+      "classIds": [
+        "deep-extend:default:class:two-plain|returned"
+      ],
+      "resolved": [
+        {
+          "classId": "deep-extend:default:class:two-plain|returned",
+          "evidenceIds": [
+            "deep-extend:default:0a3e02380053",
+            "deep-extend:default:0b09b93bb9e5",
+            "deep-extend:default:0c20841e2175"
+          ],
+          "memberCount": 134
+        }
+      ],
+      "missing": [],
+      "unsupported": false
+    }
+  ],
+  "documents": {
+    "requirements.md": "# Requirements: deep-extend\n\nTraceability: 9 / 9 requirements cite evidence\n\n## REQ-1\n\nWhen all arguments are arrays, deep-extend returns a merged array.\n\nEvidence:\n- class `deep-extend:default:class:arrays|returned` (156 recorded inputs): deep-extend:default:0223b466d5ef, deep-extend:default:0451d947a52f, deep-extend:default:047c78200a48\n\n## REQ-2\n\nWhen all arguments are arrays, deep-extend may throw a TypeError for invalid array inputs.\n\nEvidence:\n- class `deep-extend:default:class:arrays|threw:TypeError` (5 recorded inputs): deep-extend:default:4d97c0e57fae, deep-extend:default:8cc48f774aba, deep-extend:default:a5d40438c030\n\n## REQ-3\n\nWhen all arguments are arrays, deep-extend may throw a non‑TypeError exception for unexpected errors.\n\nEvidence:\n- class `deep-extend:default:class:arrays|threw:other` (1 recorded inputs): deep-extend:default:d5c0fb615c70\n\n## REQ-4\n\nWhen arguments contain nested objects, deep-extend returns a merged object preserving the nested structure.\n\nEvidence:\n- class `deep-extend:default:class:nested|returned` (509 recorded inputs): deep-extend:default:001c4b35d517, deep-extend:default:002f1a690f2d, deep-extend:default:0031619eccf1\n\n## REQ-5\n\nWhen arguments are null or primitive values, deep-extend returns the first non‑object argument unchanged.\n\nEvidence:\n- class `deep-extend:default:class:null-or-primitive|returned` (95 recorded inputs): deep-extend:default:0933d0863195, deep-extend:default:0976fd4035a2, deep-extend:default:0da18e58d093\n\n## REQ-6\n\nWhen arguments are null or primitive values, deep-extend may return false to indicate no merge was performed.\n\nEvidence:\n- class `deep-extend:default:class:null-or-primitive|returned-false` (69 recorded inputs): deep-extend:default:0627deb8e08e, deep-extend:default:062f3da9c569, deep-extend:default:063f04808910\n\n## REQ-7\n\nWhen arguments are null or primitive values, deep-extend may throw a TypeError for invalid primitive inputs.\n\nEvidence:\n- class `deep-extend:default:class:null-or-primitive|threw:TypeError` (15 recorded inputs): deep-extend:default:07ca97ae5567, deep-extend:default:1e94314ab700, deep-extend:default:26e9cd488a6f\n\n## REQ-8\n\nWhen a single argument is provided, deep-extend returns that argument unchanged.\n\nEvidence:\n- class `deep-extend:default:class:single|returned` (16 recorded inputs): deep-extend:default:b713f6d2a989\n\n## REQ-9\n\nWhen two plain (non‑nested, non‑array) objects are provided, deep-extend returns a merged object containing properties from both.\n\nEvidence:\n- class `deep-extend:default:class:two-plain|returned` (134 recorded inputs): deep-extend:default:0a3e02380053, deep-extend:default:0b09b93bb9e5, deep-extend:default:0c20841e2175\n",
+    "design.md": "# Design: deep-extend\n\nThis design follows the recorded behavior of `deep-extend`. 9 / 9 requirements cite evidence.\n\n## Behaviors to implement\n\n### REQ-1\n\nWhen all arguments are arrays, deep-extend returns a merged array.\n\nBehavior classes: `deep-extend:default:class:arrays|returned`\n\n### REQ-2\n\nWhen all arguments are arrays, deep-extend may throw a TypeError for invalid array inputs.\n\nBehavior classes: `deep-extend:default:class:arrays|threw:TypeError`\n\n### REQ-3\n\nWhen all arguments are arrays, deep-extend may throw a non‑TypeError exception for unexpected errors.\n\nBehavior classes: `deep-extend:default:class:arrays|threw:other`\n\n### REQ-4\n\nWhen arguments contain nested objects, deep-extend returns a merged object preserving the nested structure.\n\nBehavior classes: `deep-extend:default:class:nested|returned`\n\n### REQ-5\n\nWhen arguments are null or primitive values, deep-extend returns the first non‑object argument unchanged.\n\nBehavior classes: `deep-extend:default:class:null-or-primitive|returned`\n\n### REQ-6\n\nWhen arguments are null or primitive values, deep-extend may return false to indicate no merge was performed.\n\nBehavior classes: `deep-extend:default:class:null-or-primitive|returned-false`\n\n### REQ-7\n\nWhen arguments are null or primitive values, deep-extend may throw a TypeError for invalid primitive inputs.\n\nBehavior classes: `deep-extend:default:class:null-or-primitive|threw:TypeError`\n\n### REQ-8\n\nWhen a single argument is provided, deep-extend returns that argument unchanged.\n\nBehavior classes: `deep-extend:default:class:single|returned`\n\n### REQ-9\n\nWhen two plain (non‑nested, non‑array) objects are provided, deep-extend returns a merged object containing properties from both.\n\nBehavior classes: `deep-extend:default:class:two-plain|returned`\n\n## Approach\n\nImplement each behavior as a small function. Compare the rebuild with the recorded Evidence IDs listed in requirements.md.\n",
+    "tasks.md": "# Tasks: deep-extend\n\n- [ ] 1. Set up the project and test harness\n- [ ] 2. Implement REQ-1: When all arguments are arrays, deep-extend returns a merged array.\n  - Evidence classes: `deep-extend:default:class:arrays|returned`\n- [ ] 3. Implement REQ-2: When all arguments are arrays, deep-extend may throw a TypeError for invalid array inputs.\n  - Evidence classes: `deep-extend:default:class:arrays|threw:TypeError`\n- [ ] 4. Implement REQ-3: When all arguments are arrays, deep-extend may throw a non‑TypeError exception for unexpected errors.\n  - Evidence classes: `deep-extend:default:class:arrays|threw:other`\n- [ ] 5. Implement REQ-4: When arguments contain nested objects, deep-extend returns a merged object preserving the nested structure.\n  - Evidence classes: `deep-extend:default:class:nested|returned`\n- [ ] 6. Implement REQ-5: When arguments are null or primitive values, deep-extend returns the first non‑object argument unchanged.\n  - Evidence classes: `deep-extend:default:class:null-or-primitive|returned`\n- [ ] 7. Implement REQ-6: When arguments are null or primitive values, deep-extend may return false to indicate no merge was performed.\n  - Evidence classes: `deep-extend:default:class:null-or-primitive|returned-false`\n- [ ] 8. Implement REQ-7: When arguments are null or primitive values, deep-extend may throw a TypeError for invalid primitive inputs.\n  - Evidence classes: `deep-extend:default:class:null-or-primitive|threw:TypeError`\n- [ ] 9. Implement REQ-8: When a single argument is provided, deep-extend returns that argument unchanged.\n  - Evidence classes: `deep-extend:default:class:single|returned`\n- [ ] 10. Implement REQ-9: When two plain (non‑nested, non‑array) objects are provided, deep-extend returns a merged object containing properties from both.\n  - Evidence classes: `deep-extend:default:class:two-plain|returned`\n- [ ] 11. Run the recorded inputs against the rebuild and compare outcomes\n",
+    "steering/product.md": "# Product: deep-extend\n\nRebuild `deep-extend` so that it matches its recorded behavior. 9 requirements were derived from recorded Evidence. 9 / 9 requirements cite evidence.\n",
+    "steering/tech.md": "# Tech: deep-extend\n\n- TypeScript or JavaScript on Node.js\n- No runtime dependencies unless a requirement needs one\n- Test with recorded inputs and compare outcomes\n",
+    "steering/structure.md": "# Structure: deep-extend\n\n- `requirements.md` lists behaviors with cited Evidence IDs\n- `design.md` and `tasks.md` follow the same requirement IDs\n- Requirements marked unsupported have no resolving Evidence and need review\n"
+  },
+  "traceability": {
+    "x": 9,
+    "y": 9,
+    "text": "9 / 9 requirements cite evidence"
+  },
+  "citationIssues": []
+}

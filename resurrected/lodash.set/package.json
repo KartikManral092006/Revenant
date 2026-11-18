@@ -1,0 +1,13 @@
+{
+  "name": "lodash.set",
+  "version": "0.0.0",
+  "description": "Resurrected rebuild of lodash.set (the lodash method `_.set` as a standalone module). Rebuild pending.",
+  "license": "MIT",
+  "author": "John-David Dalton <john.david.dalton@gmail.com> (http://allyoucanleet.com/)",
+  "contributors": [
+    "Blaine Bublitz <blaine.bublitz@gmail.com> (https://github.com/phated)",
+    "Mathias Bynens <mathias@qiwi.be> (https://mathiasbynens.be/)"
+  ],
+  "repository": "lodash/lodash",
+  "private": true
+}

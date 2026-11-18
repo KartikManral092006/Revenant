@@ -1,1 +1,13 @@
-{ "rules": [] }
+{
+  "rules": [
+    {
+      "id": "lodash.set-prototype-pollution",
+      "reason": "lodash.set@4.3.2 lets paths such as __proto__.x and constructor.prototype.x write onto Object.prototype (and Function/Array prototypes). The resurrected build refuses to do this, so the original pollutes and the rebuild does not.",
+      "advisory": "GHSA-p6mc-m468-83gw",
+      "when": {
+        "original": { "pollution": true },
+        "rebuild": { "pollution": false }
+      }
+    }
+  ]
+}

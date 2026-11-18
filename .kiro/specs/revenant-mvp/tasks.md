@@ -32,7 +32,7 @@ Conventions used in this list:
     - Add `!.env.example` to `.gitignore`, after any env-file ignore pattern, so `.env.example` stays tracked while `.env.local` and other env files stay ignored
     - _Requirements: 1.2, 1.3, 1.6_
 
-  - [ ]* 1.3 Write static check tests for server-only code and Graveyard imports
+  - [x]* 1.3 Write static check tests for server-only code and Graveyard imports
     - Test that no file under `components/` or client files in `app/` imports from `lib/` or `sandbox/`
     - Test that no file under `app/`, `lib/` or `components/` imports a Graveyard package name
     - _Requirements: 1.3, 5.9_
@@ -163,12 +163,12 @@ Conventions used in this list:
     - Use fast-check with `numRuns >= 100`; if child-process runs make 100 too slow, lower the batch size per run, not the run count
     - **Validates: Requirements 4.3**
 
-  - [ ]* 4.11 Write sandbox integration tests with fixtures
+  - [x]* 4.11 Write sandbox integration tests with fixtures
     - Cover the table in design.md "Sandbox integration tests": network stubs (including `node:` forms and `dns/promises`), fs write denied, child process denied, worker denied, addon denied, read outside the grant denied, environment empty, per-call timeout and respawn, run wall clock partial result, memory cap, prototype pollution and respawn, size limits
     - Show that the stubs, not the permission model, stop network calls
     - _Requirements: 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.10, 4.11_
 
-- [ ] 5. Differential core
+- [x] 5. Differential core
   - [x] 5.1 Implement `lib/diff/comparator.ts`
     - Match rule from design.md: same outcome (deep-equal returned values via `node:util` `isDeepStrictEqual`, same error `name`, or both timeouts), deep-equal post-call arguments, same pollution flag
     - A timeout on only one side is a mismatch
@@ -185,7 +185,7 @@ Conventions used in this list:
     - Create `graveyard/<package>/intentional-differences.json` for all four packages with an empty rule list for now (rules are authored in task 6.14)
     - _Requirements: 8.1, 8.2_
 
-  - [~] 5.4 Write property test for rule evaluation order
+  - [x] 5.4 Write property test for rule evaluation order
     - **Property 21: Rule evaluation order**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 8.2**
@@ -194,55 +194,55 @@ Conventions used in this list:
     - Counts T, M, I, X and S = T - I; score text `M / S inputs matched` with thousands separators; per-rule counts; partial flag; `0 / 0 inputs matched` when S is 0
     - _Requirements: 8.2, 9.4_
 
-  - [~] 5.6 Write property test for score arithmetic
+  - [x] 5.6 Write property test for score arithmetic
     - **Property 20: Score arithmetic and exclusion of intentional differences**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 8.2, 9.4, 9.5**
 
-  - [~] 5.7 Implement `lib/diff/runner.ts`
+  - [x] 5.7 Implement `lib/diff/runner.ts`
     - Take an input source (`AsyncIterable<Tagged[]>`) and a seed and N; start one sandbox runner for the original (`graveyard/node_modules/<package>`) and one for `resurrected/<package>`; send the same serialized inputs in the same order
     - Per input: compare, apply rules, update the score, call a progress callback
     - Budget timer (60 s for live N=1000) stops the run with `partial: true` and T equal to inputs completed on both sides
     - Return seed, N, summary and capped mismatch samples
     - _Requirements: 7.1, 7.3, 7.4, 7.7, 8.2_
 
-  - [~] 5.8 Implement the Resurrection CLI `lib/diff/cli.ts`
+  - [x] 5.8 Implement the Resurrection CLI `lib/diff/cli.ts`
     - Arguments: one required allowlisted package name, optional `--n <int>`, `--seed <int>`, `--write` (store the result as `data/<package>/diff-run.json`)
     - Pure function `exitCodeFor(summary)`; exit codes 0 (X = 0), 1 (X > 0), 2 (usage error: missing or unknown package), 3 (sandbox or infrastructure failure)
     - Print the score line, the seed and the first mismatches; keep the `resurrect` npm script from task 1.2 working
     - The input source is wired to the generators in task 6.12
     - _Requirements: 13.1, 13.2, 13.4, 7.2_
 
-  - [~] 5.9 Write property test for the CLI exit code
+  - [x] 5.9 Write property test for the CLI exit code
     - **Property 27: CLI exit code follows mismatches**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 13.2, 13.4**
 
-  - [~] 5.10 Create the `resurrect-lodash-set` hook with the `createHook` tool
+  - [x] 5.10 Create the `resurrect-lodash-set` hook with the `createHook` tool
     - Call `createHook` with id `resurrect-lodash-set`, name `Resurrect lodash.set`, trigger `PostFileSave`, matcher `resurrected/lodash\.set/`, action type `command`, command `npm run resurrect -- lodash.set`
     - Do not hand-write the JSON file
     - _Requirements: 13.3_
 
-  - [~] 5.11 Create the `resurrect-lodash-pick` hook with the `createHook` tool
+  - [x] 5.11 Create the `resurrect-lodash-pick` hook with the `createHook` tool
     - Call `createHook` with id `resurrect-lodash-pick`, name `Resurrect lodash.pick`, trigger `PostFileSave`, matcher `resurrected/lodash\.pick/`, action type `command`, command `npm run resurrect -- lodash.pick`
     - Do not hand-write the JSON file
     - _Requirements: 13.3_
 
-  - [ ]* 5.12 Write tests for the hook files and the CLI against a wrong fixture rebuild
+  - [x]* 5.12 Write tests for the hook files and the CLI against a wrong fixture rebuild
     - Hook files parse, have `version: "v1"`, trigger `PostFileSave`, the expected command; the matcher matches `resurrected/<package>/src/index.js` and does not match another package or `resurrected/<package>-extra/`
     - CLI run against a deliberately wrong fixture rebuild counts mismatches and exits 1; unknown package exits 2
     - _Requirements: 13.1, 13.2, 13.3_
 
-  - [~] 5.13 Checkpoint after task 5
+  - [x] 5.13 Checkpoint after task 5
     - Run all tests; stop and ask me if anything fails.
 
-- [ ] 6. Ghost Memory
+- [x] 6. Ghost Memory
   - [x] 6.1 Implement `lib/ghost-memory/evidence-id.ts` and the Evidence and Recording types
     - Canonical JSON over the tagged form (sorted keys, no whitespace); ID is `<package>:<export>:<first 12 hex of sha256>` using `node:crypto`
     - `Evidence`, `Recording` and `BehaviorClass` types from design.md
     - _Requirements: 3.2_
 
-  - [~] 6.2 Write property test for Evidence IDs
+  - [x] 6.2 Write property test for Evidence IDs
     - **Property 6: Evidence ID determinism and format**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 3.2**
@@ -252,65 +252,65 @@ Conventions used in this list:
     - Limit generators to the serializable domain; check per package that this is enough for the exports under test
     - _Requirements: 3.1, 7.1, 12.3_
 
-  - [~] 6.4 Write property test for input list reproducibility
+  - [x] 6.4 Write property test for input list reproducibility
     - **Property 18: Same seed gives the same input list**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 7.1, 7.2**
 
-  - [~] 6.5 Implement `lib/ghost-memory/recorder.ts`
+  - [x] 6.5 Implement `lib/ghost-memory/recorder.ts`
     - Run the generated inputs through the sandbox runner against the original package and build a `Recording` (seed, N, node version, limits, evidence, stats)
     - Store a repeated input once with a `count`; fail the recording on an ID collision with different canonical input
     - Write `data/<package>/ghost-memory.json` with `schemaVersion` and `generatedAt`; timeouts and pollution are recorded as Evidence
     - _Requirements: 3.1, 3.2, 3.4, 4.3, 4.11_
 
-  - [~] 6.6 Write property test for the stored JSON round trip
+  - [x] 6.6 Write property test for the stored JSON round trip
     - **Property 7: Stored JSON round trip**
     - Cover recordings here; the spec-bundle record is covered by the same property in task 8.9
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 3.4, 5.7**
 
-  - [~] 6.7 Implement behavior classes in `lib/ghost-memory/features/` and `classes.ts`
+  - [x] 6.7 Implement behavior classes in `lib/ghost-memory/features/` and `classes.ts`
     - Named feature extractors (for example `setPathShape`, `targetType`, `outcome`) referenced from the manifest
     - Class ID `<package>:<export>:class:<key>`; values outside the allowed list go to the `unclassified` class; representatives are up to 3 lowest IDs; write `data/<package>/classes.json`
     - _Requirements: 3.2, 5.2_
 
-  - [~] 6.8 Write property test for the class partition
+  - [x] 6.8 Write property test for the class partition
     - **Property 13: Behavior class partition is total**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 3.2, 5.2**
 
-  - [~] 6.9 Implement the offline coverage pass `lib/ghost-memory/coverage.ts` (Option A)
+  - [x] 6.9 Implement the offline coverage pass `lib/ghost-memory/coverage.ts` (Option A)
     - Replay the stored recording's inputs in a child started with `NODE_V8_COVERAGE` and without `--permission` (network stubs stay on)
     - Summarize V8 JSON to exported functions exercised (from Evidence) and branch coverage; write `data/<package>/coverage.json` with `measuredAt`; set `branches` to `null` if the V8 pass fails for a package
     - _Requirements: 3.3_
 
-  - [~] 6.10 Write property test for the coverage summary
+  - [x] 6.10 Write property test for the coverage summary
     - **Property 8: Coverage summary bounds**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 3.3, 3.5**
 
-  - [~] 6.11 Implement the live Ghost Memory route `app/api/ghost-memory/[package]`
+  - [x] 6.11 Implement the live Ghost Memory route `app/api/ghost-memory/[package]`
     - Allowlist check (404 otherwise); run the recorder in live mode with the 30 s run limit and stream NDJSON progress and results
     - The live result omits API_Surface_Coverage and says so
     - _Requirements: 3.1, 3.5, 4.4_
 
-  - [~] 6.12 Wire the generators into the Resurrection CLI and the differential runner
+  - [x] 6.12 Wire the generators into the Resurrection CLI and the differential runner
     - The CLI and the runner use the manifest seed (or `--seed`) and N (default 1000) and the generators from 6.3
     - Store the seed with the run so it reproduces
     - _Requirements: 7.1, 7.2, 13.1_
 
-  - [~] 6.13 Create the offline recording script and commit the stored data
+  - [x] 6.13 Create the offline recording script and commit the stored data
     - Add a script that runs the recorder, the class builder and the coverage pass for each Graveyard package with a larger run budget than live runs
     - Commit `data/<package>/ghost-memory.json`, `classes.json` and `coverage.json` for all four packages
     - Expect timeouts for `string@3.3.3`; record them as Evidence
     - _Requirements: 3.2, 3.3, 3.4_
 
-  - [~] 6.14 Author the intentional-difference rules for `lodash.set` and `lodash.pick`
+  - [x] 6.14 Author the intentional-difference rules for `lodash.set` and `lodash.pick`
     - Use the recordings to see how prototype pollution shows up for each package; write the rules in `graveyard/<package>/intentional-differences.json` with `reason` and `advisory` GHSA-p6mc-m468-83gw / CVE-2020-8203
     - Confirm how `lodash.pick` shows the issue before writing its rule (design open item 22)
     - _Requirements: 8.1_
 
-- [ ] 7. Autopsy
+- [x] 7. Autopsy
   - [x] 7.1 Implement `lib/autopsy/http.ts`
     - Shared fetch wrapper with `AbortController` timeout (proposed 10 s) returning `{ ok: true, value } | { ok: false, reason }`
     - Define the `Field<T>` type
@@ -330,7 +330,7 @@ Conventions used in this list:
     - In-memory cache per repository with a TTL (proposed 1 hour); serve the stored snapshot, labelled with its timestamp, when a live call fails
     - _Requirements: 2.1, 2.5, 2.6_
 
-  - [~] 7.5 Write property test for the GitHub cache
+  - [x] 7.5 Write property test for the GitHub cache
     - **Property 4: GitHub cache limits upstream calls**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 2.6**
@@ -340,17 +340,17 @@ Conventions used in this list:
     - Inactive flag when the latest publish is more than 24 calendar months ago; set `repo.note` to "source repo is the lodash monorepo" when the manifest has `monorepo: true`
     - _Requirements: 2.2, 2.4, 2.7_
 
-  - [~] 7.7 Write property test for certificate completeness
+  - [x] 7.7 Write property test for certificate completeness
     - **Property 3: Death Certificate is complete and never fabricated**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 2.2, 2.4**
 
-  - [~] 7.8 Write property test for the Inactive classification
+  - [x] 7.8 Write property test for the Inactive classification
     - **Property 5: Inactive classification**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 2.7**
 
-  - [~] 7.9 Implement the Autopsy route and the stored snapshots
+  - [x] 7.9 Implement the Autopsy route and the stored snapshots
     - `app/api/autopsy/[package]` with allowlist check, returning a live certificate
     - Add a script that writes `data/<package>/autopsy.json` with `source: 'snapshot'` and `fetchedAt`; commit the four snapshots
     - _Requirements: 2.1, 2.2, 2.4_
@@ -359,28 +359,28 @@ Conventions used in this list:
     - Success, timeout, HTTP 500 and malformed body for each client; token header present only when `GITHUB_TOKEN` is set
     - _Requirements: 2.3, 2.4, 2.5_
 
-- [ ] 8. Reverse Spec
-  - [~] 8.1 Implement `lib/reverse-spec/prompt.ts`
+- [x] 8. Reverse Spec
+  - [x] 8.1 Implement `lib/reverse-spec/prompt.ts`
     - Build the prompt from `classes.json` only: class ID, features, count, up to 3 representatives with Evidence IDs, and up to 10 unclassified records
     - Drop representatives down to 1 per class if the prompt would exceed the context size
     - _Requirements: 5.2_
 
-  - [~] 8.2 Write property test for the prompt builder
+  - [x] 8.2 Write property test for the prompt builder
     - **Property 14: Prompt contains classes and respects limits**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 5.2**
 
-  - [~] 8.3 Implement `lib/reverse-spec/citations.ts`
+  - [x] 8.3 Implement `lib/reverse-spec/citations.ts`
     - Resolve each cited class ID against `classes.json` and attach its Evidence IDs; flag citations to missing classes; mark requirements with no resolving citation "UNSUPPORTED BY RECORDED EVIDENCE" without removing them
     - Compute traceability: X is the number of requirements with at least one resolving citation, Y the total, text `X / Y requirements cite evidence`
     - _Requirements: 5.3, 5.4, 5.5, 5.6_
 
-  - [~] 8.4 Write property test for citation resolution
+  - [x] 8.4 Write property test for citation resolution
     - **Property 15: Citations resolve, and failures are flagged**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 5.3, 5.4, 5.5**
 
-  - [~] 8.5 Write property test for the traceability count
+  - [x] 8.5 Write property test for the traceability count
     - **Property 16: Traceability count**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 5.6**
@@ -394,23 +394,23 @@ Conventions used in this list:
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 6.1, 6.2**
 
-  - [~] 8.8 Implement `lib/reverse-spec/groq-client.ts`
+  - [x] 8.8 Implement `lib/reverse-spec/groq-client.ts`
     - Use `groq-sdk`; read `GROQ_API_KEY` only here (server side), never include it in a response body
     - Request structured JSON `{ requirements: [{ id, statement, classIds }] }`; one retry with a stricter prompt on bad JSON; confirm the model name, limits and context size (design open item 9)
     - _Requirements: 5.1, 5.9_
 
-  - [~] 8.9 Implement the bundle assembler `lib/reverse-spec/bundle.ts`
+  - [x] 8.9 Implement the bundle assembler `lib/reverse-spec/bundle.ts`
     - Render `requirements.md` in code from the validated requirement list with cited Evidence IDs; generate `design.md`, `tasks.md` and steering documents as markdown from the same list
     - Write `data/<package>/reverse-spec.json` (`generatedAt`, `model`, `requirements`, `documents`, `traceability`, `citationIssues`, `schemaVersion`) as the cache
     - Include a round trip test for the spec-bundle record under Property 7 (reuse the property from task 6.6 with the bundle record generator, `numRuns >= 100`)
     - _Requirements: 5.1, 5.2, 5.3, 5.5, 5.7_
 
-  - [~] 8.10 Implement the Reverse Spec route `app/api/reverse-spec/[package]`
+  - [x] 8.10 Implement the Reverse Spec route `app/api/reverse-spec/[package]`
     - Allowlist check; derive the client IP using the result from the Render spike (task 2.2); check the limiter; call Groq when allowed; otherwise return the cached bundle with the message "daily Groq cap reached, showing the stored bundle"
     - Return `remainingForIp` and `remainingTotal` in every response
     - _Requirements: 5.7, 5.8, 5.9, 6.1, 6.2_
 
-  - [~] 8.11 Add the cached-bundle generation script and commit the bundles
+  - [x] 8.11 Add the cached-bundle generation script and commit the bundles
     - Script that runs prompt, Groq and assembly for each Graveyard package and writes `data/<package>/reverse-spec.json`
     - The user runs it with their own `GROQ_API_KEY`; commit the four cached bundles
     - _Requirements: 5.1, 5.7_
@@ -419,17 +419,17 @@ Conventions used in this list:
     - All four document kinds produced; the cap-reached path returns the cached bundle and message; `GROQ_API_KEY` never appears in a response body
     - _Requirements: 5.1, 5.8, 5.9_
 
-- [ ] 9. Rebirth Report
-  - [~] 9.1 Implement `lib/report/assemble.ts` and `lib/report/format.ts`
+- [x] 9. Rebirth Report
+  - [x] 9.1 Implement `lib/report/assemble.ts` and `lib/report/format.ts`
     - Build the `RebirthReport` from a diff run and the manifest: score with denominator, intentional differences listed separately with covered counts, mismatch samples shown alongside matches, original test-suite label (one of "available", "not available", "adapted from upstream") with detail
     - _Requirements: 9.1, 9.2, 9.4, 9.5, 9.6_
 
-  - [~] 9.2 Add the vulnerabilities-removed basis
+  - [x] 9.2 Add the vulnerabilities-removed basis
     - List an advisory as removed only if OSV reports it against the pinned original version and a rule with that advisory ID covered at least one input where the rebuild did not show the behavior
     - The basis text reads "behavior no longer observed in N inputs"
     - _Requirements: 9.1_
 
-  - [~] 9.3 Write property test for report completeness
+  - [x] 9.3 Write property test for report completeness
     - **Property 22: Report completeness**
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 9.1, 9.2, 9.6**
@@ -438,24 +438,24 @@ Conventions used in this list:
     - `FORBIDDEN = /\b(proven|guaranteed|identical)\b/i`; remove the exact phrase "evidence, not proof" (case-insensitive) before scanning
     - _Requirements: 9.3_
 
-  - [~] 9.5 Write property test for forbidden words
+  - [x] 9.5 Write property test for forbidden words
     - **Property 23: Forbidden words never appear**
     - Check generated reports, spec-bundle fixtures, and the phrase "evidence, not proof" next to a forbidden term
     - Use fast-check with `numRuns >= 100`
     - **Validates: Requirements 9.3**
 
-  - [~] 9.6 Apply the language guard to the bundle assembler
+  - [x] 9.6 Apply the language guard to the bundle assembler
     - Replace a sentence with a violation by a marker for human review, so such text is not shown silently
     - _Requirements: 9.3_
 
-  - [~] 9.7 Add the string scan test for UI and app text
+  - [x] 9.7 Add the string scan test for UI and app text
     - Test that no string literal in `components/` and `app/` contains a forbidden word as judged by the guard
     - _Requirements: 9.3_
 
-  - [~] 9.8 Checkpoint after task 9
+  - [x] 9.8 Checkpoint after task 9
     - Run all tests; stop and ask me if anything fails.
 
-- [ ] 10. UI
+- [x] 10. UI
   - [x] 10.1 Define the theme tokens and global styles
     - `lib/report/contrast.ts` exports the color tokens and the foreground and background pairs (with large-text flags); map them into the Tailwind theme
     - Wrap animations in `@media (prefers-reduced-motion: no-preference)`; with reduced motion, show static progress
@@ -471,25 +471,25 @@ Conventions used in this list:
     - Load fonts with `next/font` and use inline SVG icons
     - _Requirements: 1.1, 11.1, 11.2_
 
-  - [~] 10.4 Build the package page and the Death Certificate section
+  - [x] 10.4 Build the package page and the Death Certificate section
     - `app/package/[name]/page.tsx` renders `data/<package>/autopsy.json` with its timestamp and a "snapshot" label; `DeathCertificate` shows `unknown` fields, the Inactive status and the monorepo note
     - "Run live" button calls the Autopsy route
     - _Requirements: 2.2, 2.4, 2.7, 11.1_
 
-  - [~] 10.5 Build the Ghost Memory section
+  - [x] 10.5 Build the Ghost Memory section
     - `EvidenceTable`, the API coverage figure labelled "coverage from the stored recording, measured offline on <timestamp>", and `SeanceProgress` (candles, static under reduced motion) fed by a shared NDJSON reader hook in `components/`
     - Live runs show no coverage and say so
     - _Requirements: 3.3, 3.5, 11.1_
 
-  - [~] 10.6 Build the Reverse Spec section
+  - [x] 10.6 Build the Reverse Spec section
     - `SpecView` as preformatted text, flagged unsupported claims, the `X / Y requirements cite evidence` line, and `GroqBudget` showing remaining budget; show the cap message when present
     - _Requirements: 5.5, 5.6, 5.8, 6.2_
 
-  - [~] 10.7 Implement the differential stream and route
+  - [x] 10.7 Implement the differential stream and route
     - `lib/diff/stream.ts` produces the NDJSON lines (`start`, `progress`, `mismatch`, `end`); `app/api/diff/[package]` allows only fully resurrected packages and runs the sandboxed differential on the server
     - _Requirements: 7.6, 7.7_
 
-  - [~] 10.8 Build the Rebirth Report section
+  - [x] 10.8 Build the Rebirth Report section
     - `RebirthReport` shows the score text, intentional differences listed separately, mismatches, vulnerabilities removed and the test-suite label, from `data/<package>/diff-run.json` when it exists
     - "Run live" streams the differential run in séance progress and shows partial results when the budget expires; packages that are not resurrected show "not resurrected"
     - _Requirements: 7.6, 7.7, 9.1, 9.2, 9.4, 9.5, 9.6, 11.1_
@@ -498,7 +498,7 @@ Conventions used in this list:
     - `DeathCertificate` (unknown fields, monorepo note), `RebirthReport` (score text, separate intentional differences, the three label values), `GroqBudget`
     - _Requirements: 2.4, 6.2, 9.2, 9.5_
 
-- [ ] 11. Spec bundle download
+- [x] 11. Spec bundle download
   - [x] 11.1 Implement the store-only ZIP writer `lib/reverse-spec/zip.ts`
     - Local file headers, stored data (method 0), central directory and end record, with CRC-32 from `zlib.crc32`
     - _Requirements: 10.2_
@@ -508,12 +508,12 @@ Conventions used in this list:
     - Use a small test reader; fast-check with `numRuns >= 100`
     - **Validates: Requirements 10.2**
 
-  - [~] 11.3 Implement `app/api/spec-bundle/[package]`
+  - [x] 11.3 Implement `app/api/spec-bundle/[package]`
     - Allowlist check (404 otherwise); read `data/<package>/reverse-spec.json`; return `application/zip` with `Content-Disposition: attachment` containing `requirements.md`, `design.md`, `tasks.md`, `steering/`, `EVIDENCE.json` and a `README.md` with the date and the traceability line
     - Works without Groq
     - _Requirements: 5.1, 10.2_
 
-  - [~] 11.4 Add the "Download Kiro spec bundle" action to the package page
+  - [x] 11.4 Add the "Download Kiro spec bundle" action to the package page
     - Show it for every Graveyard package
     - _Requirements: 10.1_
 
@@ -521,13 +521,13 @@ Conventions used in this list:
     - 200 with the ZIP content type for each allowlisted package; 404 otherwise
     - _Requirements: 10.1, 10.2_
 
-- [ ] 12. Resurrection prep only
-  - [~] 12.1 Create the `resurrected/lodash.set` skeleton
+- [x] 12. Resurrection prep only
+  - [x] 12.1 Create the `resurrected/lodash.set` skeleton
     - Create `package.json`, `LICENSE` (copy the original MIT text from `graveyard/node_modules/lodash.set/LICENSE`) and `README.md` crediting the original author named in the original package metadata
     - Do NOT write the rebuild code: no `src/` implementation and no tests of the rebuild. The user will rebuild the package in Kiro from the generated spec bundle in a separate spec
     - _Requirements: 7.5_
 
-  - [~] 12.2 Create the `resurrected/lodash.pick` skeleton
+  - [x] 12.2 Create the `resurrected/lodash.pick` skeleton
     - Same as 12.1, using the original files from `graveyard/node_modules/lodash.pick/`
     - Do NOT write the rebuild code; the user will rebuild it in a separate spec
     - _Requirements: 7.5_
@@ -536,18 +536,18 @@ Conventions used in this list:
     - Each skeleton has `package.json`, a `LICENSE` equal to the original text, and a README that names the original author
     - _Requirements: 7.5_
 
-- [ ] 13. Deployment and submission checks
-  - [~] 13.1 Add the Render configuration
-    - `render.yaml` for a Node web service: Node 22 version, build command `npm run build`, start command `next start`; `GROQ_API_KEY` and `GITHUB_TOKEN` declared as secrets set in the Render dashboard, not in the file
+- [x] 13. Deployment and submission checks
+  - [x] 13.1 Add the Render configuration
+    - `render.yaml` for a Node web service: Node 22 version, build command `npm run build`, start command `next start`; the build uses `next build --webpack` (see design open item 20); `GROQ_API_KEY` and `GITHUB_TOKEN` declared as secrets set in the Render dashboard, not in the file
     - Confirm `next build` leaves `build/node/` (sandbox and CLI output) untouched (design open item 20)
     - _Requirements: 5.9, 11.2_
 
-  - [~] 13.2 Write the README
+  - [x] 13.2 Write the README
     - Describe the five stages, the commands (`npm run build`, `npm run resurrect -- <package>`), and the "evidence, not proof" stance
     - Include the security note: the JavaScript-level network stubs are not OS isolation, only curated pinned Graveyard packages are run, and user-supplied packages are out of scope
     - _Requirements: 4.7_
 
-  - [~] 13.3 Add a repository checks test
+  - [x] 13.3 Add a repository checks test
     - `.kiro/` is not ignored by `.gitignore`; a root `LICENSE` file exists and starts with a recognizable license header; `.env.local` is ignored and `.env.example` lists `GROQ_API_KEY` and `GITHUB_TOKEN` without values
     - _Requirements: 5.9, 11.2_
 
