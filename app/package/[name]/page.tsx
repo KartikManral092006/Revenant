@@ -7,6 +7,7 @@ import { GhostMemory, type CoverageData, type GhostMemoryData } from "../../../c
 import { RebirthReport, type RebirthReportData } from "../../../components/RebirthReport";
 import { ReverseSpec, type SpecBundleData } from "../../../components/ReverseSpec";
 import { listGraveyard } from "../../../lib/graveyard/loader";
+import { loadStoredReport } from "../../../lib/report/stored";
 
 export const dynamic = "force-dynamic";
 
@@ -83,7 +84,7 @@ export default async function PackagePage({ params }: { params: Promise<{ name: 
       <ReverseSpec name={manifest.name} bundle={readJson<SpecBundleData>(manifest.name, "reverse-spec.json")} />
       <RebirthReport
         name={manifest.name}
-        report={readJson<RebirthReportData>(manifest.name, "diff-run.json")}
+        report={loadStoredReport(manifest) satisfies RebirthReportData | null}
         resurrected={existsSync(path.join(process.cwd(), "resurrected", manifest.name, "src", "index.js"))}
       />
     </main>

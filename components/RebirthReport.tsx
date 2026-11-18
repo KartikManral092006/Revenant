@@ -61,9 +61,9 @@ export function RebirthReportView({
         {partial && <span className="ml-2 rounded border border-mist px-2 py-0.5 text-sm text-candle">partial result</span>}
       </p>
       <h3 className="mb-1 mt-4 text-bone">Intentional differences</h3>
-      {report && report.intentionalDifferences.length > 0 ? (
+      {(report?.intentionalDifferences ?? []).length > 0 ? (
         <ul className="space-y-1 text-sm" aria-label="Intentional differences">
-          {report.intentionalDifferences.map((d) => (
+          {(report?.intentionalDifferences ?? []).map((d) => (
             <li key={d.id}>
               <strong>{d.id}</strong>: {d.reason} (advisory {d.advisory}, {d.covered} inputs excluded from the score)
             </li>
@@ -83,9 +83,9 @@ export function RebirthReportView({
         <p className="text-sm text-ash">No mismatches sampled.</p>
       )}
       <h3 className="mb-1 mt-4 text-bone">Vulnerabilities removed</h3>
-      {report && report.vulnerabilitiesRemoved.length > 0 ? (
+      {(report?.vulnerabilitiesRemoved ?? []).length > 0 ? (
         <ul className="space-y-1 text-sm" aria-label="Vulnerabilities removed">
-          {report.vulnerabilitiesRemoved.map((v) => (
+          {(report?.vulnerabilitiesRemoved ?? []).map((v) => (
             <li key={v.advisory}>
               {v.advisory}: {v.basis}
             </li>
@@ -95,7 +95,7 @@ export function RebirthReportView({
         <p className="text-sm text-ash">None recorded.</p>
       )}
       <h3 className="mb-1 mt-4 text-bone">Original test suite</h3>
-      {report ? (
+      {report?.originalTestSuite ? (
         <p className="text-sm">
           <span className="rounded border border-mist px-2 py-0.5 text-candle">{report.originalTestSuite.label}</span>{" "}
           {report.originalTestSuite.detail}
@@ -194,7 +194,7 @@ export function RebirthReport({
               report={report}
               scoreText={report.scoreText}
               partial={report.partial}
-              samples={report.mismatchSamples.map((m) => ({ key: m.evidenceId + m.summary, summary: `${m.evidenceId}: ${m.summary}` }))}
+              samples={(report.mismatchSamples ?? []).map((m) => ({ key: m.evidenceId + m.summary, summary: `${m.evidenceId}: ${m.summary}` }))}
             />
           </>
         ) : (
