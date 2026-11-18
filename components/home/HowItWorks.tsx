@@ -44,12 +44,12 @@ export function HowItWorks() {
   return (
     <div className="relative">
       {/* Horizontal track on wide screens */}
-      <div aria-hidden="true" className="absolute left-[10%] right-[10%] top-7 hidden h-px overflow-hidden bg-mist lg:block">
-        <span className="pipeline-dot absolute top-0 h-px w-1/5 bg-gradient-to-r from-transparent via-pumpkin to-transparent" />
+      <div aria-hidden="true" className="absolute left-[10%] right-[10%] top-7 hidden h-px overflow-hidden bg-line lg:block">
+        <span className="pipeline-dot absolute top-0 h-px w-1/5 bg-gradient-to-r from-transparent via-accent to-transparent" />
       </div>
       {/* Vertical track on narrow screens */}
-      <div aria-hidden="true" className="absolute bottom-6 left-7 top-6 w-px overflow-hidden bg-mist lg:hidden">
-        <span className="pipeline-dot-y absolute left-0 h-1/5 w-px bg-gradient-to-b from-transparent via-pumpkin to-transparent" />
+      <div aria-hidden="true" className="absolute bottom-6 left-7 top-6 w-px overflow-hidden bg-line lg:hidden">
+        <span className="pipeline-dot-y absolute left-0 h-1/5 w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
       </div>
       <ol className="relative grid gap-6 lg:grid-cols-5 lg:gap-4">
         {STEPS.map((s, i) => {
@@ -58,19 +58,19 @@ export function HowItWorks() {
           return (
             <Reveal as="li" key={s.n} delay={i * 0.08} className="flex gap-4 lg:flex-col lg:items-center lg:text-center">
               <div
-                className={`relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border bg-tomb ${
-                  kiro ? "border-wisp text-wisp" : "border-pumpkin/60 text-pumpkin"
+                className={`relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border bg-surface ${
+                  kiro ? "border-link text-link" : "border-accent/60 text-accent"
                 }`}
               >
                 <Icon aria-hidden="true" className="h-6 w-6" />
-                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-pumpkin text-xs font-bold text-crypt">
+                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-canvas">
                   {s.n}
                 </span>
               </div>
               <div className="min-w-0">
-                <h3 className="text-lg text-bone">{s.name}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-ash">{s.text}</p>
-                <p className={`mt-2 text-xs font-semibold uppercase tracking-wider ${kiro ? "text-wisp" : "text-ectoplasm"}`}>{s.where}</p>
+                <h3 className="text-base font-semibold text-fg">{s.name}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted">{s.text}</p>
+                <p className={`mt-2 text-xs font-medium ${kiro ? "text-link" : "text-success"}`}>{s.where}</p>
               </div>
             </Reveal>
           );

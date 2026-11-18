@@ -89,7 +89,7 @@ export default async function PackagePage({ params }: { params: Promise<{ name: 
         {s.timeouts} timed out.
       </li>
       {s.pollution > 0 && (
-        <li className="text-blood">
+        <li className="text-danger">
           {s.pollution} inputs changed Object.prototype. That is the vulnerability, seen in action.
         </li>
       )}
@@ -115,7 +115,7 @@ export default async function PackagePage({ params }: { params: Promise<{ name: 
   const rebirthFound =
     resurrected && report ? (
       <ul className="space-y-1">
-        <li className="text-ectoplasm">{report.scoreText}.</li>
+        <li className="text-success">{report.scoreText}.</li>
         {excluded > 0 ? (
           <li>
             {excluded} inputs left out of the score because the rebuild fixes the vulnerability on purpose (an{" "}
@@ -125,7 +125,7 @@ export default async function PackagePage({ params }: { params: Promise<{ name: 
           <li>No deliberate differences.</li>
         )}
         {(report.vulnerabilitiesRemoved ?? []).length === 0 && vulns && vulns.length > 0 && (
-          <li className="text-candle">
+          <li className="text-warn">
             OSV lists a vulnerability, but no recorded input triggered it in the original, so this report cannot show it removed.
           </li>
         )}
@@ -152,21 +152,21 @@ export default async function PackagePage({ params }: { params: Promise<{ name: 
   return (
     <main id="main" className="mx-auto max-w-page px-4 pb-8 sm:px-6">
       <nav aria-label="Breadcrumb" className="pt-6 text-sm">
-        <Link href="/#graveyard" className="inline-flex items-center gap-1 text-ash no-underline hover:text-bone">
+        <Link href="/#graveyard" className="inline-flex items-center gap-1 text-muted no-underline hover:text-fg">
           <ArrowLeft aria-hidden="true" className="h-4 w-4" /> The Graveyard
         </Link>
       </nav>
 
       <header className="pb-8 pt-6">
-        <h1 className="break-words text-4xl text-pumpkin sm:text-5xl">
-          {manifest.name} <span className="align-middle font-sans text-lg font-normal text-ash">v{manifest.version}</span>
+        <h1 className="break-words text-3xl font-semibold tracking-tighter text-fg sm:text-5xl">
+          {manifest.name} <span className="align-middle font-sans text-lg font-normal tracking-normal text-muted">v{manifest.version}</span>
         </h1>
-        <p className="mt-3 max-w-2xl text-lg text-bone">
+        <p className="mt-3 max-w-2xl text-lg text-fg">
           {copy.oneLiner}
           {copy.example && (
             <>
               {" "}
-              For example <code className="rounded bg-tomb px-1.5 py-0.5 font-mono text-sm">{copy.example}</code>.
+              For example <code className="rounded bg-surface px-1.5 py-0.5 font-mono text-sm">{copy.example}</code>.
             </>
           )}
         </p>

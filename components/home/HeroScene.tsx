@@ -6,10 +6,10 @@ import * as THREE from "three";
 // Decorative 3D graveyard behind the home hero: a field of tombstones in fog, drifting wisps, and one
 // stone that glows and releases spirits: the dead package coming back. Loaded lazily, client only.
 
-const CRYPT = "#0b0a10";
-const ECTO = new THREE.Color("#7be0a4");
-const WISP = new THREE.Color("#b79cff");
-const PUMPKIN = new THREE.Color("#ff8a2b");
+const CANVAS = "#09090b";
+const ECTO = new THREE.Color("#4ade80");
+const WISP = new THREE.Color("#a78bfa");
+const WARM = new THREE.Color("#c4b5fd");
 /** Where the glowing "reborn" stone stands: right of centre, clear of the hero text. */
 const REBORN_X = 2.9;
 const REBORN_Z = -2.4;
@@ -94,7 +94,7 @@ function Graveyard() {
 
   return (
     <instancedMesh ref={ref} args={[geo, undefined, stones.length]}>
-      <meshStandardMaterial color="#2c2840" roughness={0.92} metalness={0.05} />
+      <meshStandardMaterial color="#26262c" roughness={0.92} metalness={0.05} />
     </instancedMesh>
   );
 }
@@ -109,17 +109,18 @@ function RebornStone({ animate }: { animate: boolean }) {
     if (!animate) return;
     const t = clock.getElapsedTime();
     const pulse = 0.75 + Math.sin(t * 1.6) * 0.18 + Math.sin(t * 4.1) * 0.05;
-    if (light.current) light.current.intensity = 6 * pulse;
-    if (mat.current) mat.current.emissiveIntensity = 0.55 * pulse;
+    if (light.current) light.current.intensity = 4 * pulse;
+    if (mat.current) mat.current.emissiveIntensity = 0.1 * pulse;
     if (group.current) group.current.position.y = Math.sin(t * 0.8) * 0.04;
   });
 
   return (
     <group ref={group} position={[REBORN_X, 0, REBORN_Z]} rotation={[0, -0.35, 0.03]}>
       <mesh geometry={geo} scale={1.25}>
-        <meshStandardMaterial ref={mat} color="#3a3552" emissive={ECTO} emissiveIntensity={0.5} roughness={0.6} />
+        <meshStandardMaterial ref={mat} color="#3a3a42" emissive={ECTO} emissiveIntensity={0.08} roughness={0.6} />
       </mesh>
-      <pointLight ref={light} color={ECTO} intensity={5} distance={7} decay={1.6} position={[0, 1.2, 0.8]} />
+      {/* Behind the stone: a halo and rim light, so the stone face stays stone-coloured. */}
+      <pointLight ref={light} color={ECTO} intensity={5} distance={6} decay={1.8} position={[0, 1.4, -0.9]} />
     </group>
   );
 }
@@ -153,7 +154,7 @@ function Spirits({ animate, count = 70 }: { animate: boolean; count?: number }) 
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial map={tex} color={ECTO} size={0.16} transparent opacity={0.85} depthWrite={false} blending={THREE.AdditiveBlending} />
+      <pointsMaterial map={tex} color={ECTO} size={0.16} transparent opacity={0.6} depthWrite={false} blending={THREE.AdditiveBlending} />
     </points>
   );
 }
@@ -189,7 +190,7 @@ function Wisps({ animate, count = 380 }: { animate: boolean; count?: number }) {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial map={tex} color={WISP} size={0.09} transparent opacity={0.55} depthWrite={false} blending={THREE.AdditiveBlending} />
+      <pointsMaterial map={tex} color={WISP} size={0.09} transparent opacity={0.35} depthWrite={false} blending={THREE.AdditiveBlending} />
     </points>
   );
 }
@@ -199,11 +200,11 @@ function Moon() {
   return (
     <group position={[11, 7.2, -18]}>
       <mesh>
-        <sphereGeometry args={[1.3, 48, 48]} />
-        <meshBasicMaterial color="#e9e2ff" fog={false} />
+        <sphereGeometry args={[0.8, 48, 48]} />
+        <meshBasicMaterial color="#a1a1aa" fog={false} />
       </mesh>
-      <sprite scale={[9, 9, 1]}>
-        <spriteMaterial map={tex} color={WISP} transparent opacity={0.35} depthWrite={false} fog={false} blending={THREE.AdditiveBlending} />
+      <sprite scale={[7, 7, 1]}>
+        <spriteMaterial map={tex} color={WISP} transparent opacity={0.15} depthWrite={false} fog={false} blending={THREE.AdditiveBlending} />
       </sprite>
     </group>
   );
@@ -237,14 +238,14 @@ export default function HeroScene({ animate, active }: { animate: boolean; activ
       }}
       aria-hidden="true"
     >
-      <color attach="background" args={[CRYPT]} />
-      <fog attach="fog" args={[CRYPT, 5, 22]} />
+      <color attach="background" args={[CANVAS]} />
+      <fog attach="fog" args={[CANVAS, 5, 22]} />
       <ambientLight intensity={0.35} color={WISP} />
       <directionalLight position={[-6, 8, -10]} intensity={1.1} color={WISP} />
-      <pointLight position={[-4, 0.6, -3]} intensity={3} distance={8} color={PUMPKIN} />
+      <pointLight position={[-4, 0.6, -3]} intensity={3} distance={8} color={WARM} />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, -8]}>
         <planeGeometry args={[60, 40]} />
-        <meshStandardMaterial color="#121019" roughness={1} />
+        <meshStandardMaterial color="#0f0f12" roughness={1} />
       </mesh>
       <Moon />
       <Graveyard />

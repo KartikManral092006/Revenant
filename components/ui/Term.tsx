@@ -36,7 +36,7 @@ export function Term({ children, tip }: { children: ReactNode; tip: string }) {
         onClick={() => setOpen((o) => !o)}
         onFocus={() => setOpen(true)}
         onBlur={() => setOpen(false)}
-        className="cursor-help border-b border-dashed border-wisp text-inherit"
+        className="cursor-help border-b border-dashed border-link text-inherit"
       >
         {children}
       </button>
@@ -52,7 +52,7 @@ export function Term({ children, tip }: { children: ReactNode; tip: string }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduce ? undefined : { opacity: 0, y: 4, scale: 0.98 }}
             transition={{ duration: 0.15 }}
-            className="absolute left-1/2 top-full z-30 mt-2 block w-72 max-w-[80vw] -translate-x-1/2 rounded-xl border border-mist bg-tomb p-3 text-left text-sm font-normal normal-case leading-relaxed tracking-normal text-bone shadow-2xl shadow-black/60"
+            className="absolute left-1/2 top-full z-30 mt-2 block w-72 max-w-[80vw] -translate-x-1/2 rounded-xl border border-line bg-surface p-3 text-left text-sm font-normal normal-case leading-relaxed tracking-normal text-fg shadow-2xl shadow-black/60"
           >
             {tip}
           </motion.span>

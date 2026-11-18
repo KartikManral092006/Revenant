@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
-import { Cinzel, Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 import { REPO_URL } from "./_lib/package-copy";
 import "./globals.css";
 
-const display = Cinzel({ subsets: ["latin"], variable: "--font-display", display: "swap" });
-const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const sans = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadata = {
   title: "Revenant",
@@ -14,16 +14,16 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0b0a10",
+  themeColor: "#09090b",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="min-h-screen">
         <a
           href="#main"
-          className="sr-only z-50 focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:rounded focus:bg-tomb focus:p-2"
+          className="sr-only z-50 focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:rounded focus:bg-surface focus:p-2"
         >
           Skip to content
         </a>

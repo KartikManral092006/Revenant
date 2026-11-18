@@ -26,12 +26,12 @@ export function StepShell({
 }) {
   const headingId = `${slug}-heading`;
   return (
-    <section id={slug} aria-labelledby={headingId} className="scroll-mt-28 py-12 sm:py-16">
+    <section id={slug} aria-labelledby={headingId} className="scroll-mt-28 py-10 sm:py-14">
       <Reveal>
         <div className="flex items-start gap-4">
           <div
             aria-hidden="true"
-            className="mt-1 hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-mist bg-tomb text-pumpkin sm:flex"
+            className="mt-1 hidden h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-line bg-surface text-accent sm:flex"
           >
             {icon}
           </div>
@@ -39,19 +39,19 @@ export function StepShell({
             <p className="kicker">
               Step {n} of 5 · {name}
             </p>
-            <h2 id={headingId} className="mt-1 text-2xl text-bone sm:text-3xl">
+            <h2 id={headingId} className="mt-1 text-xl font-semibold text-fg sm:text-2xl">
               {heading}
             </h2>
           </div>
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           <div className="card p-5">
-            <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-ash">What this step does</h3>
-            <div className="mt-2 text-sm leading-relaxed text-bone">{whatItDoes}</div>
+            <h3 className="text-sm font-medium text-muted">What this step does</h3>
+            <div className="mt-2 text-sm leading-relaxed text-fg">{whatItDoes}</div>
           </div>
-          <div className="card border-pumpkin/30 p-5">
-            <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-pumpkin">What we found</h3>
-            <div className="mt-2 text-sm leading-relaxed text-bone">{whatWeFound}</div>
+          <div className="card border-accent/30 p-5">
+            <h3 className="text-sm font-medium text-accent">What we found</h3>
+            <div className="mt-2 text-sm leading-relaxed text-fg">{whatWeFound}</div>
           </div>
         </div>
       </Reveal>

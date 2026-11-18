@@ -2,32 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Refined dark theme: neutral surfaces, one violet accent, soft depth, gentle motion. */
+
 @layer base {
   html {
     color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-crypt font-sans text-bone antialiased;
-    /* Faint moonlight from the top and a pumpkin ember at the bottom. Decorative only. */
-    background-image:
-      radial-gradient(60rem 30rem at 50% -10%, rgb(183 156 255 / 0.10), transparent 70%),
-      radial-gradient(40rem 20rem at 85% 110%, rgb(255 138 43 / 0.06), transparent 70%);
-    background-attachment: fixed;
+    @apply bg-canvas font-sans text-fg antialiased;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+    /* One faint glow at the top of the page. Decorative only. */
+    background-image: radial-gradient(56rem 28rem at 50% -12%, rgb(167 139 250 / 0.07), transparent 70%);
+    background-repeat: no-repeat;
   }
 
   a {
-    @apply text-wisp underline underline-offset-2;
+    @apply text-link underline decoration-link/40 underline-offset-4 transition-colors hover:decoration-link;
   }
 
   :focus-visible {
-    @apply outline outline-2 outline-offset-2 outline-wisp;
+    @apply rounded-sm outline outline-2 outline-offset-2 outline-link;
   }
 
   h1,
   h2,
   h3 {
-    @apply font-display;
+    @apply font-display tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgb(167 139 250 / 0.3);
   }
 
   /* Native disclosure: hide the default marker, the summary carries its own chevron. */
@@ -45,39 +57,45 @@
 
 @layer components {
   .card {
-    @apply rounded-2xl border border-mist bg-tomb/80 backdrop-blur-sm;
+    @apply rounded-xl border border-line bg-surface;
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.03) inset,
+      0 1px 2px 0 rgb(0 0 0 / 0.4);
   }
 
   .btn {
-    @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-semibold no-underline transition-colors;
+    @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium no-underline transition-all duration-200 ease-out;
   }
   .btn-primary {
-    @apply btn bg-pumpkin text-crypt hover:bg-candle;
+    @apply btn bg-fg text-canvas hover:bg-white active:scale-[0.98];
   }
   .btn-ghost {
-    @apply btn border border-mist bg-tomb text-bone hover:border-wisp;
+    @apply btn border border-line bg-surface text-fg hover:border-muted/50 hover:bg-raised active:scale-[0.98];
   }
   .btn-outline {
-    @apply btn border border-pumpkin bg-crypt text-pumpkin hover:bg-tomb disabled:cursor-not-allowed disabled:opacity-60;
+    @apply btn border border-line bg-raised text-fg hover:border-accent/60 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .kicker {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-pumpkin;
+    @apply text-sm font-medium text-accent;
   }
 
-  /* Gradient beam that travels around the border of an element (used on the "Start here" card).
-     Static gradient border under reduced motion. */
-  .beam {
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted;
+  }
+
+  /* Hairline gradient border used to mark the "Start here" card. Static. */
+  .highlight-ring {
     position: relative;
     isolation: isolate;
   }
-  .beam::before {
+  .highlight-ring::before {
     content: "";
     position: absolute;
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: conic-gradient(from var(--beam-angle, 0deg), transparent 0 70%, #ff8a2b 80%, #ffd166 85%, transparent 95%);
+    background: linear-gradient(135deg, rgb(167 139 250 / 0.7), rgb(167 139 250 / 0.05) 45%, rgb(74 222 128 / 0.35));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -85,30 +103,11 @@
     z-index: 1;
   }
 
-  /* Light sweep across the primary call to action. */
-  .shimmer {
-    position: relative;
-    overflow: hidden;
-  }
-  .shimmer::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(110deg, transparent 35%, rgb(255 255 255 / 0.35) 50%, transparent 65%);
-    transform: translateX(-120%);
-    pointer-events: none;
-  }
-
   /* Dot travelling along the "How it works" pipeline. */
-  .pipeline-dot {
+  .pipeline-dot,
+  .pipeline-dot-y {
     opacity: 0;
   }
-}
-
-@property --beam-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
 }
 
 /* Animations only run when the user has not asked for reduced motion.
@@ -124,37 +123,18 @@
     100% {
       opacity: 1;
     }
-    45% {
-      opacity: 0.75;
-    }
-    60% {
-      opacity: 0.95;
+    50% {
+      opacity: 0.7;
     }
   }
 
   @keyframes drift {
     0%,
     100% {
-      transform: translate(0, 0);
+      transform: translateY(0);
     }
     50% {
-      transform: translate(6px, -4px);
-    }
-  }
-
-  @keyframes beam-spin {
-    to {
-      --beam-angle: 360deg;
-    }
-  }
-
-  @keyframes shimmer-sweep {
-    0%,
-    60% {
-      transform: translateX(-120%);
-    }
-    100% {
-      transform: translateX(120%);
+      transform: translateY(-2px);
     }
   }
 
@@ -163,10 +143,10 @@
       left: -20%;
       opacity: 0;
     }
-    10% {
+    15% {
       opacity: 1;
     }
-    90% {
+    85% {
       opacity: 1;
     }
     100% {
@@ -180,10 +160,10 @@
       top: -20%;
       opacity: 0;
     }
-    10% {
+    15% {
       opacity: 1;
     }
-    90% {
+    85% {
       opacity: 1;
     }
     100% {
@@ -192,42 +172,18 @@
     }
   }
 
-  @keyframes pulse-ring {
-    0% {
-      transform: scale(0.9);
-      opacity: 0.7;
-    }
-    100% {
-      transform: scale(1.6);
-      opacity: 0;
-    }
-  }
-
   .animate-flicker {
-    animation: flicker 2.4s ease-in-out infinite;
+    animation: flicker 2.8s ease-in-out infinite;
   }
 
   .animate-drift {
-    animation: drift 5s ease-in-out infinite;
-  }
-
-  .beam::before {
-    animation: beam-spin 4s linear infinite;
-  }
-
-  .shimmer::after {
-    animation: shimmer-sweep 3.2s ease-in-out infinite;
+    animation: drift 6s ease-in-out infinite;
   }
 
   .pipeline-dot {
-    animation: pipeline-travel 6s ease-in-out infinite;
+    animation: pipeline-travel 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
   }
   .pipeline-dot-y {
-    opacity: 0;
-    animation: pipeline-travel-y 6s ease-in-out infinite;
-  }
-
-  .pulse-ring {
-    animation: pulse-ring 1.8s ease-out infinite;
+    animation: pipeline-travel-y 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
   }
 }

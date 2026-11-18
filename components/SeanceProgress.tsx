@@ -11,12 +11,12 @@ export function SeanceProgress({ done, total, label }: { done: number; total: nu
       <div className="flex gap-2" aria-hidden="true">
         {Array.from({ length: count }, (_, i) => (
           <svg key={i} width="14" height="34" viewBox="0 0 14 34">
-            <rect x="3" y="14" width="8" height="20" fill={i < lit ? "#d9d2c0" : "#3a3a44"} />
-            {i < lit && <ellipse className="animate-flicker" cx="7" cy="8" rx="3" ry="6" fill="#f2b84b" />}
+            <rect x="3" y="14" width="8" height="20" fill={i < lit ? "#d4d4d8" : "#27272a"} rx="1.5" />
+            {i < lit && <ellipse className="animate-flicker" cx="7" cy="8" rx="3" ry="6" fill="#fbbf24" />}
           </svg>
         ))}
       </div>
-      <p className="mt-1 text-sm text-ash">
+      <p className="mt-1 text-sm text-muted">
         {label ? `${label}: ` : ""}
         {done} / {total}
       </p>

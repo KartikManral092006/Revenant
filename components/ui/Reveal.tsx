@@ -13,7 +13,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 export function Reveal({
   children,
   delay = 0,
-  y = 16,
+  y = 12,
   className,
   as = "div",
 }: {
@@ -34,7 +34,7 @@ export function Reveal({
     if (reduce || !el) return;
     if (el.getBoundingClientRect().top > window.innerHeight) {
       armed.current = true;
-      void animate(el, { opacity: 0, y, filter: "blur(6px)" }, { duration: 0 });
+      void animate(el, { opacity: 0, y, filter: "blur(4px)" }, { duration: 0 });
     }
   }, [reduce, animate, scope, y]);
 
@@ -43,7 +43,7 @@ export function Reveal({
     const el = scope.current;
     if (!inView || !armed.current || !el) return;
     armed.current = false;
-    void animate(el, { opacity: 1, y: 0, filter: "blur(0px)" }, { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] });
+    void animate(el, { opacity: 1, y: 0, filter: "blur(0px)" }, { duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] });
   }, [inView, animate, scope, delay]);
 
   // One element type for the ref; the tag only changes semantics (div, li, section).

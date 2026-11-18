@@ -55,13 +55,13 @@ function outcomeLabel(o: LiveEvidence["outcome"]): string {
   return o.kind === "threw" && o.error?.name ? `threw ${o.error.name}` : o.kind;
 }
 
-function Meter({ value, tone = "pumpkin", label }: { value: number; tone?: "pumpkin" | "ectoplasm"; label: string }) {
+function Meter({ value, tone = "accent", label }: { value: number; tone?: "accent" | "success"; label: string }) {
   const reduce = useReducedMotion();
   const w = `${Math.max(0, Math.min(100, value))}%`;
   return (
-    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slab" role="img" aria-label={label}>
+    <div className="mt-3 h-2 overflow-hidden rounded-full bg-raised" role="img" aria-label={label}>
       <motion.div
-        className={`h-full rounded-full ${tone === "pumpkin" ? "bg-pumpkin" : "bg-ectoplasm"}`}
+        className={`h-full rounded-full ${tone === "accent" ? "bg-accent" : "bg-success"}`}
         initial={reduce ? false : { width: 0 }}
         whileInView={{ width: w }}
         viewport={{ once: true }}
@@ -73,45 +73,45 @@ function Meter({ value, tone = "pumpkin", label }: { value: number; tone?: "pump
 }
 
 export function CoverageFigure({ coverage, recording }: { coverage: CoverageData | null; recording?: GhostMemoryData | null }) {
-  if (!coverage) return <p className="text-candle">Coverage unavailable: no stored offline measurement for this package.</p>;
+  if (!coverage) return <p className="text-warn">Coverage unavailable: no stored offline measurement for this package.</p>;
   const f = coverage.exportedFunctions;
   const b = coverage.branches;
   const measured = humanDate(coverage.measuredAt, new Date(coverage.measuredAt)).text;
   return (
     <div className="grid gap-4 md:grid-cols-3">
       <div className="card p-5">
-        <p className="text-sm text-ash">Functions exercised</p>
-        <p className="mt-1 font-display text-3xl text-bone">
-          {f.exercised} <span className="text-lg text-ash">of {f.total}</span>
+        <p className="text-sm text-muted">Functions exercised</p>
+        <p className="mt-1 text-3xl font-semibold tracking-tight text-fg">
+          {f.exercised} <span className="text-lg text-muted">of {f.total}</span>
         </p>
-        <Meter value={Number(pct(f.exercised, f.total, f.percent))} tone="ectoplasm" label={`${pct(f.exercised, f.total, f.percent)}% of exported functions exercised`} />
-        <p className="mt-2 text-xs text-ash">Exported functions exercised: {f.exercised} / {f.total} ({pct(f.exercised, f.total, f.percent)}%)</p>
+        <Meter value={Number(pct(f.exercised, f.total, f.percent))} tone="success" label={`${pct(f.exercised, f.total, f.percent)}% of exported functions exercised`} />
+        <p className="mt-2 text-xs text-muted">Exported functions exercised: {f.exercised} / {f.total} ({pct(f.exercised, f.total, f.percent)}%)</p>
       </div>
       <div className="card p-5">
-        <p className="text-sm text-ash">
+        <p className="text-sm text-muted">
           Code <Term tip={BRANCH_TIP}>branches</Term> reached
         </p>
         {b ? (
           <>
-            <p className="mt-1 font-display text-3xl text-bone">
-              {pct(b.covered, b.total, b.percent)}% <span className="text-lg text-ash">({b.covered} of {b.total})</span>
+            <p className="mt-1 text-3xl font-semibold tracking-tight text-fg">
+              {pct(b.covered, b.total, b.percent)}% <span className="text-lg text-muted">({b.covered} of {b.total})</span>
             </p>
             <Meter value={Number(pct(b.covered, b.total, b.percent))} label={`${pct(b.covered, b.total, b.percent)}% of branches reached`} />
-            <p className="mt-2 text-xs text-ash">
+            <p className="mt-2 text-xs text-muted">
               Branches covered: {b.covered} / {b.total}. The rest were not reached by these inputs, one reason the final score is
               evidence, not proof.
             </p>
           </>
         ) : (
-          <p className="mt-1 text-candle">coverage unavailable for branches</p>
+          <p className="mt-1 text-warn">coverage unavailable for branches</p>
         )}
       </div>
       <div className="card p-5">
-        <p className="text-sm text-ash">Recording</p>
-        <p className="mt-1 font-display text-xl text-bone">
+        <p className="text-sm text-muted">Recording</p>
+        <p className="mt-1 text-xl font-semibold text-fg">
           {recording ? `${recording.stats.total.toLocaleString("en-US")} inputs` : "—"}
         </p>
-        <p className="mt-2 text-xs leading-relaxed text-ash">
+        <p className="mt-2 text-xs leading-relaxed text-muted">
           {recording && <>Random seed {recording.seed}: same seed, same inputs, so the recording can be reproduced. </>}
           Coverage measured offline on <time dateTime={coverage.measuredAt}>{measured}</time>.
         </p>
@@ -135,14 +135,14 @@ function GroupList({ groups, max, showIds }: { groups: BehaviorGroupData[]; max:
       {groups.map((g, i) => {
         const w = `${Math.max(2, (g.count / max) * 100)}%`;
         return (
-          <li key={g.classId} className="rounded-xl border border-mist bg-crypt/60 px-4 py-3">
+          <li key={g.classId} className="rounded-xl border border-line bg-canvas/60 px-4 py-3">
             <div className="flex items-baseline justify-between gap-3 text-sm">
-              <span className={g.polluting ? "font-semibold text-blood" : "text-bone"}>{g.label}</span>
-              <span className="shrink-0 tabular-nums text-ash">{g.count.toLocaleString("en-US")} inputs</span>
+              <span className={g.polluting ? "font-semibold text-danger" : "text-fg"}>{g.label}</span>
+              <span className="shrink-0 tabular-nums text-muted">{g.count.toLocaleString("en-US")} inputs</span>
             </div>
-            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slab" aria-hidden="true">
+            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-raised" aria-hidden="true">
               <motion.div
-                className={`h-full rounded-full ${g.polluting ? "bg-blood" : "bg-wisp"}`}
+                className={`h-full rounded-full ${g.polluting ? "bg-danger" : "bg-link"}`}
                 initial={reduce ? false : { width: 0 }}
                 whileInView={{ width: w }}
                 viewport={{ once: true }}
@@ -150,7 +150,7 @@ function GroupList({ groups, max, showIds }: { groups: BehaviorGroupData[]; max:
                 style={reduce ? { width: w } : undefined}
               />
             </div>
-            {showIds && <p className="mt-2 break-all font-mono text-xs text-ash">{g.classId}</p>}
+            {showIds && <p className="mt-2 break-all font-mono text-xs text-muted">{g.classId}</p>}
           </li>
         );
       })}
@@ -207,8 +207,8 @@ export function GhostMemory({
     <div>
       {data ? (
         <>
-          <p className="mb-4 flex flex-wrap items-center gap-2 text-sm text-ash">
-            <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${showingLive ? "border-ectoplasm/40 text-ectoplasm" : "border-candle/40 text-candle"}`}>
+          <p className="mb-4 flex flex-wrap items-center gap-2 text-sm text-muted">
+            <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${showingLive ? "border-success/40 text-success" : "border-warn/40 text-warn"}`}>
               {showingLive ? "live" : "stored"}
             </span>
             Recorded <time dateTime={data.generatedAt}>{humanDate(data.generatedAt, new Date(data.generatedAt)).text}</time>
@@ -220,9 +220,9 @@ export function GhostMemory({
             {data.stats.pollution} with prototype pollution.
           </p>
 
-          <h3 className="mb-3 font-sans text-base font-semibold text-bone">How much of the package was tested</h3>
+          <h3 className="mb-3 font-sans text-base font-semibold text-fg">How much of the package was tested</h3>
           {showingLive ? (
-            <p className="text-candle">
+            <p className="text-warn">
               {result?.coverageNote ??
                 "API surface coverage is not measured on live runs. Coverage is shown from the stored recording, measured offline."}
             </p>
@@ -231,14 +231,14 @@ export function GhostMemory({
           )}
 
           <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
-            <h3 className="font-sans text-base font-semibold text-bone">
+            <h3 className="font-sans text-base font-semibold text-fg">
               <Term tip="Inputs that look alike (same kind of input, same outcome) are grouped, so you can read a few groups instead of a thousand rows.">
                 Behavior groups
               </Term>
               , largest first
             </h3>
-            <label className="flex cursor-pointer items-center gap-2 text-sm text-ash">
-              <input type="checkbox" checked={showIds} onChange={(e) => setShowIds(e.target.checked)} className="h-4 w-4 accent-pumpkin" />
+            <label className="flex cursor-pointer items-center gap-2 text-sm text-muted">
+              <input type="checkbox" checked={showIds} onChange={(e) => setShowIds(e.target.checked)} className="h-4 w-4 accent-accent" />
               Show technical IDs
             </label>
           </div>
@@ -256,7 +256,7 @@ export function GhostMemory({
             summary="Evidence table: every recorded input (technical)"
             meta={`${data.rows.length.toLocaleString("en-US")} rows`}
           >
-            <p className="mb-3 text-sm text-ash">
+            <p className="mb-3 text-sm text-muted">
               Each row is one input and what the original did with it. Every later step relies only on this record, not on
               guesses or the README.
             </p>
@@ -264,7 +264,7 @@ export function GhostMemory({
           </Collapsible>
         </>
       ) : (
-        <p className="text-candle">No stored recording for this package. Use Record again.</p>
+        <p className="text-warn">No stored recording for this package. Use Record again.</p>
       )}
 
       <RunLivePanel
@@ -294,12 +294,12 @@ export function GhostMemory({
           <SeanceProgress done={progress?.done ?? 0} total={progress?.total ?? 0} label={progress?.export ? `Recording ${progress.export}` : "Starting"} />
         )}
         {(stream.error || errEvent) && (
-          <p className="text-sm text-candle">
+          <p className="text-sm text-warn">
             Live run failed: {errEvent?.message ?? stream.error}. Showing the stored recording. Nothing was changed.
           </p>
         )}
         {showingLive && !stream.running && (
-          <p className="text-sm text-ectoplasm">Live recording finished. The groups and table above now show the live run.</p>
+          <p className="text-sm text-success">Live recording finished. The groups and table above now show the live run.</p>
         )}
       </RunLivePanel>
     </div>

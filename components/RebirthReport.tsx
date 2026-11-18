@@ -62,9 +62,9 @@ function ScoreRing({ score }: { score: Score }) {
     <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center">
       <div className="relative h-40 w-40 shrink-0">
         <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90" role="img" aria-label={`${score.matched} of ${score.scored} scored inputs matched; ${score.excluded} excluded on purpose; ${score.mismatches} mismatches`}>
-          <circle cx="60" cy="60" r={r} fill="none" stroke="#221f30" strokeWidth="10" />
+          <circle cx="60" cy="60" r={r} fill="none" stroke="#1a1a1f" strokeWidth="10" />
           <motion.circle
-            cx="60" cy="60" r={r} fill="none" stroke="#7be0a4" strokeWidth="10" strokeLinecap="round"
+            cx="60" cy="60" r={r} fill="none" stroke="#4ade80" strokeWidth="10" strokeLinecap="round"
             strokeDasharray={arc(matched)}
             initial={reduce ? false : { strokeDasharray: arc(0) }}
             whileInView={{ strokeDasharray: arc(matched) }}
@@ -73,7 +73,7 @@ function ScoreRing({ score }: { score: Score }) {
           />
           {excluded > 0 && (
             <motion.circle
-              cx="60" cy="60" r={r} fill="none" stroke="#b79cff" strokeWidth="10"
+              cx="60" cy="60" r={r} fill="none" stroke="#a78bfa" strokeWidth="10"
               strokeDasharray={arc(excluded)}
               strokeDashoffset={-matched * c}
               initial={reduce ? false : { opacity: 0 }}
@@ -83,31 +83,31 @@ function ScoreRing({ score }: { score: Score }) {
             />
           )}
           {mismatched > 0 && (
-            <circle cx="60" cy="60" r={r} fill="none" stroke="#ff7a7a" strokeWidth="10" strokeDasharray={arc(mismatched)} strokeDashoffset={-(matched + excluded) * c} />
+            <circle cx="60" cy="60" r={r} fill="none" stroke="#f87171" strokeWidth="10" strokeDasharray={arc(mismatched)} strokeDashoffset={-(matched + excluded) * c} />
           )}
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="font-display text-3xl text-ectoplasm">{pctText}%</span>
-          <span className="text-xs text-ash">of scored inputs</span>
+          <span className="text-3xl font-semibold tracking-tight text-success">{pctText}%</span>
+          <span className="text-xs text-muted">of scored inputs</span>
         </div>
       </div>
       <ul className="space-y-2 text-sm" aria-label="Score legend">
         <li className="flex items-center gap-2">
-          <span aria-hidden="true" className="h-3 w-3 rounded-full bg-ectoplasm" />
-          <span className="text-bone">
+          <span aria-hidden="true" className="h-3 w-3 rounded-full bg-success" />
+          <span className="text-fg">
             <NumberTicker value={score.matched} /> matched
           </span>
-          <span className="text-ash">same result in both</span>
+          <span className="text-muted">same result in both</span>
         </li>
         <li className="flex items-center gap-2">
-          <span aria-hidden="true" className="h-3 w-3 rounded-full bg-wisp" />
-          <span className="text-bone">{score.excluded.toLocaleString("en-US")} excluded</span>
-          <span className="text-ash">deliberate fixes, listed below</span>
+          <span aria-hidden="true" className="h-3 w-3 rounded-full bg-accent" />
+          <span className="text-fg">{score.excluded.toLocaleString("en-US")} excluded</span>
+          <span className="text-muted">deliberate fixes, listed below</span>
         </li>
         <li className="flex items-center gap-2">
-          <span aria-hidden="true" className="h-3 w-3 rounded-full bg-blood" />
-          <span className="text-bone">{score.mismatches.toLocaleString("en-US")} mismatched</span>
-          <span className="text-ash">unexplained differences</span>
+          <span aria-hidden="true" className="h-3 w-3 rounded-full bg-danger" />
+          <span className="text-fg">{score.mismatches.toLocaleString("en-US")} mismatched</span>
+          <span className="text-muted">unexplained differences</span>
         </li>
       </ul>
     </div>
@@ -133,79 +133,79 @@ export function RebirthReportView({
   return (
     <>
       <div className="card p-6">
-        <p className="mb-4 font-display text-2xl text-bone">
+        <p className="mb-4 text-xl font-semibold tracking-tight text-fg">
           {scoreText}
-          {partial && <span className="ml-2 rounded-full border border-candle/40 px-2 py-0.5 align-middle font-sans text-sm text-candle">partial result</span>}
+          {partial && <span className="ml-2 rounded-full border border-warn/40 px-2 py-0.5 align-middle font-sans text-sm text-warn">partial result</span>}
         </p>
         {s && <ScoreRing score={s} />}
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="card p-5">
-          <h3 className="flex items-center gap-2 font-sans text-base font-semibold text-bone">
-            <ShieldCheck aria-hidden="true" className="h-4 w-4 text-wisp" /> Intentional differences
+          <h3 className="flex items-center gap-2 font-sans text-base font-semibold text-fg">
+            <ShieldCheck aria-hidden="true" className="h-4 w-4 text-link" /> Intentional differences
           </h3>
-          <p className="mt-1 text-xs text-ash">Behavior changed on purpose, each tied to a published advisory, and left out of the score.</p>
+          <p className="mt-1 text-xs text-muted">Behavior changed on purpose, each tied to a published advisory, and left out of the score.</p>
           {diffs.length > 0 ? (
             <ul className="mt-3 space-y-2 text-sm" aria-label="Intentional differences">
               {diffs.map((d) => (
-                <li key={d.id} className="rounded-xl border border-wisp/30 bg-crypt p-3">
-                  <strong className="font-mono text-xs text-wisp">{d.id}</strong>
-                  <p className="mt-1 text-bone">{d.reason}</p>
-                  <p className="mt-1 text-xs text-ash">
+                <li key={d.id} className="rounded-xl border border-link/30 bg-canvas p-3">
+                  <strong className="font-mono text-xs text-link">{d.id}</strong>
+                  <p className="mt-1 text-fg">{d.reason}</p>
+                  <p className="mt-1 text-xs text-muted">
                     advisory {d.advisory}, {d.covered} inputs excluded from the score
                   </p>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="mt-3 text-sm text-ash">None recorded.</p>
+            <p className="mt-3 text-sm text-muted">None recorded.</p>
           )}
         </div>
 
         <div className="card p-5">
-          <h3 className="font-sans text-base font-semibold text-bone">Mismatches</h3>
-          <p className="mt-1 text-xs text-ash">Inputs where the rebuild did something different and no rule explains why.</p>
+          <h3 className="font-sans text-base font-semibold text-fg">Mismatches</h3>
+          <p className="mt-1 text-xs text-muted">Inputs where the rebuild did something different and no rule explains why.</p>
           {samples.length > 0 ? (
-            <ul className="mt-3 space-y-1 text-sm text-blood" aria-label="Mismatches">
+            <ul className="mt-3 space-y-1 text-sm text-danger" aria-label="Mismatches">
               {samples.map((m) => (
                 <li key={m.key}>{m.summary}</li>
               ))}
             </ul>
           ) : (
-            <p className="mt-3 text-sm text-ectoplasm">No mismatches sampled.</p>
+            <p className="mt-3 text-sm text-success">No mismatches sampled.</p>
           )}
         </div>
 
         <div className="card p-5">
-          <h3 className="font-sans text-base font-semibold text-bone">Vulnerabilities removed</h3>
-          <p className="mt-1 text-xs text-ash">Listed only when the original showed the vulnerable behavior and the rebuild did not.</p>
+          <h3 className="font-sans text-base font-semibold text-fg">Vulnerabilities removed</h3>
+          <p className="mt-1 text-xs text-muted">Listed only when the original showed the vulnerable behavior and the rebuild did not.</p>
           {removed.length > 0 ? (
             <ul className="mt-3 space-y-1 text-sm" aria-label="Vulnerabilities removed">
               {removed.map((v) => (
                 <li key={v.advisory}>
-                  <span className="font-semibold text-ectoplasm">{v.advisory}</span>: {v.basis}
+                  <span className="font-semibold text-success">{v.advisory}</span>: {v.basis}
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="mt-3 text-sm text-ash">None recorded.</p>
+            <p className="mt-3 text-sm text-muted">None recorded.</p>
           )}
         </div>
 
         <div className="card p-5">
-          <h3 className="font-sans text-base font-semibold text-bone">Original test suite</h3>
-          <p className="mt-1 text-xs text-ash">The tests that shipped with the original package, run against the rebuild.</p>
+          <h3 className="font-sans text-base font-semibold text-fg">Original test suite</h3>
+          <p className="mt-1 text-xs text-muted">The tests that shipped with the original package, run against the rebuild.</p>
           {report?.originalTestSuite ? (
             <p className="mt-3 text-sm">
-              <span className="rounded-full border border-candle/40 px-2 py-0.5 text-candle">{report.originalTestSuite.label}</span>{" "}
+              <span className="rounded-full border border-warn/40 px-2 py-0.5 text-warn">{report.originalTestSuite.label}</span>{" "}
               {report.originalTestSuite.detail}
               {typeof report.originalTestSuite.passed === "number" && typeof report.originalTestSuite.total === "number"
                 ? ` (${report.originalTestSuite.passed} / ${report.originalTestSuite.total} passed)`
                 : ""}
             </p>
           ) : (
-            <p className="mt-3 text-sm text-ash">Not recorded.</p>
+            <p className="mt-3 text-sm text-muted">Not recorded.</p>
           )}
         </div>
       </div>
@@ -240,11 +240,11 @@ export function RebirthReport({
   return (
     <div>
       {notRebuilt && (
-        <div className="rounded-2xl border border-candle/40 bg-tomb p-6" id="rebirth-not-rebuilt">
-          <p className="flex items-center gap-2 font-semibold text-candle">
+        <div className="rounded-xl border border-warn/40 bg-surface p-6" id="rebirth-not-rebuilt">
+          <p className="flex items-center gap-2 font-semibold text-warn">
             <HeartPulse aria-hidden="true" className="h-5 w-5" /> Not rebuilt yet, so there is nothing to compare
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-bone">
+          <p className="mt-2 text-sm leading-relaxed text-fg">
             A Rebirth Report compares the original with a rebuild on the same inputs. Nobody has rebuilt {name} yet. To see a
             finished report, open <a href="/package/lodash.set#rebirth-report">lodash.set</a>. To make one for this package,
             download its spec bundle, rebuild it in Kiro, then run <code className="font-mono text-xs">npm run resurrect -- {name}</code>.
@@ -255,8 +255,8 @@ export function RebirthReport({
       {!notRebuilt &&
         (showLiveResult && end.type === "end" ? (
           <>
-            <p className="mb-3 flex items-center gap-2 text-sm text-ash">
-              <span className="rounded-full border border-ectoplasm/40 px-2.5 py-0.5 text-xs font-semibold text-ectoplasm">live</span>
+            <p className="mb-3 flex items-center gap-2 text-sm text-muted">
+              <span className="rounded-full border border-success/40 px-2.5 py-0.5 text-xs font-semibold text-success">live</span>
               {end.partial ? "The time budget expired, so these are partial results." : "Fresh comparison on newly generated inputs."}
             </p>
             <RebirthReportView
@@ -275,8 +275,8 @@ export function RebirthReport({
           </>
         ) : report ? (
           <>
-            <p className="mb-3 flex flex-wrap items-center gap-2 text-sm text-ash">
-              <span className="rounded-full border border-candle/40 px-2.5 py-0.5 text-xs font-semibold text-candle">stored</span>
+            <p className="mb-3 flex flex-wrap items-center gap-2 text-sm text-muted">
+              <span className="rounded-full border border-warn/40 px-2.5 py-0.5 text-xs font-semibold text-warn">stored</span>
               Compared <time dateTime={report.generatedAt}>{humanDate(report.generatedAt, new Date(report.generatedAt)).text}</time> · seed{" "}
               {report.seed} · {report.n.toLocaleString("en-US")} inputs
             </p>
@@ -288,7 +288,7 @@ export function RebirthReport({
             />
           </>
         ) : (
-          !hasLive && <p className="text-candle">No stored report for this package. Use Compare again.</p>
+          !hasLive && <p className="text-warn">No stored report for this package. Use Compare again.</p>
         ))}
 
       <RunLivePanel
@@ -315,7 +315,7 @@ export function RebirthReport({
           <div>
             <SeanceProgress done={done} total={total} label="Differential run" />
             {lastProgress?.type === "progress" && (
-              <p className="mt-1 text-sm text-ash">
+              <p className="mt-1 text-sm text-muted">
                 {lastProgress.matched} matched, {lastProgress.intentional} intentional, {lastProgress.mismatched} mismatched so far
               </p>
             )}
@@ -329,10 +329,10 @@ export function RebirthReport({
           </div>
         )}
         {stream.error && !httpNotResurrected && (
-          <p className="text-sm text-candle">Live run failed: {stream.error}. Showing the stored report. Nothing was changed.</p>
+          <p className="text-sm text-warn">Live run failed: {stream.error}. Showing the stored report. Nothing was changed.</p>
         )}
         {streamError?.type === "error" && (
-          <p className="text-sm text-candle">Live run failed: {streamError.message}. Showing the stored report. Nothing was changed.</p>
+          <p className="text-sm text-warn">Live run failed: {streamError.message}. Showing the stored report. Nothing was changed.</p>
         )}
       </RunLivePanel>
     </div>

@@ -40,7 +40,7 @@ const UNSUPPORTED_LABEL = "UNSUPPORTED BY RECORDED EVIDENCE";
 export function SpecView({ documents, name }: { documents: Record<string, string>; name: string }) {
   const names = Object.keys(documents);
   const [selected, setSelected] = useState(names.includes("requirements.md") ? "requirements.md" : names[0]);
-  if (names.length === 0) return <p className="text-candle">The bundle has no documents.</p>;
+  if (names.length === 0) return <p className="text-warn">The bundle has no documents.</p>;
   return (
     <div>
       <div role="group" aria-label={`Documents for ${name}`} className="mb-3 flex flex-wrap gap-2">
@@ -51,7 +51,7 @@ export function SpecView({ documents, name }: { documents: Record<string, string
             aria-pressed={n === selected}
             onClick={() => setSelected(n)}
             className={`inline-flex min-h-[32px] items-center gap-1.5 rounded-full border px-3 py-1 text-xs ${
-              n === selected ? "border-pumpkin bg-crypt text-pumpkin" : "border-mist text-ash hover:text-bone"
+              n === selected ? "border-accent bg-canvas text-accent" : "border-line text-muted hover:text-fg"
             }`}
           >
             <FileText aria-hidden="true" className="h-3.5 w-3.5" />
@@ -62,7 +62,7 @@ export function SpecView({ documents, name }: { documents: Record<string, string
       <pre
         tabIndex={0}
         aria-label={selected}
-        className="max-h-[28rem] overflow-auto whitespace-pre-wrap break-words rounded-xl border border-mist bg-crypt p-4 font-mono text-xs leading-relaxed text-bone"
+        className="max-h-[28rem] overflow-auto whitespace-pre-wrap break-words rounded-xl border border-line bg-canvas p-4 font-mono text-xs leading-relaxed text-fg"
       >
         {documents[selected]}
       </pre>
@@ -71,9 +71,9 @@ export function SpecView({ documents, name }: { documents: Record<string, string
 }
 
 export function GroqBudget({ budget }: { budget: Budget | null }) {
-  if (!budget) return <p className="text-sm text-ash">Remaining Groq budget is shown after a live run.</p>;
+  if (!budget) return <p className="text-sm text-muted">Remaining Groq budget is shown after a live run.</p>;
   return (
-    <p className="text-sm text-ash">
+    <p className="text-sm text-muted">
       Groq budget remaining today: {budget.remainingForIp} for this visitor, {budget.remainingTotal} in total.
     </p>
   );
@@ -90,20 +90,20 @@ export function RequirementList({ requirements }: { requirements: SpecRequiremen
     <ol className="space-y-3">
       {requirements.map((r, i) => (
         <Reveal as="li" key={r.id} delay={Math.min(i, 8) * 0.04}>
-          <div className={`rounded-xl border p-4 ${r.unsupported ? "border-candle/50 bg-crypt" : "border-mist bg-crypt/60"}`}>
+          <div className={`rounded-xl border p-4 ${r.unsupported ? "border-warn/50 bg-canvas" : "border-line bg-canvas/60"}`}>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <span className="font-mono text-xs font-semibold text-pumpkin">{r.id}</span>
+              <span className="font-mono text-xs font-semibold text-accent">{r.id}</span>
               {r.unsupported ? (
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-candle">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-warn">
                   <AlertTriangle aria-hidden="true" className="h-3.5 w-3.5" /> {UNSUPPORTED_LABEL}
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1 text-xs text-ectoplasm">
+                <span className="inline-flex items-center gap-1 text-xs text-success">
                   <Link2 aria-hidden="true" className="h-3.5 w-3.5" /> {citation(r)}
                 </span>
               )}
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-bone">{r.statement}</p>
+            <p className="mt-2 text-sm leading-relaxed text-fg">{r.statement}</p>
           </div>
         </Reveal>
       ))}
@@ -149,22 +149,22 @@ export function ReverseSpec({ name, bundle }: { name: string; bundle: SpecBundle
       {data ? (
         <>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <p className="flex flex-wrap items-center gap-2 text-sm text-ash">
-              <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${showingLive ? "border-ectoplasm/40 text-ectoplasm" : "border-candle/40 text-candle"}`}>
+            <p className="flex flex-wrap items-center gap-2 text-sm text-muted">
+              <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${showingLive ? "border-success/40 text-success" : "border-warn/40 text-warn"}`}>
                 {showingLive ? "live" : "stored"}
               </span>
               Written <time dateTime={data.generatedAt}>{humanDate(data.generatedAt, new Date(data.generatedAt)).text}</time> by{" "}
-              <code className="font-mono text-xs text-bone">{data.model}</code> · {data.traceability.text}
+              <code className="font-mono text-xs text-fg">{data.model}</code> · {data.traceability.text}
             </p>
             <a href={`/api/spec-bundle/${encodeURIComponent(name)}`} download className="btn-primary">
               <Download aria-hidden="true" className="h-4 w-4" />
               Download Kiro spec bundle
             </a>
           </div>
-          <h3 className="mb-3 font-sans text-base font-semibold text-bone">The requirements</h3>
+          <h3 className="mb-3 font-sans text-base font-semibold text-fg">The requirements</h3>
           <RequirementList requirements={data.requirements} />
           {data.citationIssues.length > 0 && (
-            <ul className="mt-4 space-y-1 text-sm text-candle" aria-label="Citation issues">
+            <ul className="mt-4 space-y-1 text-sm text-warn" aria-label="Citation issues">
               {data.citationIssues.map((c, i) => (
                 <li key={`${c.requirementId}-${c.classId}-${i}`}>
                   {c.requirementId}: {c.classId}, {c.message}
@@ -177,7 +177,7 @@ export function ReverseSpec({ name, bundle }: { name: string; bundle: SpecBundle
           </Collapsible>
         </>
       ) : (
-        <p className="text-candle">No stored spec for this package. Download is unavailable.</p>
+        <p className="text-warn">No stored spec for this package. Download is unavailable.</p>
       )}
 
       <RunLivePanel
@@ -195,9 +195,9 @@ export function ReverseSpec({ name, bundle }: { name: string; bundle: SpecBundle
           </button>
         }
       >
-        {running && <p className="text-sm text-ash">Writing the spec…</p>}
-        {error && <p className="text-sm text-candle">Live run failed: {error}. Showing the stored spec. Nothing was changed.</p>}
-        {live?.message && <p className="text-sm text-candle">{live.message}</p>}
+        {running && <p className="text-sm text-muted">Writing the spec…</p>}
+        {error && <p className="text-sm text-warn">Live run failed: {error}. Showing the stored spec. Nothing was changed.</p>}
+        {live?.message && <p className="text-sm text-warn">{live.message}</p>}
         <GroqBudget budget={budget} />
       </RunLivePanel>
     </div>

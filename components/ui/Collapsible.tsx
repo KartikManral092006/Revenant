@@ -16,15 +16,15 @@ export function Collapsible({
   className?: string;
 }) {
   return (
-    <details open={defaultOpen} className={`group rounded-2xl border border-mist bg-tomb/60 ${className}`}>
-      <summary className="flex min-h-[44px] items-center justify-between gap-3 rounded-2xl px-5 py-3 hover:bg-tomb">
-        <span className="font-semibold text-bone">{summary}</span>
-        <span className="flex items-center gap-3 text-sm text-ash">
+    <details open={defaultOpen} className={`group rounded-xl border border-line bg-surface/60 ${className}`}>
+      <summary className="flex min-h-[44px] items-center justify-between gap-3 rounded-xl px-5 py-3 hover:bg-surface">
+        <span className="font-semibold text-fg">{summary}</span>
+        <span className="flex items-center gap-3 text-sm text-muted">
           {meta}
           <ChevronDown aria-hidden="true" className="chevron h-4 w-4 transition-transform duration-200" />
         </span>
       </summary>
-      <div className="border-t border-mist px-5 py-4">{children}</div>
+      <div className="border-t border-line px-5 py-4">{children}</div>
     </details>
   );
 }

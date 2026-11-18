@@ -13,16 +13,16 @@ export interface VerdictFactData {
 }
 
 const TONE_TEXT: Record<FactTone, string> = {
-  dead: "text-blood",
-  warn: "text-candle",
-  ok: "text-ectoplasm",
-  neutral: "text-bone",
+  dead: "text-danger",
+  warn: "text-warn",
+  ok: "text-success",
+  neutral: "text-fg",
 };
 const TONE_BORDER: Record<FactTone, string> = {
-  dead: "border-blood/30",
-  warn: "border-candle/30",
-  ok: "border-ectoplasm/30",
-  neutral: "border-mist",
+  dead: "border-danger/30",
+  warn: "border-warn/30",
+  ok: "border-success/30",
+  neutral: "border-line",
 };
 
 function FactIcon({ k, tone }: { k: VerdictFactData["key"]; tone: FactTone }) {
@@ -57,22 +57,22 @@ export function VerdictBanner({
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full blur-3xl"
-          style={{ background: rebuilt ? "rgb(123 224 164 / 0.12)" : "rgb(255 138 43 / 0.10)" }}
+          style={{ background: rebuilt ? "rgb(74 222 128 / 0.08)" : "rgb(167 139 250 / 0.08)" }}
         />
-        <h2 id="summary-heading" className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-ash">
+        <h2 id="summary-heading" className="text-sm font-medium text-muted">
           Summary
         </h2>
-        <p className="relative mt-2 max-w-3xl font-display text-2xl leading-snug text-bone sm:text-3xl">{headline}</p>
+        <p className="relative mt-2 max-w-3xl text-xl font-semibold leading-snug tracking-tight text-fg sm:text-2xl">{headline}</p>
         <dl className="relative mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {facts.map((f) => (
-            <div key={f.key} className={`rounded-xl border bg-crypt/70 p-4 ${TONE_BORDER[f.tone]}`}>
-              <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ash">
+            <div key={f.key} className={`rounded-xl border bg-canvas/70 p-4 ${TONE_BORDER[f.tone]}`}>
+              <dt className="flex items-center gap-2 text-xs font-medium text-muted">
                 <FactIcon k={f.key} tone={f.tone} />
                 {f.label}
               </dt>
               <dd className="mt-2">
                 <span className={`block text-lg font-semibold leading-snug ${TONE_TEXT[f.tone]}`}>{f.value}</span>
-                <span className="mt-1 block text-xs leading-relaxed text-ash">{f.detail}</span>
+                <span className="mt-1 block text-xs leading-relaxed text-muted">{f.detail}</span>
               </dd>
             </div>
           ))}
@@ -93,7 +93,7 @@ export function VerdictBanner({
             </a>
           )}
         </div>
-        <p className="relative mt-5 max-w-3xl text-sm leading-relaxed text-ash">{honesty}</p>
+        <p className="relative mt-5 max-w-3xl text-sm leading-relaxed text-muted">{honesty}</p>
       </section>
     </Reveal>
   );

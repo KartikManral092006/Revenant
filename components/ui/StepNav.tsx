@@ -21,10 +21,10 @@ const STATE_TEXT: Record<StepState, string> = {
 
 function StateIcon({ state }: { state: StepState }) {
   const cls = "h-3.5 w-3.5";
-  if (state === "done") return <Check aria-hidden="true" className={`${cls} text-ectoplasm`} />;
-  if (state === "in-kiro") return <Hammer aria-hidden="true" className={`${cls} text-ectoplasm`} />;
-  if (state === "not-started") return <CircleDashed aria-hidden="true" className={`${cls} text-candle`} />;
-  return <Minus aria-hidden="true" className={`${cls} text-ash`} />;
+  if (state === "done") return <Check aria-hidden="true" className={`${cls} text-success`} />;
+  if (state === "in-kiro") return <Hammer aria-hidden="true" className={`${cls} text-success`} />;
+  if (state === "not-started") return <CircleDashed aria-hidden="true" className={`${cls} text-warn`} />;
+  return <Minus aria-hidden="true" className={`${cls} text-muted`} />;
 }
 
 /**
@@ -68,7 +68,7 @@ export function StepNav({ items }: { items: StepNavItem[] }) {
   }, [current, reduce]);
 
   return (
-    <nav aria-label="Steps" className="sticky top-0 z-20 -mx-4 mt-10 border-b border-mist bg-crypt/85 px-4 py-3 backdrop-blur-md sm:-mx-6 sm:px-6">
+    <nav aria-label="Steps" className="sticky top-0 z-20 -mx-4 mt-10 border-b border-line bg-canvas/85 px-4 py-3 backdrop-blur-md sm:-mx-6 sm:px-6">
       <ol ref={listRef} className="flex gap-2 overflow-x-auto [scrollbar-width:none]">
         {items.map((item) => {
           const active = item.slug === current;
@@ -79,14 +79,14 @@ export function StepNav({ items }: { items: StepNavItem[] }) {
                 aria-current={active ? "step" : undefined}
                 onClick={() => setCurrent(item.slug)}
                 className={`relative flex min-h-[36px] items-center gap-2 rounded-full border px-3 py-1.5 text-sm no-underline transition-colors ${
-                  active ? "border-pumpkin text-bone" : "border-mist text-ash hover:text-bone"
+                  active ? "border-accent text-fg" : "border-line text-muted hover:text-fg"
                 }`}
               >
                 {active && (
                   <motion.span
                     layoutId="step-highlight"
                     aria-hidden="true"
-                    className="absolute inset-0 rounded-full bg-tomb"
+                    className="absolute inset-0 rounded-full bg-surface"
                     transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}
                   />
                 )}
@@ -94,7 +94,7 @@ export function StepNav({ items }: { items: StepNavItem[] }) {
                   <span
                     aria-hidden="true"
                     className={`flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                      active ? "bg-pumpkin text-crypt" : "bg-slab text-bone"
+                      active ? "bg-accent text-canvas" : "bg-raised text-fg"
                     }`}
                   >
                     {item.n}

@@ -26,27 +26,27 @@ export function RunLivePanel({
   id: string;
 }) {
   return (
-    <div className="mt-6 rounded-2xl border border-dashed border-mist bg-crypt/60 p-5">
+    <div className="mt-6 rounded-xl border border-dashed border-line bg-canvas/60 p-5">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0 max-w-2xl">
-          <h3 className="flex items-center gap-2 font-sans text-base font-semibold text-bone">
-            <RotateCw aria-hidden="true" className="h-4 w-4 text-pumpkin" />
+          <h3 className="flex items-center gap-2 font-sans text-base font-semibold text-fg">
+            <RotateCw aria-hidden="true" className="h-4 w-4 text-accent" />
             {copy.title}
           </h3>
-          <dl id={id} className="mt-3 grid gap-2 text-sm text-ash sm:grid-cols-[auto_1fr] sm:gap-x-4">
-            <dt className="font-semibold text-bone">What happens</dt>
+          <dl id={id} className="mt-3 grid gap-2 text-sm text-muted sm:grid-cols-[auto_1fr] sm:gap-x-4">
+            <dt className="font-semibold text-fg">What happens</dt>
             <dd>{copy.what}</dd>
-            <dt className="flex items-center gap-1 font-semibold text-bone">
+            <dt className="flex items-center gap-1 font-semibold text-fg">
               <Clock aria-hidden="true" className="h-3.5 w-3.5" /> Takes
             </dt>
             <dd>{copy.takes}</dd>
-            <dt className="flex items-center gap-1 font-semibold text-bone">
+            <dt className="flex items-center gap-1 font-semibold text-fg">
               <ShieldCheck aria-hidden="true" className="h-3.5 w-3.5" /> Changes nothing
             </dt>
             <dd>{copy.changesNothing}</dd>
             {copy.limit && (
               <>
-                <dt className="font-semibold text-bone">Limit</dt>
+                <dt className="font-semibold text-fg">Limit</dt>
                 <dd>{copy.limit}</dd>
               </>
             )}

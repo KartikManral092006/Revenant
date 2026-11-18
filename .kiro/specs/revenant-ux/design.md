@@ -339,7 +339,7 @@ Every error message says what is shown instead and that nothing was changed. Mes
 ## What Stays Unchanged
 
 - Halloween theme: tombstone cards, death certificate, séance candles, rebirth report, display font for headings.
-- Colour tokens, Cinzel (display) and Inter (body) fonts, `tailwind.config.ts`.
+- ~~Colour tokens, Cinzel (display) and Inter (body) fonts~~. Superseded 2026-11-18 at the user's request: a refined dark theme replaces the Halloween palette. Tokens are renamed by role (`canvas`, `surface`, `raised`, `line`, `fg`, `muted`, `accent`, `success`, `danger`, `link`, `warn`) in `lib/report/contrast.ts`, with one violet accent; Geist and Geist Mono replace Cinzel and Inter; headings are sentence case. Requirement 11.1 is still met by content: the Graveyard, the Death Certificate, séance progress and the Rebirth Report remain.
 - API routes and response shapes: `/api/autopsy`, `/api/ghost-memory`, `/api/reverse-spec`, `/api/diff`, `/api/spec-bundle`.
 - Stored data files and the manifest schema.
 - The honest-language rule and the "evidence, not proof" stance; the score always shows its denominator.

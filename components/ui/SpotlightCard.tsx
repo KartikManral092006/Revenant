@@ -8,7 +8,7 @@ import type { ReactNode, PointerEvent } from "react";
 export function SpotlightCard({
   children,
   className = "",
-  glow = "183 156 255",
+  glow = "167 139 250",
 }: {
   children: ReactNode;
   className?: string;
@@ -30,7 +30,7 @@ export function SpotlightCard({
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
-          background: "radial-gradient(22rem circle at var(--x, 50%) var(--y, 0%), rgb(var(--glow) / 0.12), transparent 60%)",
+          background: "radial-gradient(22rem circle at var(--x, 50%) var(--y, 0%), rgb(var(--glow) / 0.08), transparent 60%)",
         }}
       />
       <div className="relative">{children}</div>

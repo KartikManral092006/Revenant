@@ -30,17 +30,17 @@ const REDOS_TIP =
 
 function Unknown({ reason }: { reason: string }) {
   return (
-    <span className="text-candle">
-      unknown <span className="text-ash">({reason})</span>
+    <span className="text-warn">
+      unknown <span className="text-muted">({reason})</span>
     </span>
   );
 }
 
 function Row<T>({ label, field, render }: { label: string; field: Field<T>; render: (v: T) => React.ReactNode }) {
   return (
-    <div className="grid gap-1 border-b border-mist py-3 text-sm last:border-b-0 sm:grid-cols-[12rem_1fr] sm:gap-4">
-      <dt className="text-ash">{label}</dt>
-      <dd className="min-w-0 break-words text-bone">
+    <div className="grid gap-1 border-b border-line py-3 text-sm last:border-b-0 sm:grid-cols-[12rem_1fr] sm:gap-4">
+      <dt className="text-muted">{label}</dt>
+      <dd className="min-w-0 break-words text-fg">
         {"value" in field ? render(field.value) : <Unknown reason={field.reason} />}
       </dd>
     </div>
@@ -72,8 +72,8 @@ export function DeathCertificateView({ cert, now }: { cert: CertificateData; now
   const taken = humanDate(cert.fetchedAt, at).text;
   return (
     <div>
-      <p className="mb-4 flex flex-wrap items-center gap-2 text-sm text-ash">
-        <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${cert.source === "live" ? "border-ectoplasm/40 text-ectoplasm" : "border-candle/40 text-candle"}`}>
+      <p className="mb-4 flex flex-wrap items-center gap-2 text-sm text-muted">
+        <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${cert.source === "live" ? "border-success/40 text-success" : "border-warn/40 text-warn"}`}>
           {cert.source === "live" ? "live" : "stored snapshot"}
         </span>
         <span>
@@ -89,11 +89,11 @@ export function DeathCertificateView({ cert, now }: { cert: CertificateData; now
           render={(v) =>
             v ? (
               <>
-                <strong className="text-blood">Unmaintained</strong>{" "}
-                <span className="text-ash">No release for more than two years.</span>
+                <strong className="text-danger">Unmaintained</strong>{" "}
+                <span className="text-muted">No release for more than two years.</span>
               </>
             ) : (
-              <strong className="text-ectoplasm">Active</strong>
+              <strong className="text-success">Active</strong>
             )
           }
         />
@@ -104,7 +104,7 @@ export function DeathCertificateView({ cert, now }: { cert: CertificateData; now
             const h = humanDate(v, at);
             return (
               <time dateTime={v}>
-                {h.text} <span className="text-ash">({h.relative})</span>
+                {h.text} <span className="text-muted">({h.relative})</span>
               </time>
             );
           }}
@@ -115,13 +115,13 @@ export function DeathCertificateView({ cert, now }: { cert: CertificateData; now
           field={cert.vulnerabilities}
           render={(v) =>
             v.length === 0 ? (
-              <span className="text-ectoplasm">None reported</span>
+              <span className="text-success">None reported</span>
             ) : (
               <ul className="space-y-2">
                 {v.map((x) => (
                   <li key={x.id}>
                     <VulnSummary summary={x.summary} />
-                    <span className="mt-0.5 block text-xs text-ash">
+                    <span className="mt-0.5 block text-xs text-muted">
                       {x.id}
                       {x.aliases && x.aliases.length > 0 ? `, also known as ${x.aliases.join(", ")}` : ""}
                     </span>
@@ -136,7 +136,7 @@ export function DeathCertificateView({ cert, now }: { cert: CertificateData; now
           field={cert.weeklyDownloads}
           render={(v) => (
             <>
-              {v.toLocaleString("en-US")} <span className="text-ash">(about {compactCount(v)})</span>
+              {v.toLocaleString("en-US")} <span className="text-muted">(about {compactCount(v)})</span>
             </>
           )}
         />
@@ -146,9 +146,9 @@ export function DeathCertificateView({ cert, now }: { cert: CertificateData; now
           render={(v) => `${v.archived ? "Archived" : "Not archived"}, last push ${humanDate(v.pushedAt, at).text}`}
         />
         {cert.repo.note && (
-          <div className="grid gap-1 border-b border-mist py-3 text-sm sm:grid-cols-[12rem_1fr] sm:gap-4">
-            <dt className="text-ash">Repository note</dt>
-            <dd className="text-bone">{cert.repo.note}</dd>
+          <div className="grid gap-1 border-b border-line py-3 text-sm sm:grid-cols-[12rem_1fr] sm:gap-4">
+            <dt className="text-muted">Repository note</dt>
+            <dd className="text-fg">{cert.repo.note}</dd>
           </div>
         )}
         <Row label="License" field={cert.license} render={(v) => v} />
@@ -181,16 +181,16 @@ export function DeathCertificate({ name, initial, nowIso }: { name: string; init
 
   return (
     <div>
-      <div className="relative overflow-hidden rounded-2xl border border-mist bg-tomb p-6 sm:p-8" aria-live="polite">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-6 -top-6 text-mist">
+      <div className="relative overflow-hidden rounded-xl border border-line bg-surface p-6 sm:p-8" aria-live="polite">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-6 -top-6 text-line">
           <Stethoscope className="h-40 w-40 opacity-30" />
         </div>
-        <p className="relative mb-4 font-display text-xl tracking-wide text-bone">Certificate of Death · {name}</p>
+        <p className="relative mb-4 text-lg font-semibold text-fg">Certificate of Death · {name}</p>
         <div className="relative">
           {cert ? (
             <DeathCertificateView cert={cert} now={now} />
           ) : (
-            <p className="text-candle">No stored snapshot for this package. Use Check again.</p>
+            <p className="text-warn">No stored snapshot for this package. Use Check again.</p>
           )}
         </div>
       </div>
@@ -208,8 +208,8 @@ export function DeathCertificate({ name, initial, nowIso }: { name: string; init
           </button>
         }
       >
-        {busy && <p className="text-sm text-ash">Working… this can take a few seconds.</p>}
-        {error && <p className="text-sm text-candle">{error}</p>}
+        {busy && <p className="text-sm text-muted">Working… this can take a few seconds.</p>}
+        {error && <p className="text-sm text-warn">{error}</p>}
       </RunLivePanel>
     </div>
   );

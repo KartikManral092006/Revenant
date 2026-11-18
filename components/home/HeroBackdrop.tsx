@@ -46,7 +46,7 @@ export function HeroBackdrop() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(18rem 18rem at 22% 18%, rgb(233 226 255 / 0.20), transparent 60%), radial-gradient(30rem 14rem at 65% 75%, rgb(123 224 164 / 0.10), transparent 70%), linear-gradient(180deg, #0b0a10 0%, #121019 70%, #0b0a10 100%)",
+            "radial-gradient(30rem 16rem at 70% 70%, rgb(167 139 250 / 0.08), transparent 70%), linear-gradient(180deg, #09090b 0%, #0f0f12 70%, #09090b 100%)",
         }}
       />
       {canRender && (
@@ -56,9 +56,9 @@ export function HeroBackdrop() {
       )}
       {/* Readability scrim: keeps the hero text at full contrast over the scene. On narrow screens the
           text spans the full width, so the scrim covers everything. */}
-      <div className="absolute inset-0 bg-crypt/75 md:bg-transparent md:bg-gradient-to-r md:from-crypt md:via-crypt/80 md:to-crypt/10" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-crypt to-transparent" />
-      <style>{`@keyframes fadein { to { opacity: 1 } }`}</style>
+      <div className="absolute inset-0 bg-canvas/75 md:bg-transparent md:bg-gradient-to-r md:from-canvas md:via-canvas/80 md:to-canvas/10" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-canvas to-transparent" />
+      <style>{`@keyframes fadein { to { opacity: 0.85 } }`}</style>
     </div>
   );
 }

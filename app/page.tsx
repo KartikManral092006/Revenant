@@ -1,4 +1,4 @@
-import { ArrowRight, Check, HeartPulse, Skull, X } from "lucide-react";
+import { ArrowRight, Check, CircleAlert, HeartPulse, X } from "lucide-react";
 import Link from "next/link";
 import { HeroBackdrop } from "../components/home/HeroBackdrop";
 import { HowItWorks } from "../components/home/HowItWorks";
@@ -73,19 +73,23 @@ export default function Home() {
       {/* Hero */}
       <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden">
         <HeroBackdrop />
-        <div className="relative mx-auto grid min-h-[78vh] max-w-page items-center px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_1fr]">
+        <div className="relative mx-auto grid min-h-[72vh] max-w-page items-center px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_1fr]">
           <Reveal>
-            <p className="kicker">For JavaScript and TypeScript developers</p>
-            <h1 id="hero-heading" className="mt-4 text-4xl leading-tight text-bone sm:text-6xl">
-              Bring dead npm packages back, <span className="text-pumpkin">with evidence.</span>
+            <p className="eyebrow">
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-success" />
+              For JavaScript and TypeScript developers
+            </p>
+            <h1 id="hero-heading" className="mt-6 text-4xl font-semibold leading-[1.06] tracking-tighter text-fg sm:text-6xl">
+              Bring dead npm packages back,{" "}
+              <span className="bg-gradient-to-r from-accent via-link to-fg bg-clip-text text-transparent">with evidence.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-bone">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
               Many projects still install packages that nobody maintains. They get no security fixes, and some have known
               vulnerabilities. Revenant records what a dead package actually does, builds a replacement from that record,
               then runs both on the same inputs and shows you how closely they agree.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={`/package/${encodeURIComponent(START_HERE)}`} className="btn-primary shimmer">
+              <Link href={`/package/${encodeURIComponent(START_HERE)}`} className="btn-primary">
                 See a full example: {START_HERE}
                 <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </Link>
@@ -93,7 +97,7 @@ export default function Home() {
                 Browse the {cards.length} packages
               </a>
             </div>
-            <p className="mt-6 max-w-xl text-sm text-ash">
+            <p className="mt-6 max-w-xl text-sm text-muted">
               No login. Revenant reports evidence, not proof: a match score tells you how many tested inputs agreed, not
               that every input would.
             </p>
@@ -105,7 +109,7 @@ export default function Home() {
       <div className="mx-auto max-w-page px-4 sm:px-6">
         {/* At a glance */}
         <section aria-label="At a glance" className="-mt-8 relative z-10">
-          <dl className="card grid grid-cols-2 divide-mist p-2 sm:grid-cols-4 sm:divide-x">
+          <dl className="card grid grid-cols-2 divide-line p-2 sm:grid-cols-4 sm:divide-x">
             {[
               { n: cards.length, label: "dead packages in the Graveyard" },
               { n: totalDownloadsMillions, label: "million downloads a week between them", prefix: "~" },
@@ -115,11 +119,11 @@ export default function Home() {
               <div key={s.label} className="p-4 text-center">
                 <dt className="sr-only">{s.label}</dt>
                 <dd>
-                  <span className="block font-display text-3xl text-pumpkin sm:text-4xl">
+                  <span className="block text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
                     {s.prefix}
                     <NumberTicker value={s.n} />
                   </span>
-                  <span aria-hidden="true" className="mt-1 block text-xs text-ash sm:text-sm">
+                  <span aria-hidden="true" className="mt-1 block text-xs text-muted sm:text-sm">
                     {s.label}
                   </span>
                 </dd>
@@ -135,10 +139,10 @@ export default function Home() {
               <div className="card grid gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr] lg:items-center">
                 <div>
                   <p className="kicker">Example result</p>
-                  <h2 id="example-heading" className="mt-2 text-3xl text-bone">
+                  <h2 id="example-heading" className="mt-2 text-2xl font-semibold text-fg sm:text-3xl">
                     {example.name}, before and after
                   </h2>
-                  <p className="mt-2 text-sm text-ash">{example.oneLiner}</p>
+                  <p className="mt-2 text-sm text-muted">{example.oneLiner}</p>
                   <Link
                     href={`/package/${encodeURIComponent(example.name)}`}
                     className="mt-4 inline-flex items-center gap-1 text-sm font-semibold"
@@ -147,11 +151,11 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="grid gap-3 text-sm sm:grid-cols-2">
-                  <div className="rounded-xl border border-blood/30 bg-crypt p-4">
-                    <p className="flex items-center gap-1.5 font-semibold text-blood">
-                      <Skull aria-hidden="true" className="h-4 w-4" /> Before
+                  <div className="rounded-xl border border-danger/30 bg-canvas p-4">
+                    <p className="flex items-center gap-1.5 font-semibold text-danger">
+                      <CircleAlert aria-hidden="true" className="h-4 w-4" /> Before
                     </p>
-                    <ul className="mt-2 space-y-1 text-bone">
+                    <ul className="mt-2 space-y-1 text-fg">
                       {example.chips
                         .filter((c) => c.tone === "dead" || c.tone === "warn")
                         .map((c) => (
@@ -159,11 +163,11 @@ export default function Home() {
                         ))}
                     </ul>
                   </div>
-                  <div className="rounded-xl border border-ectoplasm/30 bg-crypt p-4">
-                    <p className="flex items-center gap-1.5 font-semibold text-ectoplasm">
+                  <div className="rounded-xl border border-success/30 bg-canvas p-4">
+                    <p className="flex items-center gap-1.5 font-semibold text-success">
                       <HeartPulse aria-hidden="true" className="h-4 w-4" /> After
                     </p>
-                    <p className="mt-2 text-bone">{example.result}</p>
+                    <p className="mt-2 text-fg">{example.result}</p>
                   </div>
                 </div>
               </div>
@@ -175,22 +179,22 @@ export default function Home() {
         <section aria-labelledby="why-heading" className="py-20">
           <Reveal>
             <p className="kicker">Why this exists</p>
-            <h2 id="why-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+            <h2 id="why-heading" className="mt-2 text-2xl font-semibold text-fg sm:text-3xl">
               When a dependency dies, every option has a catch
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <Reveal>
-              <SpotlightCard className="h-full p-6" glow="255 122 122">
-                <h3 className="text-xl text-blood">Without Revenant</h3>
-                <ul className="mt-4 space-y-3 text-bone">
+              <SpotlightCard className="h-full p-6" glow="248 113 113">
+                <h3 className="text-lg font-semibold text-danger">Without Revenant</h3>
+                <ul className="mt-4 space-y-3 text-fg">
                   {[
                     ["Keep it", "and live with unfixed security bugs."],
                     ["Rewrite it by hand:", "slow, and easy to get subtly wrong."],
                     ["Ask an AI to rewrite it,", "with nothing to show the new code behaves like the old."],
                   ].map(([b, rest]) => (
                     <li key={b} className="flex gap-3">
-                      <X aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-blood" />
+                      <X aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-danger" />
                       <span>
                         <strong>{b}</strong> {rest}
                       </span>
@@ -200,16 +204,16 @@ export default function Home() {
               </SpotlightCard>
             </Reveal>
             <Reveal delay={0.1}>
-              <SpotlightCard className="h-full p-6" glow="123 224 164">
-                <h3 className="text-xl text-ectoplasm">With Revenant</h3>
-                <ul className="mt-4 space-y-3 text-bone">
+              <SpotlightCard className="h-full p-6" glow="74 222 128">
+                <h3 className="text-lg font-semibold text-success">With Revenant</h3>
+                <ul className="mt-4 space-y-3 text-fg">
                   {[
                     ["The old package's behavior is recorded", "as evidence, input by input."],
                     ["The evidence becomes a spec", "an AI coding tool can build from."],
                     ["The rebuild is compared with the original", "on 1,000 inputs. Deliberate security fixes are listed, not hidden."],
                   ].map(([b, rest]) => (
                     <li key={b} className="flex gap-3">
-                      <Check aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-ectoplasm" />
+                      <Check aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-success" />
                       <span>
                         <strong>{b}</strong> {rest}
                       </span>
@@ -225,10 +229,10 @@ export default function Home() {
         <section id="how-it-works" aria-labelledby="how-heading" className="scroll-mt-20 py-12">
           <Reveal>
             <p className="kicker">How it works</p>
-            <h2 id="how-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+            <h2 id="how-heading" className="mt-2 text-2xl font-semibold text-fg sm:text-3xl">
               Five steps, from autopsy to rebirth
             </h2>
-            <p className="mt-3 max-w-2xl text-ash">
+            <p className="mt-3 max-w-2xl text-muted">
               Each package page walks through these steps in order. Steps 1, 2, 3 and 5 run right here in your browser.
               Step 4 happens in Kiro, the AI coding tool used to do the rebuild.
             </p>
@@ -242,10 +246,10 @@ export default function Home() {
         <section id="graveyard" aria-labelledby="graveyard-heading" className="scroll-mt-20 py-20">
           <Reveal>
             <p className="kicker">The Graveyard</p>
-            <h2 id="graveyard-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+            <h2 id="graveyard-heading" className="mt-2 text-2xl font-semibold text-fg sm:text-3xl">
               {cards.length} real, unmaintained packages
             </h2>
-            <p className="mt-3 max-w-2xl text-ash">
+            <p className="mt-3 max-w-2xl text-muted">
               Only these packages can be run on this site; it never installs code you type in. Not sure where to begin?
               Open <Link href={`/package/${encodeURIComponent(START_HERE)}`}>{START_HERE}</Link>, the most complete example.
             </p>
@@ -257,29 +261,29 @@ export default function Home() {
               </Reveal>
             ))}
           </ul>
-          {cards.length === 0 && <p className="text-candle">The Graveyard is empty: no manifests found.</p>}
+          {cards.length === 0 && <p className="text-warn">The Graveyard is empty: no manifests found.</p>}
         </section>
 
         {/* Who */}
         <section aria-labelledby="who-heading" className="py-12">
           <Reveal>
             <p className="kicker">Who this is for</p>
-            <h2 id="who-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+            <h2 id="who-heading" className="mt-2 text-2xl font-semibold text-fg sm:text-3xl">
               Developers stuck with a dead dependency
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <Reveal className="card p-6">
-              <h3 className="text-lg text-bone">You will get the most from it if</h3>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-ash">
+              <h3 className="text-base font-semibold text-fg">You will get the most from it if</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-muted">
                 <li>You depend on a small utility package that nobody maintains.</li>
                 <li>You want a modern replacement you can read, not a black box.</li>
                 <li>You want to see what changed, and why, before you switch.</li>
               </ul>
             </Reveal>
             <Reveal className="card p-6" delay={0.1}>
-              <h3 className="text-lg text-bone">What you can do here</h3>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-ash">
+              <h3 className="text-base font-semibold text-fg">What you can do here</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-muted">
                 <li>Read the health check of each package.</li>
                 <li>Download a Kiro spec bundle and rebuild a package yourself.</li>
                 <li>Inspect a rebuild and how its match score was produced.</li>
@@ -292,14 +296,14 @@ export default function Home() {
         <section id="questions" aria-labelledby="faq-heading" className="scroll-mt-20 py-20">
           <Reveal>
             <p className="kicker">Questions</p>
-            <h2 id="faq-heading" className="mt-2 text-3xl text-bone sm:text-4xl">
+            <h2 id="faq-heading" className="mt-2 text-2xl font-semibold text-fg sm:text-3xl">
               Before you trust a score
             </h2>
           </Reveal>
           <div className="mt-8 space-y-3">
             {FAQ.map((f) => (
               <Collapsible key={f.q} summary={f.q}>
-                <p className="leading-relaxed text-ash">{f.a}</p>
+                <p className="leading-relaxed text-muted">{f.a}</p>
               </Collapsible>
             ))}
           </div>
